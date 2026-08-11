@@ -1,0 +1,34 @@
+{
+  "project_number": "26-0147",
+  "bid_package_number": "26-0147-BP-26",
+  "entered_by": "Daniel Cho",
+  "entered_role": "Senior Estimator",
+  "source": "estimator_entered",
+  "_notice": "These dollar values are ESTIMATOR-ENTERED, not AI-derived. The platform may flag that scope is missing; assigning a dollar value to that gap is a human decision. Presenting an AI-estimated adjustment as if it were vendor-submitted pricing is explicitly prohibited -- see docs/charter.md Section 10 and Section 30.",
+  "adjustments": [
+    {
+      "scope_key": "lighting_fixtures",
+      "applies_when_status": ["Excluded", "NotFound"],
+      "amount": 42500.00,
+      "rationale": "Carry Apex's stated fixture allowance as the leveling value for bidders who excluded fixtures."
+    },
+    {
+      "scope_key": "electrical_permit_fees",
+      "applies_when_status": ["Excluded", "NotFound"],
+      "amount": 4200.00,
+      "rationale": "Estimated Division 26 permit fees for the Falcon expansion based on prior Atlanta-metro healthcare work."
+    },
+    {
+      "scope_key": "performance_payment_bond",
+      "applies_when_status": ["Excluded", "NotFound"],
+      "amount": 3100.00,
+      "rationale": "Bond cost at approximately 1.7% of base bid where the bidder excluded bonding."
+    },
+    {
+      "scope_key": "arc_flash_study",
+      "applies_when_status": ["Excluded", "NotFound"],
+      "amount": 6500.00,
+      "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+    }
+  ]
+}

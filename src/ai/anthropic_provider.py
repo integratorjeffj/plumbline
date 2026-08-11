@@ -35,14 +35,26 @@ class AnthropicProvider(AIProvider):
         self._schemas_dir = schemas_dir
         self._prompts_dir = prompts_dir
 
-    def extract_bid(self, pages: list[PageText], prompt_version: str) -> ExtractionResult:
+    def extract_bid(
+        self,
+        pages: list[PageText],
+        prompt_version: str,
+        email_body: str = "",
+        document_key: str = "",
+    ) -> ExtractionResult:
         schema = _load_schema(self._schemas_dir)
         system_prompt = load_prompt(self._prompts_dir, prompt_version, section="system")
-        document_text = full_text(pages)
+
+        sections = []
+        if email_body:
+            # Some vendors put pricing in the message, not the attachment, so the
+            # body is a first-class source and is labeled as such for citation.
+            sections.append(f"<email_body>\n{email_body}\n</email_body>")
+        sections.append(f"<document_pages>\n{full_text(pages)}\n</document_pages>")
 
         response = self._client.messages.create(
             model=self.model_name,
-            max_tokens=2048,
+            max_tokens=4096,
             system=system_prompt,
             tools=[{
                 "name": TOOL_NAME,
@@ -53,10 +65,9 @@ class AnthropicProvider(AIProvider):
             messages=[{
                 "role": "user",
                 "content": (
-                    "Extract the base bid, allowances, alternates, and the following scope items "
-                    "from the attached subcontractor proposal: electrical_permit_fees, "
-                    "performance_payment_bond, arc_flash_study.\n\n"
-                    f"<document pages>\n{document_text}\n</document pages>"
+                    "Extract the structured bid facts from the following subcontractor submission. "
+                    "Answer every scope item in the schema, using NotFound where the submission is "
+                    "silent.\n\n" + "\n\n".join(sections)
                 ),
             }],
         )
@@ -66,10 +77,12 @@ class AnthropicProvider(AIProvider):
 
         return ExtractionResult(
             base_bid=structured["base_bid"],
+            line_items=structured.get("line_items", []),
             allowances=structured.get("allowances", []),
             alternates=structured.get("alternates", []),
             scope_assertions=structured.get("scope_assertions", {}),
             citations=structured.get("citations", {}),
+            drawing_revision_referenced=structured.get("drawing_revision_referenced"),
             confidence_tier=structured.get("confidence_tier", "REVIEW"),
             provider=self.provider_name,
             model=self.model_name,

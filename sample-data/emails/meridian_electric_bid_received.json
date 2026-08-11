@@ -1,0 +1,27 @@
+{
+  "event_id": "evt-meridian-0001",
+  "event_type": "email.received",
+  "received_at": "2026-08-07T15:05:00-04:00",
+  "mailbox": "bids@crestmark-demo.example",
+  "from": {
+    "name": "Curtis Boyd",
+    "email": "curtis.boyd@meridian-electric-demo.example"
+  },
+  "to": ["bids@crestmark-demo.example"],
+  "subject": "RE: Falcon Medical Center Expansion - Div 26 Electrical - Meridian pricing",
+  "body_text": "Daniel,\n\nPricing for the Division 26 Electrical package on Falcon Medical Center Expansion (Project 26-0147, Bid Package 26-0147-BP-26) is below. Our scope letter is attached.\n\nMobilization, supervision, and project management ....... $11,500.00\nBranch power rough-in .................................. $63,800.00\nFeeders and distribution equipment ..................... $40,200.00\nLighting branch circuitry .............................. $22,950.00\nLighting fixture allowance ............................. $38,000.00\nFire alarm device connections .......................... $3,200.00\nCloseout documentation ................................. $1,800.00\n\nTOTAL BASE BID ......................................... $178,950.00\n\nBid is good for 30 days. Let me know if you need anything else.\n\nThanks,\nCurtis Boyd\nChief Estimator, Meridian Electric & Controls",
+  "attachments": [
+    {
+      "filename": "meridian_electric_scope_letter.pdf",
+      "path": "sample-data/bids/meridian_electric_scope_letter.pdf",
+      "content_type": "application/pdf"
+    }
+  ],
+  "mentioned_identifiers": {
+    "project_number": "26-0147",
+    "bid_package_number": "26-0147-BP-26",
+    "vendor_name": "Meridian Electric & Controls"
+  },
+  "pricing_in_body": true,
+  "synthetic_notice": "Fictional inbound-email fixture created for the Bid Intelligence & Procurement Copilot demonstration. Pricing is deliberately in the email body rather than the attachment, and the line items deliberately do NOT sum to the stated total."
+}

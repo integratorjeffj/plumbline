@@ -79,12 +79,36 @@ class Bid(Base):
     base_bid: Mapped[float] = mapped_column(Float, nullable=False)
     proposal_date: Mapped[str] = mapped_column(String, nullable=True)
     bid_validity_days: Mapped[int] = mapped_column(Integer, nullable=True)
+    revision_label: Mapped[str] = mapped_column(String, nullable=False, default="Original")
+    # Verbatim as the vendor stated it, so a stale reference stays visible
+    # rather than being normalized away before anyone can flag it.
+    drawing_revision_referenced: Mapped[str] = mapped_column(String, nullable=True)
+    superseded_by: Mapped[str] = mapped_column(String, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
 
+    line_items: Mapped[list["BidLineItem"]] = relationship(back_populates="bid", cascade="all, delete-orphan")
     allowances: Mapped[list["Allowance"]] = relationship(back_populates="bid", cascade="all, delete-orphan")
     alternates: Mapped[list["Alternate"]] = relationship(back_populates="bid", cascade="all, delete-orphan")
     scope_assertions: Mapped[list["ScopeAssertion"]] = relationship(back_populates="bid", cascade="all, delete-orphan")
     citations: Mapped[list["SourceCitation"]] = relationship(back_populates="bid", cascade="all, delete-orphan")
+
+
+class BidLineItem(Base):
+    """A priced line as the vendor broke it out.
+
+    Stored separately from `Bid.base_bid` on purpose: the stated total and the
+    sum of these rows are two different facts, and the gap between them is a
+    finding (see src/comparison/anomalies.py::check_arithmetic).
+    """
+
+    __tablename__ = "bid_line_items"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=_uuid)
+    bid_id: Mapped[str] = mapped_column(String, ForeignKey("bids.id"), nullable=False)
+    description: Mapped[str] = mapped_column(String, nullable=False)
+    amount: Mapped[float] = mapped_column(Float, nullable=False)
+
+    bid: Mapped["Bid"] = relationship(back_populates="line_items")
 
 
 class Allowance(Base):

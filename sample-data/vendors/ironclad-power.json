@@ -1,0 +1,20 @@
+{
+  "vendor_id": "ironclad-power",
+  "name": "Ironclad Power & Electric",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "ironclad-power-demo.example",
+  "characteristics": [
+    "Established electrical subcontractor with strong bonding capacity",
+    "Only flagship bidder carrying performance and payment bond in the base bid",
+    "Responsive to addenda; reissues revised proposals promptly",
+    "Strong scope completeness after revision"
+  ],
+  "contacts": [
+    {
+      "name": "Alicia Stern",
+      "title": "Preconstruction Manager",
+      "email": "alicia.stern@ironclad-power-demo.example"
+    }
+  ],
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

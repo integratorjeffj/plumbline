@@ -1,0 +1,28 @@
+{
+  "event_id": "evt-ironclad-0002",
+  "event_type": "email.received",
+  "received_at": "2026-08-12T13:22:00-04:00",
+  "mailbox": "bids@crestmark-demo.example",
+  "from": {
+    "name": "Alicia Stern",
+    "email": "alicia.stern@ironclad-power-demo.example"
+  },
+  "to": ["bids@crestmark-demo.example"],
+  "subject": "REVISED - Falcon Medical Center Expansion - Division 26 Electrical - Ironclad Rev 1",
+  "body_text": "Daniel,\n\nRevised proposal attached per Addendum 2. The standby generator feeder has been deleted from the Division 26 package, which reduces our base bid by $4,550.00.\n\nThis revision supersedes our proposal dated August 7, 2026. All other scope, allowances, and exclusions are unchanged.\n\nBest regards,\nAlicia Stern\nPreconstruction Manager, Ironclad Power & Electric",
+  "attachments": [
+    {
+      "filename": "ironclad_power_proposal_rev1.pdf",
+      "path": "sample-data/bids/ironclad_power_proposal_rev1.pdf",
+      "content_type": "application/pdf"
+    }
+  ],
+  "mentioned_identifiers": {
+    "project_number": "26-0147",
+    "bid_package_number": "26-0147-BP-26",
+    "vendor_name": "Ironclad Power & Electric"
+  },
+  "revision_label": "Revision 1",
+  "supersedes_event_id": "evt-ironclad-0001",
+  "synthetic_notice": "Fictional inbound-email fixture created for the Bid Intelligence & Procurement Copilot demonstration. Not a real message."
+}

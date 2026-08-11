@@ -1,0 +1,26 @@
+{
+  "event_id": "evt-voltage-0001",
+  "event_type": "email.received",
+  "received_at": "2026-08-07T11:18:00-04:00",
+  "mailbox": "bids@crestmark-demo.example",
+  "from": {
+    "name": "Priya Raman",
+    "email": "priya.raman@voltage-systems-demo.example"
+  },
+  "to": ["bids@crestmark-demo.example"],
+  "subject": "Falcon Medical Center - 26-0147-BP-26 Electrical Pricing - Voltage Systems",
+  "body_text": "Daniel,\n\nOur pricing workbook for the Division 26 package on Falcon Medical Center Expansion is attached. Detail is broken out on the Pricing Detail tab, with our exclusions and clarifications on the following tabs.\n\nPlease review our exclusions carefully.\n\nRegards,\nPriya Raman\nEstimating Manager, Voltage Systems Inc.",
+  "attachments": [
+    {
+      "filename": "voltage_systems_pricing.xlsx",
+      "path": "sample-data/bids/voltage_systems_pricing.xlsx",
+      "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    }
+  ],
+  "mentioned_identifiers": {
+    "project_number": "26-0147",
+    "bid_package_number": "26-0147-BP-26",
+    "vendor_name": "Voltage Systems Inc."
+  },
+  "synthetic_notice": "Fictional inbound-email fixture created for the Bid Intelligence & Procurement Copilot demonstration. Not a real message."
+}

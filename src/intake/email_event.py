@@ -2,6 +2,11 @@
 
 Stands in for a real mailbox webhook (Microsoft Graph / Gmail) per the
 simulation-to-production map in docs/architecture-review.md Section 11.
+
+The event carries the email body as well as its attachments because some
+vendors put their pricing in the message itself rather than in a document
+(Meridian, in the flagship scenario). Body text is therefore a first-class
+extraction source, not metadata.
 """
 
 import json
@@ -17,16 +22,28 @@ class Attachment:
     path: Path
     content_type: str
 
+    @property
+    def is_pdf(self) -> bool:
+        return self.content_type == "application/pdf" or self.path.suffix.lower() == ".pdf"
+
+    @property
+    def is_excel(self) -> bool:
+        return self.path.suffix.lower() in (".xlsx", ".xlsm")
+
 
 @dataclass(frozen=True)
 class EmailEvent:
     event_id: str
     subject: str
     sender_email: str
+    body_text: str
     attachments: list[Attachment]
     project_number: str
     bid_package_number: str
     vendor_name: str
+    revision_label: str = "Original"
+    supersedes_event_id: str | None = None
+    pricing_in_body: bool = False
 
 
 def load_email_event(fixture_path: Path, repo_root: Path) -> EmailEvent:
@@ -54,8 +71,12 @@ def load_email_event(fixture_path: Path, repo_root: Path) -> EmailEvent:
         event_id=raw["event_id"],
         subject=raw["subject"],
         sender_email=raw["from"]["email"],
+        body_text=raw.get("body_text", ""),
         attachments=attachments,
         project_number=identifiers["project_number"],
         bid_package_number=identifiers["bid_package_number"],
         vendor_name=identifiers["vendor_name"],
+        revision_label=raw.get("revision_label", "Original"),
+        supersedes_event_id=raw.get("supersedes_event_id"),
+        pricing_in_body=raw.get("pricing_in_body", False),
     )

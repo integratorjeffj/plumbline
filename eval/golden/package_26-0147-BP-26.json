@@ -1,0 +1,110 @@
+{
+  "project_number": "26-0147",
+  "bid_package": "26-0147-BP-26",
+  "budget": 185000.00,
+  "active_bidder_count": 4,
+  "_source": "docs/demo-scenario.md",
+  "_notice": "Authoritative golden answer for the four-vendor package comparison. Defines correctness; must never be regenerated from pipeline output.",
+
+  "submitted_ranking": [
+    { "vendor_id": "voltage-systems", "rank": 1, "total": 167400.00 },
+    { "vendor_id": "meridian-electric", "rank": 2, "total": 178950.00 },
+    { "vendor_id": "ironclad-power", "rank": 3, "total": 179750.00 },
+    { "vendor_id": "apex-electrical", "rank": 4, "total": 191850.00 }
+  ],
+
+  "adjusted_ranking": [
+    { "vendor_id": "ironclad-power", "rank": 1, "total": 186250.00 },
+    { "vendor_id": "meridian-electric", "rank": 2, "total": 188550.00 },
+    { "vendor_id": "apex-electrical", "rank": 3, "total": 201450.00 },
+    { "vendor_id": "voltage-systems", "rank": 4, "total": 223700.00 }
+  ],
+
+  "leveling_changes_the_answer": true,
+  "lowest_submitted_vendor_id": "voltage-systems",
+  "lowest_adjusted_vendor_id": "ironclad-power",
+
+  "superseded_bids": [
+    { "vendor_id": "ironclad-power", "revision_label": "Original", "superseded_by": "Revision 1" }
+  ],
+
+  "revision_diffs": [
+    {
+      "vendor_id": "ironclad-power",
+      "previous_total": 184300.00,
+      "current_total": 179750.00,
+      "total_delta": -4550.00
+    }
+  ],
+
+  "expected_anomaly_codes": [
+    "arithmetic_discrepancy",
+    "stale_drawing_revision",
+    "required_scope_missing_all_bidders",
+    "large_leveling_delta",
+    "unclear_scope_requires_clarification",
+    "adjusted_over_budget",
+    "superseded_revision"
+  ],
+
+  "anomaly_expectations": {
+    "arithmetic_discrepancy": {
+      "vendor_ids": ["meridian-electric"],
+      "detail": { "stated_total": 178950.00, "line_item_total": 181450.00, "delta": 2500.00 }
+    },
+    "stale_drawing_revision": {
+      "vendor_ids": ["meridian-electric"],
+      "detail": { "referenced": "Revision 1", "project_revision": "Rev 3" }
+    },
+    "required_scope_missing_all_bidders": {
+      "scope_keys": ["arc_flash_study"],
+      "spec_section": "26 05 73"
+    },
+    "large_leveling_delta": {
+      "vendor_ids": ["voltage-systems"]
+    }
+  },
+
+  "not_expected_anomaly_codes": [
+    "pricing_outlier_low"
+  ],
+
+  "scope_matrix_spot_checks": {
+    "arc_flash_study": {
+      "apex-electrical": "NotFound",
+      "voltage-systems": "NotFound",
+      "meridian-electric": "NotFound",
+      "ironclad-power": "NotFound"
+    },
+    "lighting_fixtures": {
+      "apex-electrical": "Included",
+      "voltage-systems": "Excluded",
+      "meridian-electric": "Included",
+      "ironclad-power": "Included"
+    },
+    "electrical_permit_fees": {
+      "apex-electrical": "Included",
+      "voltage-systems": "Excluded",
+      "meridian-electric": "Included",
+      "ironclad-power": "Included"
+    },
+    "performance_payment_bond": {
+      "apex-electrical": "Excluded",
+      "voltage-systems": "Excluded",
+      "meridian-electric": "Excluded",
+      "ironclad-power": "Included"
+    },
+    "temporary_power": {
+      "apex-electrical": "Included",
+      "voltage-systems": "Included",
+      "meridian-electric": "Unclear",
+      "ironclad-power": "Included"
+    },
+    "feeder_branch_circuit_testing": {
+      "apex-electrical": "Included",
+      "voltage-systems": "Unclear",
+      "meridian-electric": "Included",
+      "ironclad-power": "Included"
+    }
+  }
+}

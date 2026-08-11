@@ -1,0 +1,45 @@
+{
+  "project_number": "26-0147",
+  "bid_package_number": "26-0147-BP-26",
+  "specification_issue": "Issued for Bid",
+  "drawing_revision": "Rev 3",
+  "_notice": "Synthetic curated required-scope checklist standing in for a parsed project manual. V1 uses a human-curated list rather than an NLP specification parser -- see docs/architecture-review.md Section 2 (required-scope cross-check: MODIFY).",
+  "required_scope": [
+    {
+      "scope_key": "branch_power_rough_in",
+      "spec_section": "26 05 19",
+      "title": "Low-Voltage Electrical Power Conductors and Cables",
+      "critical": true
+    },
+    {
+      "scope_key": "lighting_fixtures",
+      "spec_section": "26 51 00",
+      "title": "Interior Lighting",
+      "critical": true
+    },
+    {
+      "scope_key": "electrical_permit_fees",
+      "spec_section": "26 00 00",
+      "title": "General Electrical Requirements - Permits",
+      "critical": true
+    },
+    {
+      "scope_key": "feeder_branch_circuit_testing",
+      "spec_section": "26 08 00",
+      "title": "Commissioning of Electrical Systems",
+      "critical": true
+    },
+    {
+      "scope_key": "arc_flash_study",
+      "spec_section": "26 05 73",
+      "title": "Power System Studies - Arc-Flash Hazard Analysis",
+      "critical": true
+    },
+    {
+      "scope_key": "closeout_documentation",
+      "spec_section": "26 00 00",
+      "title": "General Electrical Requirements - Closeout Submittals",
+      "critical": false
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "vendor_id": "voltage-systems",
+  "name": "Voltage Systems Inc.",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "voltage-systems-demo.example",
+  "characteristics": [
+    "Price-competitive regional electrical subcontractor",
+    "Submits spreadsheet pricing rather than narrative proposals",
+    "Lean scope narrative; relies on short exclusion lists",
+    "Lowest submitted price in the flagship comparison",
+    "Lower scope completeness than competitors"
+  ],
+  "contacts": [
+    {
+      "name": "Priya Raman",
+      "title": "Estimating Manager",
+      "email": "priya.raman@voltage-systems-demo.example"
+    }
+  ],
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

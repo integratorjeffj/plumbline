@@ -1,0 +1,31 @@
+{
+  "vendor": "Meridian Electric & Controls",
+  "vendor_id": "meridian-electric",
+  "project_number": "26-0147",
+  "bid_package": "26-0147-BP-26",
+  "base_bid": 178950.00,
+  "line_item_total": 181450.00,
+  "allowances": [
+    {
+      "name": "Lighting fixture allowance",
+      "amount": 38000.00,
+      "included_in_base_bid": true
+    }
+  ],
+  "alternates": [],
+  "scope_assertions": {
+    "lighting_fixtures": "Included",
+    "electrical_permit_fees": "Included",
+    "performance_payment_bond": "Excluded",
+    "temporary_power": "Unclear",
+    "arc_flash_study": "NotFound"
+  },
+  "drawing_revision_referenced": "Revision 1",
+  "citations": {
+    "base_bid": { "page": 1, "section": "Email body - pricing" },
+    "performance_payment_bond": { "page": 2, "section": "Exclusions" },
+    "temporary_power": { "page": 2, "section": "Clarifications" }
+  },
+  "_source": "docs/demo-scenario.md",
+  "_notice": "Pricing arrives in the email body, not the attachment. base_bid is the STATED total; line_item_total is $2,500.00 higher, which is the planted arithmetic discrepancy. Also references a stale drawing revision."
+}

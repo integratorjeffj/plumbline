@@ -1,0 +1,20 @@
+{
+  "vendor_id": "meridian-electric",
+  "name": "Meridian Electric & Controls",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "meridian-electric-demo.example",
+  "characteristics": [
+    "Mid-size electrical and controls contractor",
+    "Sends pricing in the email body with a short PDF scope letter attached",
+    "Informal proposal formatting; occasional clerical errors",
+    "Competitive pricing, moderate scope completeness"
+  ],
+  "contacts": [
+    {
+      "name": "Curtis Boyd",
+      "title": "Chief Estimator",
+      "email": "curtis.boyd@meridian-electric-demo.example"
+    }
+  ],
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

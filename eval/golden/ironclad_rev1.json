@@ -1,0 +1,30 @@
+{
+  "vendor": "Ironclad Power & Electric",
+  "vendor_id": "ironclad-power",
+  "project_number": "26-0147",
+  "bid_package": "26-0147-BP-26",
+  "base_bid": 179750.00,
+  "line_item_total": 179750.00,
+  "allowances": [
+    {
+      "name": "Lighting fixture allowance",
+      "amount": 41000.00,
+      "included_in_base_bid": true
+    }
+  ],
+  "alternates": [],
+  "scope_assertions": {
+    "lighting_fixtures": "Included",
+    "electrical_permit_fees": "Included",
+    "performance_payment_bond": "Included",
+    "feeder_branch_circuit_testing": "Included",
+    "arc_flash_study": "NotFound"
+  },
+  "drawing_revision_referenced": "Revision 3",
+  "citations": {
+    "base_bid": { "page": 1, "section": "Proposal Summary" },
+    "performance_payment_bond": { "page": 3, "section": "Included Scope" }
+  },
+  "_source": "docs/demo-scenario.md",
+  "_notice": "Revision 1, issued after Addendum 2 deleted the standby generator feeder (-$4,550.00 from the $184,300.00 original). The only bidder carrying performance and payment bond in the base bid, which is why it wins on adjusted price."
+}

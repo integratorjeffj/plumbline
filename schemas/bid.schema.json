@@ -1,20 +1,33 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bid-intelligence-copilot/schemas/bid.schema.json",
-  "title": "Bid Schema v0.1",
-  "description": "Shape of the structured AI extraction for a single vendor proposal. Drafted from the actual Apex Electrical proposal fixture (sample-data/bids/apex_electrical_proposal.pdf) per Architecture-Amendments-v1.0.md Amendment 5 -- not designed in the abstract before a representative document existed. Used both to validate pipeline output and as the Anthropic tool input_schema (src/ai/anthropic_provider.py), so extraction is schema-constrained at the model call itself.",
+  "title": "Demo Schema v1.0 - Bid Extraction",
+  "description": "Shape of the structured AI extraction for a single vendor proposal. Refined from Bid Schema v0.1 after all four flagship vendor fixtures existed, per Architecture-Amendments-v1.0.md Amendment 5 (draft Apex -> draft v0.1 -> create vendors B-D -> refine -> freeze v1.0). Used both to validate pipeline output and as the Anthropic tool input_schema (src/ai/anthropic_provider.py), so extraction is schema-constrained at the model call itself.",
   "type": "object",
-  "required": ["base_bid", "allowances", "alternates", "scope_assertions", "citations", "confidence_tier"],
+  "required": ["base_bid", "line_items", "allowances", "alternates", "scope_assertions", "citations", "confidence_tier"],
   "additionalProperties": false,
   "properties": {
     "base_bid": {
       "type": "number",
-      "description": "The vendor's total base bid amount in USD, exactly as stated in the proposal summary.",
+      "description": "The total base bid amount in USD exactly as the vendor STATES it. Never recompute this from line items -- the difference between the stated total and the line-item sum is itself a finding (see src/comparison/anomalies.py arithmetic validation).",
       "exclusiveMinimum": 0
+    },
+    "line_items": {
+      "type": "array",
+      "description": "Priced line items as broken out by the vendor. Empty when the vendor gives only a lump sum. These are what arithmetic validation sums against the stated base bid.",
+      "items": {
+        "type": "object",
+        "required": ["description", "amount"],
+        "additionalProperties": false,
+        "properties": {
+          "description": { "type": "string", "minLength": 1 },
+          "amount": { "type": "number" }
+        }
+      }
     },
     "allowances": {
       "type": "array",
-      "description": "Dollar allowances carried within the proposal, with whether each is already inside the base bid.",
+      "description": "Dollar allowances carried in the proposal, with whether each sits inside the base bid.",
       "items": {
         "type": "object",
         "required": ["name", "amount", "included_in_base_bid"],
@@ -28,7 +41,7 @@
     },
     "alternates": {
       "type": "array",
-      "description": "Priced alternates, with whether each is already inside the base bid.",
+      "description": "Priced alternates, with whether each sits inside the base bid.",
       "items": {
         "type": "object",
         "required": ["id", "amount", "included_in_base_bid"],
@@ -42,21 +55,48 @@
     },
     "scope_assertions": {
       "type": "object",
-      "description": "Status of specific scope items the pipeline asked about. Every requested key must be present -- 'NotFound' is a valid and expected answer, never omitted or silently treated as Excluded.",
-      "required": ["electrical_permit_fees", "performance_payment_bond", "arc_flash_study"],
-      "additionalProperties": {
-        "type": "string",
-        "enum": ["Included", "Excluded", "Unclear", "NotFound"]
-      },
+      "description": "Status of EVERY canonical scope item in src/normalization/taxonomy.py. All keys are required: a scope item the proposal never mentions must be answered 'NotFound', not omitted and never 'Excluded'. Forcing a complete answer set is what makes the missing-scope analysis possible.",
+      "additionalProperties": false,
+      "required": [
+        "electrical_mobilization_supervision",
+        "branch_power_rough_in",
+        "lighting_branch_circuitry",
+        "lighting_fixtures",
+        "electrical_permit_fees",
+        "temporary_power",
+        "fire_alarm_device_connections",
+        "feeder_branch_circuit_testing",
+        "closeout_documentation",
+        "performance_payment_bond",
+        "arc_flash_study",
+        "utility_company_charges",
+        "structured_cabling_div27",
+        "security_access_control_div28"
+      ],
       "properties": {
-        "electrical_permit_fees": { "type": "string", "enum": ["Included", "Excluded", "Unclear", "NotFound"] },
-        "performance_payment_bond": { "type": "string", "enum": ["Included", "Excluded", "Unclear", "NotFound"] },
-        "arc_flash_study": { "type": "string", "enum": ["Included", "Excluded", "Unclear", "NotFound"] }
+        "electrical_mobilization_supervision": { "$ref": "#/definitions/scopeStatus" },
+        "branch_power_rough_in": { "$ref": "#/definitions/scopeStatus" },
+        "lighting_branch_circuitry": { "$ref": "#/definitions/scopeStatus" },
+        "lighting_fixtures": { "$ref": "#/definitions/scopeStatus" },
+        "electrical_permit_fees": { "$ref": "#/definitions/scopeStatus" },
+        "temporary_power": { "$ref": "#/definitions/scopeStatus" },
+        "fire_alarm_device_connections": { "$ref": "#/definitions/scopeStatus" },
+        "feeder_branch_circuit_testing": { "$ref": "#/definitions/scopeStatus" },
+        "closeout_documentation": { "$ref": "#/definitions/scopeStatus" },
+        "performance_payment_bond": { "$ref": "#/definitions/scopeStatus" },
+        "arc_flash_study": { "$ref": "#/definitions/scopeStatus" },
+        "utility_company_charges": { "$ref": "#/definitions/scopeStatus" },
+        "structured_cabling_div27": { "$ref": "#/definitions/scopeStatus" },
+        "security_access_control_div28": { "$ref": "#/definitions/scopeStatus" }
       }
+    },
+    "drawing_revision_referenced": {
+      "type": ["string", "null"],
+      "description": "The Contract Drawing revision the proposal states it is based on, verbatim (e.g. 'Rev 3', 'Revision 1'). Null when the proposal does not say. Compared deterministically against the project's current revision to flag stale references."
     },
     "citations": {
       "type": "object",
-      "description": "Page/section location for every extracted fact, keyed by a field label (e.g. 'base_bid', 'lighting_fixture_allowance', 'alternate_a1'). Lets a human reviewer jump straight to the source instead of re-reading the whole proposal.",
+      "description": "Page/section location for every extracted fact, keyed by field label. For spreadsheets, page is the sheet index and section is the sheet name. Lets a reviewer verify a number without re-reading the whole document.",
       "minProperties": 1,
       "additionalProperties": {
         "type": "object",
@@ -70,8 +110,15 @@
     },
     "confidence_tier": {
       "type": "string",
-      "description": "Model's self-assessed confidence in this extraction. Never a numeric percentage -- see docs/architecture-review.md Section 2 on avoiding false precision.",
+      "description": "Self-assessed confidence in this extraction. Never a numeric percentage -- see docs/architecture-review.md Section 2 on avoiding false precision.",
       "enum": ["HIGH", "REVIEW", "LOW"]
+    }
+  },
+  "definitions": {
+    "scopeStatus": {
+      "type": "string",
+      "description": "Included = vendor explicitly includes it. Excluded = vendor explicitly excludes it. Unclear = mentioned but ambiguous. NotFound = the proposal is silent. Excluded and NotFound are never interchangeable.",
+      "enum": ["Included", "Excluded", "Unclear", "NotFound"]
     }
   }
 }

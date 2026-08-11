@@ -23,6 +23,7 @@
     "performance_payment_bond": "Excluded",
     "arc_flash_study": "NotFound"
   },
+  "drawing_revision_referenced": "Revision 3",
   "citations": {
     "base_bid": { "page": 1, "section": "Proposal Summary" },
     "lighting_fixture_allowance": { "page": 3, "section": "Allowances" },
