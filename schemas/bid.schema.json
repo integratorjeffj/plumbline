@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bid-intelligence-copilot/schemas/bid.schema.json",
+  "title": "Bid Schema v0.1",
+  "description": "Shape of the structured AI extraction for a single vendor proposal. Drafted from the actual Apex Electrical proposal fixture (sample-data/bids/apex_electrical_proposal.pdf) per Architecture-Amendments-v1.0.md Amendment 5 -- not designed in the abstract before a representative document existed. Used both to validate pipeline output and as the Anthropic tool input_schema (src/ai/anthropic_provider.py), so extraction is schema-constrained at the model call itself.",
+  "type": "object",
+  "required": ["base_bid", "allowances", "alternates", "scope_assertions", "citations", "confidence_tier"],
+  "additionalProperties": false,
+  "properties": {
+    "base_bid": {
+      "type": "number",
+      "description": "The vendor's total base bid amount in USD, exactly as stated in the proposal summary.",
+      "exclusiveMinimum": 0
+    },
+    "allowances": {
+      "type": "array",
+      "description": "Dollar allowances carried within the proposal, with whether each is already inside the base bid.",
+      "items": {
+        "type": "object",
+        "required": ["name", "amount", "included_in_base_bid"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "amount": { "type": "number", "minimum": 0 },
+          "included_in_base_bid": { "type": "boolean" }
+        }
+      }
+    },
+    "alternates": {
+      "type": "array",
+      "description": "Priced alternates, with whether each is already inside the base bid.",
+      "items": {
+        "type": "object",
+        "required": ["id", "amount", "included_in_base_bid"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "description": "Vendor-assigned alternate identifier, e.g. 'A1'." },
+          "amount": { "type": "number" },
+          "included_in_base_bid": { "type": "boolean" }
+        }
+      }
+    },
+    "scope_assertions": {
+      "type": "object",
+      "description": "Status of specific scope items the pipeline asked about. Every requested key must be present -- 'NotFound' is a valid and expected answer, never omitted or silently treated as Excluded.",
+      "required": ["electrical_permit_fees", "performance_payment_bond", "arc_flash_study"],
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["Included", "Excluded", "Unclear", "NotFound"]
+      },
+      "properties": {
+        "electrical_permit_fees": { "type": "string", "enum": ["Included", "Excluded", "Unclear", "NotFound"] },
+        "performance_payment_bond": { "type": "string", "enum": ["Included", "Excluded", "Unclear", "NotFound"] },
+        "arc_flash_study": { "type": "string", "enum": ["Included", "Excluded", "Unclear", "NotFound"] }
+      }
+    },
+    "citations": {
+      "type": "object",
+      "description": "Page/section location for every extracted fact, keyed by a field label (e.g. 'base_bid', 'lighting_fixture_allowance', 'alternate_a1'). Lets a human reviewer jump straight to the source instead of re-reading the whole proposal.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["page", "section"],
+        "additionalProperties": false,
+        "properties": {
+          "page": { "type": "integer", "minimum": 1 },
+          "section": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "confidence_tier": {
+      "type": "string",
+      "description": "Model's self-assessed confidence in this extraction. Never a numeric percentage -- see docs/architecture-review.md Section 2 on avoiding false precision.",
+      "enum": ["HIGH", "REVIEW", "LOW"]
+    }
+  }
+}

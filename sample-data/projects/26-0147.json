@@ -1,0 +1,21 @@
+{
+  "project_number": "26-0147",
+  "project_name": "Falcon Medical Center Expansion",
+  "general_contractor_id": "crestmark",
+  "customer_owner": "Falcon Regional Health System",
+  "location": "Fictional Atlanta metro location",
+  "project_type": "Healthcare expansion and renovation",
+  "delivery_method": "CM at Risk",
+  "current_drawing_revision": "Rev 3",
+  "current_specification_issue": "Issued for Bid",
+  "bid_packages": [
+    {
+      "bid_package_number": "26-0147-BP-26",
+      "csi_division": "26",
+      "description": "Division 26 - Electrical",
+      "budget_usd": 185000.00,
+      "primary_human_reviewer": "Daniel Cho"
+    }
+  ],
+  "synthetic_notice": "Fictional project record created for the Bid Intelligence & Procurement Copilot demonstration."
+}

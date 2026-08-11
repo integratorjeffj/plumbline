@@ -1,0 +1,22 @@
+{
+  "vendor_id": "apex-electrical",
+  "name": "Apex Electrical Contractors",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "apex-electrical-demo.example",
+  "characteristics": [
+    "Established regional commercial electrical subcontractor",
+    "Strong healthcare experience",
+    "Professional proposal formatting",
+    "Thorough scope narrative",
+    "Not the lowest bidder in the eventual four-vendor comparison",
+    "High scope completeness"
+  ],
+  "contacts": [
+    {
+      "name": "Jordan Wells",
+      "title": "Senior Estimator",
+      "email": "jordan.wells@apex-electrical-demo.example"
+    }
+  ],
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

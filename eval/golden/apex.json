@@ -1,0 +1,35 @@
+{
+  "vendor": "Apex Electrical Contractors",
+  "vendor_id": "apex-electrical",
+  "project_number": "26-0147",
+  "bid_package": "26-0147-BP-26",
+  "base_bid": 191850.00,
+  "allowances": [
+    {
+      "name": "Lighting fixture allowance",
+      "amount": 42500.00,
+      "included_in_base_bid": true
+    }
+  ],
+  "alternates": [
+    {
+      "id": "A1",
+      "amount": 8750.00,
+      "included_in_base_bid": false
+    }
+  ],
+  "scope_assertions": {
+    "electrical_permit_fees": "Included",
+    "performance_payment_bond": "Excluded",
+    "arc_flash_study": "NotFound"
+  },
+  "citations": {
+    "base_bid": { "page": 1, "section": "Proposal Summary" },
+    "lighting_fixture_allowance": { "page": 3, "section": "Allowances" },
+    "alternate_a1": { "page": 3, "section": "Alternates" },
+    "performance_payment_bond": { "page": 4, "section": "Clarifications and Exclusions" },
+    "electrical_permit_fees": { "page": 2, "section": "Scope of Work" }
+  },
+  "_source": "docs/fixtures/apex-electrical-fixture-spec.md",
+  "_notice": "Authoritative golden answer for the Apex Electrical first vertical slice. Do not derive this file from pipeline output -- it defines correctness, it does not follow it."
+}

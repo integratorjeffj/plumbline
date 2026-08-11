@@ -1,0 +1,55 @@
+{
+  "company_id": "crestmark",
+  "name": "Crestmark Construction Partners",
+  "type": "Regional commercial general contractor and construction-management firm",
+  "founded": 2004,
+  "headquarters": "Atlanta, Georgia",
+  "regional_offices": ["Charlotte, North Carolina", "Nashville, Tennessee"],
+  "employees_approx": 240,
+  "annual_construction_volume_usd_approx": 425000000,
+  "typical_project_size_usd": { "min": 5000000, "max": 80000000 },
+  "delivery_methods": ["CM at Risk", "Design-Build", "General Contracting"],
+  "core_markets": ["Healthcare", "Higher Education", "Municipal", "Commercial Interiors"],
+  "email_domain": "crestmark-demo.example",
+  "roles": [
+    {
+      "name": "Maya Ellison",
+      "title": "Director of Preconstruction",
+      "email": "maya.ellison@crestmark-demo.example",
+      "responsibility": "Owns estimating standards, bid strategy, and final bid-leveling review."
+    },
+    {
+      "name": "Daniel Cho",
+      "title": "Senior Estimator",
+      "email": "daniel.cho@crestmark-demo.example",
+      "responsibility": "Primary human reviewer for the Falcon Medical Center electrical package."
+    },
+    {
+      "name": "Leah Morgan",
+      "title": "Preconstruction Coordinator",
+      "email": "leah.morgan@crestmark-demo.example",
+      "responsibility": "Manages incoming subcontractor proposals, bid invitations, document organization, and follow-up communications."
+    },
+    {
+      "name": "Marcus Reed",
+      "title": "Project Executive",
+      "email": "marcus.reed@crestmark-demo.example",
+      "responsibility": "Executive sponsor for Falcon Medical Center Expansion."
+    },
+    {
+      "name": "Nina Patel",
+      "title": "Project Manager",
+      "email": "nina.patel@crestmark-demo.example",
+      "responsibility": "Receives approved bid-leveling output after preconstruction review."
+    },
+    {
+      "name": "Erin Wallace",
+      "title": "Controller",
+      "email": "erin.wallace@crestmark-demo.example",
+      "responsibility": "Not part of V1 workflow; useful later for budget and procurement reporting scenarios."
+    }
+  ],
+  "project_numbering_convention": "YY-####",
+  "bid_package_numbering_convention": "<Project Number>-BP-<CSI Division>",
+  "synthetic_notice": "This is a fictional company created for a portfolio demonstration. All names, prices, contacts, and project details are fictional."
+}

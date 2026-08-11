@@ -1,0 +1,26 @@
+{
+  "event_id": "evt-apex-0001",
+  "event_type": "email.received",
+  "received_at": "2026-08-07T16:42:00-04:00",
+  "mailbox": "bids@crestmark-demo.example",
+  "from": {
+    "name": "Jordan Wells",
+    "email": "jordan.wells@apex-electrical-demo.example"
+  },
+  "to": ["bids@crestmark-demo.example"],
+  "subject": "Falcon Medical Center Expansion - Div 26 Electrical Proposal - Apex Electrical",
+  "body_text": "Hi Daniel,\n\nPlease see the attached proposal for the Division 26 Electrical bid package on Falcon Medical Center Expansion (Project 26-0147). Base bid, allowances, alternates, and exclusions are all detailed in the attached document.\n\nLet us know if you have any questions.\n\nThanks,\nJordan Wells\nSenior Estimator, Apex Electrical Contractors",
+  "attachments": [
+    {
+      "filename": "apex_electrical_proposal.pdf",
+      "path": "sample-data/bids/apex_electrical_proposal.pdf",
+      "content_type": "application/pdf"
+    }
+  ],
+  "mentioned_identifiers": {
+    "project_number": "26-0147",
+    "bid_package_number": "26-0147-BP-26",
+    "vendor_name": "Apex Electrical Contractors"
+  },
+  "synthetic_notice": "Fictional inbound-email fixture created for the Bid Intelligence & Procurement Copilot demonstration. Not a real message."
+}

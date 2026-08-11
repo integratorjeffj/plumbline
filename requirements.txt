@@ -1,0 +1,9 @@
+fastapi==0.141.1
+sqlalchemy==2.0.51
+pdfplumber==0.11.10
+reportlab==5.0.0
+pydantic==2.13.4
+anthropic==0.121.0
+pytest==9.1.1
+jsonschema==4.26.0
+python-dotenv==1.2.2
