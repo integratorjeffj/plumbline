@@ -1,6 +1,12 @@
 .env
 __pycache__/
 node_modules/
+web/.next/
+web/out/
+web/data/pipeline.json
+next-env.d.ts
+demo/_export.db
+node_modules/
 *.db
 .DS_Store
 .venv/

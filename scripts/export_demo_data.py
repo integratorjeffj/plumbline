@@ -67,7 +67,14 @@ def build_payload() -> dict:
     comparison = package.comparison
 
     submissions = []
-    for result in package.results:
+    for result, fixture_name in zip(package.results, SUBMISSION_ORDER):
+        # The review screen shows the real document beside the extraction, so the
+        # source text ships with the data. Without it a reviewer would be asked to
+        # approve figures they cannot see the origin of, which defeats the point.
+        event = json.loads(
+            (REPO_ROOT / "sample-data" / "emails" / fixture_name).read_text(encoding="utf-8")
+        )
+
         submissions.append({
             "vendor_id": result.vendor_id,
             "vendor_name": result.vendor_name,
@@ -75,23 +82,39 @@ def build_payload() -> dict:
             "filename": result.source_document_filename,
             "format": FORMAT_LABELS.get(result.source_document_filename, "Document"),
             "sha256": result.source_document_sha256,
-            "pages": len(result.pages),
+            "page_count": len(result.pages),
+            "page_text": [
+                {"page_number": p.page_number, "text": p.text} for p in result.pages
+            ],
+            "email": {
+                "subject": event["subject"],
+                "sender_name": event["from"]["name"],
+                "sender_email": event["from"]["email"],
+                "received_at": event["received_at"],
+                "body_text": event.get("body_text", ""),
+                "pricing_in_body": event.get("pricing_in_body", False),
+            },
             "base_bid": result.extraction.base_bid,
+            "line_items": result.extraction.line_items,
             "line_item_count": len(result.extraction.line_items),
             # Null, not zero: a lump-sum bid has no breakdown to reconcile,
             # which is different from a breakdown that sums to nothing.
             "line_item_total": (
                 result.extraction.line_item_total if result.extraction.line_items else None
             ),
+            "scope_assertions": result.extraction.scope_assertions,
             "drawing_revision_referenced": result.extraction.drawing_revision_referenced,
             "confidence_tier": result.extraction.confidence_tier,
             "provider": result.extraction.provider,
             "model": result.extraction.model,
+            "prompt_version": "extract_bid_v1",
+            "review_status": "pending",
             "citations": result.extraction.citations,
             "allowances": result.extraction.allowances,
             "alternates": result.extraction.alternates,
             "bid_id": result.bid_id,
             "ai_inference_id": result.ai_inference_id,
+            "superseded": not result.normalized.is_active,
         })
 
     vendors = []
@@ -125,6 +148,13 @@ def build_payload() -> dict:
         REPO_ROOT / "sample-data" / "specifications" / f"{PROJECT_NUMBER}-div26-required-scope.json"
     )
 
+    # The settings screen lets the estimator retune these, so the rules ship
+    # with their provenance attached rather than as bare numbers.
+    adjustment_file = json.loads(
+        (REPO_ROOT / "sample-data" / "adjustments" / f"{BID_PACKAGE_NUMBER}.json")
+        .read_text(encoding="utf-8")
+    )
+
     return {
         "project": {
             "project_number": comparison.project_number,
@@ -149,6 +179,12 @@ def build_payload() -> dict:
             for key in SCOPE_KEYS
         ],
         "required_scope": required_scope,
+        "adjustment_rules": {
+            "entered_by": adjustment_file["entered_by"],
+            "entered_role": adjustment_file.get("entered_role", ""),
+            "source": adjustment_file["source"],
+            "rules": adjustment_file["adjustments"],
+        },
         "findings": [
             {
                 "code": a.code,

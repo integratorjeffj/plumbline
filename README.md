@@ -2,7 +2,7 @@
 
 **Reads subcontractor bids in whatever format they arrive in, levels them onto one scope vocabulary, and shows what each bid actually costs.**
 
-[**Live Demo →**](https://integratorjeffj.github.io/plumbline)
+[**Live Demo →**](https://integratorjeffj.github.io/plumbline) · [**Review Console →**](https://integratorjeffj.github.io/plumbline/console/)
 
 ---
 
@@ -24,6 +24,30 @@ Plumbline does that comparison and shows its work:
 The low bidder excluded the lighting fixture allowance and the permit fees. Once those are priced, it becomes the most expensive bid on the table.
 
 It also finds what a price comparison structurally cannot: the **arc-flash study required by specification section 26 05 73 that none of the four bidders covered**. Because all four omitted it, nothing in the bid spread looks unusual, yet the whole package is underpriced against the specification.
+
+### The review console
+
+The [console](https://integratorjeffj.github.io/plumbline/console/) is the interface an estimator
+actually works in:
+
+- **Review** puts the source document beside the extraction. Click any extracted figure to jump to
+  the page and section it was cited from, then approve it, correct it, or reject the submission.
+  Correcting a scope status re-levels the package immediately.
+- **Compare** shows the leveling bars, both rankings, the full scope matrix, revision history, and
+  every finding.
+- **Scope & weighting** is where the estimator assigns each scope item an importance grade and a
+  dollar value. Change a grade and the ranking recomputes on the spot.
+- **Data sources** carries the connector placeholders and a live-mode upload that computes a real
+  SHA-256 in the browser.
+
+Nothing is auto-accepted. Every AI inference is stored as a separate lineage record with a
+`review_status` a human has to clear.
+
+**On running the same math twice.** The console re-levels in the browser so weighting changes are
+instant, which means the leveling logic exists in both Python and TypeScript. That is a genuine
+drift risk, so it is checked rather than trusted: on every load the console re-levels at default
+settings and compares its totals against the ones the Python pipeline exported. The parity badge on
+the overview page is driven by that check and turns red if the two ever disagree.
 
 ### The leveling formula
 
@@ -104,6 +128,22 @@ python scripts/run_comparison.py
 
 Or just visit the [live demo](https://integratorjeffj.github.io/plumbline).
 
+### Building the console
+
+The console is a Next.js app that static-exports into `console/`. The Python pipeline is its data
+source, so regenerate that first:
+
+```bash
+python scripts/export_demo_data.py
+```
+
+```bash
+cd web && npm install && npm run build
+```
+
+`npm run build` syncs the exported pipeline data, builds, and publishes the static output to
+`console/` at the repo root, which is what GitHub Pages serves.
+
 ---
 
 ## What is real and what is stubbed
@@ -115,11 +155,13 @@ The demo page labels this too, because a portfolio project that implies connecti
 | PDF and Excel extraction | Live | Real parsing, real files, positions preserved for citation |
 | Scope normalization and leveling | Live | Deterministic Python |
 | Anomaly detection | Live | Seven rules, no model involved |
+| Human review and sign-off | Live | Side-by-side console, per-field decisions, persisted locally |
+| Scope weighting and re-leveling | Live | Importance grades recompute rankings and findings in the browser |
 | Claude extraction | Ready, key required | Adapter built and schema-constrained via tool use |
 | Email intake | Simulated | JSON fixtures shaped like real webhook payloads |
+| Document upload | Partial | Real SHA-256 in the browser; parsing and extraction need the Python service |
 | CRM writeback | Planned | Procore / Autodesk Construction Cloud |
 | Workflow orchestration | Planned | n8n, routing only, never business logic |
-| Human approval workflow | Planned | `review_status` field exists, review UI does not |
 
 All demo data is synthetic. Crestmark Construction Partners, the Falcon Medical Center project, and all four bidders are fictional. No real bid data is represented anywhere in this repository.
 
@@ -127,8 +169,9 @@ All demo data is synthetic. Crestmark Construction Partners, the Falcon Medical 
 
 ## Roadmap
 
-- [ ] Review dashboard so an estimator can approve, reject, or correct each AI inference before it counts
-- [ ] Generated leveling report as a shareable PDF rather than console output
+- [ ] Persist review decisions server-side so a team shares one review state instead of one per browser
+- [ ] Hosted extraction endpoint so an uploaded document runs the real pipeline, not just hashing
+- [ ] Generated leveling report as a shareable PDF rather than a screen
 - [ ] Live mailbox intake via Microsoft Graph, replacing the simulated email fixtures
 - [ ] CRM writeback to Procore so leveled results land where the estimator already works
 - [ ] Vendor performance history, so past change-order behavior informs the current comparison
