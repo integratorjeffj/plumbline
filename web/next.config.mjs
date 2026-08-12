@@ -6,10 +6,11 @@
  * review decisions, scope weighting, live re-leveling -- runs client-side from
  * the pipeline output exported by scripts/export_demo_data.py.
  *
- * basePath matters: Pages serves this repo at /plumbline/, and the console sits
- * in the /console/ subfolder at the repo root, so the basePath is just /console.
+ * basePath matters: this is a GitHub *project* page (no custom domain), so
+ * Pages serves everything under /plumbline/. The console sits at /console
+ * beneath that, so every asset and link needs both segments or it 404s.
  */
-const basePath = '/console';
+const basePath = '/plumbline/console';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

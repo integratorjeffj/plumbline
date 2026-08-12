@@ -1,8 +1,8 @@
 /**
  * Publish the static export to the path GitHub Pages serves.
  *
- * next build writes to web/out/. Pages serves the repo root, so the built site
- * is copied to /console at the repo root and committed. Done in Node rather
+ * next build writes to web/out/. Pages serves this repo from /docs, so the
+ * built site is copied to docs/console and committed. Done in Node rather
  * than a shell one-liner so it behaves the same in PowerShell, Git Bash, and CI.
  */
 import { existsSync, rmSync, cpSync, readdirSync } from 'node:fs';
@@ -19,7 +19,7 @@ const repoRoot = process.env.PLUMBLINE_REPO_ROOT
   : join(webRoot, '..');
 
 const source = join(webRoot, 'out');
-const target = join(repoRoot, 'console');
+const target = join(repoRoot, 'docs', 'console');
 
 if (!existsSync(source)) {
   console.error(`\n  No build output at ${source}. Did next build succeed?\n`);
@@ -37,5 +37,5 @@ const routes = readdirSync(target, { withFileTypes: true })
   .filter((entry) => entry.isDirectory() && !entry.name.startsWith('_'))
   .map((entry) => entry.name);
 
-console.log(`  published  ->  console/`);
+console.log(`  published  ->  docs/console/`);
 console.log(`  routes: / , ${routes.map((r) => `/${r}`).join(' , ')}`);
