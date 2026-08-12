@@ -2,6 +2,7 @@
 
 import type { ConfidenceTier, ReviewStatus, ScopeStatus, Severity } from '@/lib/types';
 import type { RagLevel } from '@/lib/portfolio';
+import { Icon, type IconName } from './Icons';
 
 const SCOPE_PILL: Record<ScopeStatus, { cls: string; label: string }> = {
   Included: { cls: 'p-included', label: 'Included' },
@@ -50,6 +51,78 @@ export function HealthDot({
       <span className="health-dot" data-level={level} title={label} aria-label={label} />
       {showLabel && <span className="small muted">{label}</span>}
     </span>
+  );
+}
+
+export type KpiTone = 'neutral' | 'ok' | 'warn' | 'danger';
+
+/**
+ * A portfolio metric tile.
+ *
+ * The label sits above the value rather than under it because a reader scans
+ * this row left to right looking for the number they came for, and a label
+ * they hit second is a label they read after already guessing. The icon and
+ * the tone are the same signal in two channels, so the tile still reads when
+ * printed in greyscale or seen by someone who cannot separate red from green.
+ *
+ * Passing `onFilter` turns the tile into a button that filters the table
+ * below it. Only tiles that name a subset worth isolating should do that; a
+ * tile that filters to "everything" is a button that does nothing.
+ */
+export function KpiTile({
+  icon,
+  label,
+  value,
+  note,
+  tone = 'neutral',
+  onFilter,
+  active = false,
+  filterLabel,
+}: {
+  icon: IconName;
+  label: string;
+  value: string;
+  note?: string;
+  tone?: KpiTone;
+  onFilter?: () => void;
+  active?: boolean;
+  filterLabel?: string;
+}) {
+  const body = (
+    <>
+      <span className="kpi-head">
+        <span className="kpi-chip">
+          <Icon name={icon} />
+        </span>
+        <span className="kpi-label">{label}</span>
+      </span>
+      <span className="kpi-value">{value}</span>
+      {note && <span className="kpi-note">{note}</span>}
+      {onFilter && (
+        <span className="kpi-action">{active ? 'Filtering the table' : filterLabel}</span>
+      )}
+    </>
+  );
+
+  if (!onFilter) {
+    return (
+      <div className="kpi" data-tone={tone}>
+        {body}
+      </div>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      className="kpi"
+      data-tone={tone}
+      data-active={active}
+      onClick={onFilter}
+      aria-pressed={active}
+    >
+      {body}
+    </button>
   );
 }
 
