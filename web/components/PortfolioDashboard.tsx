@@ -14,6 +14,7 @@ import Link from 'next/link';
 import type { PortfolioTotals } from '@/lib/portfolio';
 import { usePendingCounts } from '@/lib/pending';
 import { HealthDot, KpiTile } from './Bits';
+import { BudgetBar, scaleTicks } from './BudgetBar';
 import { money, signedMoney } from '@/lib/format';
 
 type Filter = 'over-budget' | 'findings';
@@ -36,6 +37,12 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
   });
 
   const underBudget = portfolio.totalVarianceToBudget >= 0;
+
+  // One scale for every bar in the column, so their lengths are comparable.
+  const maxScale = Math.max(
+    ...portfolio.projects.flatMap((p) => [p.budget, p.lowestSubmittedTotal, p.lowestAdjustedTotal])
+  );
+  const ticks = scaleTicks(maxScale);
 
   return (
     <>
@@ -109,6 +116,7 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                 <th className="right">Budget</th>
                 <th className="right">Leveled low bid</th>
                 <th className="right">Variance</th>
+                <th className="bbar-col">Budget vs leveled</th>
                 <th>Scope</th>
                 <th>Cost</th>
                 <th>Risk</th>
@@ -135,6 +143,15 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                     style={{ color: p.costVariance < 0 ? 'var(--danger)' : 'var(--ok)' }}
                   >
                     {signedMoney(p.costVariance)}
+                  </td>
+                  <td className="bbar-col">
+                    <BudgetBar
+                      budget={p.budget}
+                      submitted={p.lowestSubmittedTotal}
+                      adjusted={p.lowestAdjustedTotal}
+                      maxScale={maxScale}
+                      ticks={ticks.map((t) => t.fraction)}
+                    />
                   </td>
                   <td>
                     <HealthDot
