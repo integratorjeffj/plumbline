@@ -77,7 +77,7 @@ export default function OverviewPage() {
           className="card card-pad"
           style={{ marginBottom: 26, borderLeft: '3px solid var(--danger)' }}
         >
-          <h2 style={{ fontSize: 22, marginBottom: 8 }}>The cheapest bid is not the best value.</h2>
+          <h2 style={{ marginBottom: 8 }}>The cheapest bid is not the best value.</h2>
           <p style={{ margin: 0, color: 'var(--ink-2)' }}>
             <b>{lowestSubmitted.vendor_name}</b> submitted the lowest price at{' '}
             <span className="num">{money(lowestSubmitted.submitted_total)}</span>, but once excluded
@@ -99,7 +99,7 @@ export default function OverviewPage() {
         </div>
       )}
 
-      <h2 style={{ fontSize: 20, marginBottom: 12 }}>The pipeline</h2>
+      <h2 style={{ marginBottom: 12 }}>The pipeline</h2>
       <p className="muted" style={{ marginTop: 0, marginBottom: 14, maxWidth: '76ch' }}>
         The division of labor is deliberate. The model reads prose and decides what a sentence
         means. Everything that produces a number is ordinary code, which is what makes the output
@@ -111,13 +111,13 @@ export default function OverviewPage() {
             <div className="eyebrow" style={{ marginBottom: 6 }}>
               {stage.n}
             </div>
-            <h3 style={{ fontSize: 15, marginBottom: 6 }}>{stage.name}</h3>
+            <h3 style={{ marginBottom: 6 }}>{stage.name}</h3>
             <p className="small muted" style={{ margin: '0 0 10px' }}>
               {stage.body}
             </p>
             <span
               className={`pill ${
-                stage.kind === 'AI' ? 'p-accent' : stage.kind === 'Human' ? 'p-warn' : 'p-muted'
+                stage.kind === 'Deterministic' ? 'p-muted' : 'p-tag'
               }`}
             >
               {stage.kind}
@@ -128,7 +128,7 @@ export default function OverviewPage() {
 
       <div className="grid grid-2">
         <div className="card card-pad">
-          <h3 style={{ fontSize: 16, marginBottom: 10 }}>Open findings</h3>
+          <h3 style={{ marginBottom: 10 }}>Open findings</h3>
           <div className="stack" style={{ gap: 10 }}>
             {findings.slice(0, 5).map((f, i) => (
               <div key={`${f.code}-${i}`} className="row" style={{ alignItems: 'flex-start', gap: 8 }}>
@@ -149,7 +149,7 @@ export default function OverviewPage() {
         </div>
 
         <div className="card card-pad">
-          <h3 style={{ fontSize: 16, marginBottom: 10 }}>Engine parity</h3>
+          <h3 style={{ marginBottom: 10 }}>Engine parity</h3>
           <p className="small muted" style={{ marginTop: 0 }}>
             The console re-levels bids in the browser so weighting changes are instant. That is a
             second implementation of logic the pipeline export already owns, so it is checked

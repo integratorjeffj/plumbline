@@ -34,7 +34,7 @@ export default function SettingsPage() {
       {/* live consequence of the settings */}
       <div className="card card-pad" style={{ marginBottom: 20 }}>
         <div className="row row-wrap" style={{ marginBottom: 10 }}>
-          <h3 style={{ fontSize: 15, flex: 1 }}>Current leveled ranking</h3>
+          <h3 style={{ flex: 1 }}>Current leveled ranking</h3>
           {isDirty ? (
             <>
               <span className="pill p-warn">modified</span>
@@ -54,7 +54,7 @@ export default function SettingsPage() {
               style={{ flex: '1 1 200px', boxShadow: 'none' }}
             >
               <div className="small muted">{v.adjusted_rank}. {v.vendor_name}</div>
-              <div className="num" style={{ fontSize: 18, fontWeight: 600 }}>
+              <div className="num" style={{ fontSize: 'var(--fs-h3)', fontWeight: 600 }}>
                 {money(v.adjusted_total)}
               </div>
               <div className="small muted">
@@ -88,7 +88,7 @@ export default function SettingsPage() {
       </div>
 
       {/* taxonomy + weights */}
-      <h2 style={{ fontSize: 20, marginBottom: 4 }}>Scope taxonomy</h2>
+      <h2 style={{ marginBottom: 4 }}>Scope taxonomy</h2>
       <p className="muted small" style={{ marginTop: 0, marginBottom: 12, maxWidth: '76ch' }}>
         The fourteen canonical items every proposal is normalized into. A fixed vocabulary is what
         makes a comparison matrix possible; the model maps onto it and is not free to invent
@@ -120,7 +120,7 @@ export default function SettingsPage() {
                       <div className="small muted mono">{item.key}</div>
                       <div className="row row-wrap" style={{ gap: 6, marginTop: 4 }}>
                         {requiredKeys.has(item.key) && (
-                          <span className="pill p-accent">spec {spec?.spec_section}</span>
+                          <span className="pill p-tag">spec {spec?.spec_section}</span>
                         )}
                         {!item.in_package_scope && (
                           <span className="pill p-muted">other package</span>
@@ -191,10 +191,10 @@ export default function SettingsPage() {
       </div>
 
       {/* master data */}
-      <h2 style={{ fontSize: 20, marginBottom: 12 }}>Project master data</h2>
+      <h2 style={{ marginBottom: 12 }}>Project master data</h2>
       <div className="grid grid-2">
         <div className="card card-pad">
-          <h3 style={{ fontSize: 15, marginBottom: 10 }}>Package</h3>
+          <h3 style={{ marginBottom: 10 }}>Package</h3>
           <table>
             <tbody>
               {[
@@ -216,7 +216,7 @@ export default function SettingsPage() {
         </div>
 
         <div className="card card-pad">
-          <h3 style={{ fontSize: 15, marginBottom: 10 }}>Bidders</h3>
+          <h3 style={{ marginBottom: 10 }}>Bidders</h3>
           <table>
             <tbody>
               {vendors.map((v) => (

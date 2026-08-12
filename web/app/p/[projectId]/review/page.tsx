@@ -151,7 +151,7 @@ export default function ReviewPage() {
             <div className="eyebrow" style={{ marginBottom: 6 }}>
               Source truth
             </div>
-            <h3 style={{ fontSize: 16 }}>{submission.filename}</h3>
+            <h3>{submission.filename}</h3>
             <div className="small muted" style={{ marginTop: 6 }}>
               {submission.page_count} {submission.page_count === 1 ? 'page' : 'pages'} ·{' '}
               <span className="mono" title={submission.sha256}>
@@ -200,14 +200,14 @@ export default function ReviewPage() {
                 >
                   <div className="row" style={{ marginBottom: 8 }}>
                     <span className="pill p-muted">Page {page.page_number}</span>
-                    {isHit && <span className="pill p-accent">{highlight.section}</span>}
+                    {isHit && <span className="pill p-tag">{highlight.section}</span>}
                   </div>
                   <pre
                     className="mono"
                     style={{
                       whiteSpace: 'pre-wrap',
                       margin: 0,
-                      fontSize: 11.5,
+                      fontSize: 'var(--fs-micro)',
                       lineHeight: 1.6,
                       color: 'var(--ink-2)',
                     }}
@@ -301,7 +301,7 @@ export default function ReviewPage() {
 
           {/* scope assertions, correctable */}
           <div className="card card-pad">
-            <h3 style={{ fontSize: 15, marginBottom: 4 }}>Scope assertions</h3>
+            <h3 style={{ marginBottom: 4 }}>Scope assertions</h3>
             <p className="small muted" style={{ marginTop: 0, marginBottom: 12 }}>
               Correcting a status here re-levels the package immediately.{' '}
               <b>Not found</b> and <b>Excluded</b> are never interchangeable: one is silence, the
@@ -356,7 +356,7 @@ export default function ReviewPage() {
 
           {/* sign off */}
           <div className="card card-pad">
-            <h3 style={{ fontSize: 15, marginBottom: 10 }}>Sign off</h3>
+            <h3 style={{ marginBottom: 10 }}>Sign off</h3>
             <div className="row row-wrap" style={{ marginBottom: 12 }}>
               <button
                 className="btn"

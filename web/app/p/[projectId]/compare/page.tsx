@@ -16,9 +16,9 @@ export default function ComparePage() {
   return (
     <>
       <SectionHead eyebrow="Step 04 · Leveling" title="What each bid actually costs">
-        Solid blue is what the vendor submitted. Each amber segment is scope they excluded or never
-        addressed, priced at the estimator-entered value. Change a weight on the Scope &amp;
-        weighting page and every number here moves.
+        The solid teal segment is what the vendor submitted. Each amber segment is scope they
+        excluded or never addressed, priced at the estimator-entered value. Change a weight on the
+        Scope &amp; weighting page and every number here moves.
       </SectionHead>
 
       {isDirty && (
@@ -134,13 +134,13 @@ export default function ComparePage() {
       </div>
 
       {/* ---------- ranking ---------- */}
-      <h2 style={{ fontSize: 20, marginBottom: 12 }}>Ranking</h2>
+      <h2 style={{ marginBottom: 12 }}>Ranking</h2>
       <div style={{ marginBottom: 30 }}>
         <RankingTable vendors={vendors} />
       </div>
 
       {/* ---------- scope matrix ---------- */}
-      <h2 style={{ fontSize: 20, marginBottom: 12 }}>Scope matrix</h2>
+      <h2 style={{ marginBottom: 12 }}>Scope matrix</h2>
       <div className="card" style={{ marginBottom: 30, overflow: 'hidden' }}>
         <div className="table-scroll">
           <table>
@@ -179,7 +179,7 @@ export default function ComparePage() {
       {/* ---------- revisions ---------- */}
       {data.revisions.length > 0 && (
         <>
-          <h2 style={{ fontSize: 20, marginBottom: 12 }}>Revisions</h2>
+          <h2 style={{ marginBottom: 12 }}>Revisions</h2>
           <div className="stack" style={{ gap: 10, marginBottom: 30 }}>
             {data.revisions.map((r) => (
               <div key={r.vendor_id} className="card card-pad">
@@ -206,7 +206,7 @@ export default function ComparePage() {
       )}
 
       {/* ---------- findings ---------- */}
-      <h2 id="findings" style={{ fontSize: 20, marginBottom: 12 }}>
+      <h2 id="findings" style={{ marginBottom: 12 }}>
         Findings ({findings.length})
       </h2>
       <div className="stack" style={{ gap: 8 }}>

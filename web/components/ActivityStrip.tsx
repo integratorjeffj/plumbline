@@ -24,8 +24,10 @@ export function ActivityStrip({ days = 14 }: { days?: number }) {
   return (
     <div className="card card-pad">
       <div className="row row-wrap" style={{ marginBottom: 14 }}>
-        <h2 style={{ fontSize: 17, flex: 1 }}>Review activity</h2>
-        <span className="small muted num">
+        <h2 className="card-title" style={{ flex: 1 }}>Review activity</h2>
+        {/* Sans, not the mono data face: this is a sentence that happens to
+            contain numbers, not a column of figures to be compared. */}
+        <span className="small muted" style={{ fontVariantNumeric: 'tabular-nums' }}>
           {totalRaised} raised · {totalResolved} cleared · {totalRaised - totalResolved} still open
         </span>
       </div>

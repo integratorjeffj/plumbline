@@ -35,14 +35,14 @@ export default function ReportPage() {
       <div className="card card-pad" style={{ marginBottom: 20 }}>
         <div className="row" style={{ marginBottom: 10 }}>
           <Plumb size={26} />
-          <span className="wordmark" style={{ fontSize: 18 }}>
+          <span className="wordmark">
             Plumb<span>line</span>
           </span>
           <span className="small muted" style={{ marginLeft: 'auto' }}>
             {generatedAt ? `Generated ${formatDate(generatedAt)}` : ''}
           </span>
         </div>
-        <h1 style={{ fontSize: 24, marginBottom: 6 }}>{data.project.project_name}</h1>
+        <h1 style={{ marginBottom: 6 }}>{data.project.project_name}</h1>
         <div className="small muted">
           {data.project.bid_package_number} · {data.project.bid_package_description} ·{' '}
           {data.project.customer} · General contractor {data.project.general_contractor} · Estimator{' '}
@@ -73,12 +73,12 @@ export default function ReportPage() {
         </div>
       </div>
 
-      <h2 style={{ fontSize: 18, marginBottom: 10 }}>Ranking</h2>
+      <h2 style={{ marginBottom: 10 }}>Ranking</h2>
       <div style={{ marginBottom: 20 }}>
         <RankingTable vendors={vendors} />
       </div>
 
-      <h2 style={{ fontSize: 18, marginBottom: 10 }}>Top findings</h2>
+      <h2 style={{ marginBottom: 10 }}>Top findings</h2>
       <div className="card card-pad" style={{ marginBottom: 20 }}>
         <div className="stack" style={{ gap: 10 }}>
           {findings.slice(0, 5).map((f, i) => (

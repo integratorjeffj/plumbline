@@ -163,7 +163,7 @@ export function Kpi({
       <div
         className="num"
         style={{
-          fontSize: 25,
+          fontSize: 'var(--fs-metric)',
           fontWeight: 600,
           letterSpacing: '-0.02em',
           color: flag ? 'var(--danger)' : 'inherit',

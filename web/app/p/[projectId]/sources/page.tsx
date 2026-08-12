@@ -121,7 +121,7 @@ export default function SourcesPage() {
       <div className="card card-pad" style={{ marginBottom: 20 }}>
         <div className="row row-wrap">
           <div style={{ flex: 1 }}>
-            <h3 style={{ fontSize: 15, marginBottom: 4 }}>Data source</h3>
+            <h3 style={{ marginBottom: 4 }}>Data source</h3>
             <div className="small muted">
               {mode === 'demo'
                 ? 'Showing the four synthetic bids from the Falcon Medical Center package.'
@@ -142,7 +142,7 @@ export default function SourcesPage() {
       {mode === 'demo' ? (
         <div className="card" style={{ marginBottom: 30, overflow: 'hidden' }}>
           <div className="card-pad" style={{ borderBottom: '1px solid var(--line)' }}>
-            <h3 style={{ fontSize: 15 }}>Loaded demo documents</h3>
+            <h3>Loaded demo documents</h3>
             <div className="small muted" style={{ marginTop: 4 }}>
               Hashed on arrival, so every downstream figure traces back to exact bytes.
             </div>
@@ -179,7 +179,7 @@ export default function SourcesPage() {
         </div>
       ) : (
         <div className="card card-pad" style={{ marginBottom: 30 }}>
-          <h3 style={{ fontSize: 15, marginBottom: 4 }}>Upload a document</h3>
+          <h3 style={{ marginBottom: 4 }}>Upload a document</h3>
           <p className="small muted" style={{ marginTop: 0 }}>
             Drop a real subcontractor proposal to see the first pipeline step run for real. The file
             never leaves your browser.
@@ -261,7 +261,7 @@ export default function SourcesPage() {
       )}
 
       {/* connectors */}
-      <h2 style={{ fontSize: 20, marginBottom: 4 }}>Connectors</h2>
+      <h2 style={{ marginBottom: 4 }}>Connectors</h2>
       <p className="muted small" style={{ marginTop: 0, marginBottom: 14, maxWidth: '76ch' }}>
         Nothing below is authorized or transmitting. Each card describes what the integration would
         ingest and how far the code actually goes today.
@@ -274,7 +274,7 @@ export default function SourcesPage() {
                 {c.state}
               </span>
             </div>
-            <h3 style={{ fontSize: 15, marginBottom: 4 }}>{c.name}</h3>
+            <h3 style={{ marginBottom: 4 }}>{c.name}</h3>
             <div className="small" style={{ color: 'var(--ink-2)', marginBottom: 8 }}>
               {c.ingests}
             </div>
