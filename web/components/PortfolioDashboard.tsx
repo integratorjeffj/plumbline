@@ -232,7 +232,7 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
           </div>
         )}
 
-        <div className="table-scroll" data-sticky="true">
+        <div className="table-scroll" data-packages="true">
           <table className="pkg-table" data-density={density}>
             <thead>
               <tr>
@@ -297,15 +297,16 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                       {p.packageLabel} · last bid {relativeDays(timing.daysSinceLastSubmission)}
                     </div>
                   </td>
-                  <td className="right num">{money(p.budget)}</td>
-                  <td className="right num">{money(p.lowestAdjustedTotal)}</td>
+                  <td className="right num" data-label="Budget">{money(p.budget)}</td>
+                  <td className="right num" data-label="Leveled low bid">{money(p.lowestAdjustedTotal)}</td>
                   <td
                     className="right num"
+                    data-label="Variance"
                     style={{ color: p.costVariance < 0 ? 'var(--danger)' : 'var(--ok)' }}
                   >
                     {signedMoney(p.costVariance)}
                   </td>
-                  <td className="bbar-col">
+                  <td className="bbar-col" data-label="Budget vs leveled">
                     <BudgetBar
                       budget={p.budget}
                       submitted={p.lowestSubmittedTotal}
@@ -314,11 +315,11 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                       ticks={ticks}
                     />
                   </td>
-                  <td className="date-cell">
+                  <td className="date-cell" data-label="Bid due">
                     <span className="num">{formatDay(timing.bidDueAt)}</span>
                     <span className="small muted">{relativeDays(timing.daysSinceBidDue)}</span>
                   </td>
-                  <td className="date-cell">
+                  <td className="date-cell" data-label="Last reviewed">
                     {timing.lastReviewedAt ? (
                       <>
                         <span className="num">{formatDay(timing.lastReviewedAt)}</span>
@@ -330,25 +331,25 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                       <span className="small muted">Not opened yet</span>
                     )}
                   </td>
-                  <td>
+                  <td data-label="Scope">
                     <RagPill
                       level={p.scope}
                       title={`${p.scopeCovered} of ${p.scopeRequired} required scope items covered`}
                     />
                   </td>
-                  <td>
+                  <td data-label="Cost">
                     <RagPill
                       level={p.cost}
                       title={`Leveled low bid is ${p.costVariancePct.toFixed(1)}% against budget`}
                     />
                   </td>
-                  <td>
+                  <td data-label="Risk">
                     <RagPill
                       level={p.risk}
                       title={`${p.highFindingsCount} high-severity findings`}
                     />
                   </td>
-                  <td className="right">
+                  <td className="right row-actions-cell">
                     <RowActions
                       projectId={p.projectId}
                       projectName={p.projectName}

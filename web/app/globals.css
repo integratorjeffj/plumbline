@@ -158,12 +158,19 @@ button { font: inherit; }
 .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+/* The five pipeline stages. Its own rule rather than an inline template on
+   the element, which would win against every breakpoint below. */
+.grid-stages { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
 @media (max-width: 1100px) and (min-width: 701px) {
   .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-stages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 700px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr), not 1fr: a bare fr track floors at min-content, so one
+     wide table inside a stacked card drags the whole page sideways. */
+  .grid-2, .grid-3, .grid-4, .grid-stages { grid-template-columns: minmax(0, 1fr); }
   /* Once the review panes stack, pinning the source panel would strand the
      extraction fields below a full-height document. */
   .no-stick-mobile { position: static !important; }
@@ -401,7 +408,7 @@ button.kpi[data-active='true'] { border-color: var(--accent); box-shadow: 0 0 0 
    makes that possible is also what defeats the sticky header, so the header
    sticks only where the table already fits. */
 @media (min-width: 1360px) {
-  .table-scroll[data-sticky='true'] { overflow: visible; }
+  .table-scroll[data-packages='true'] { overflow: visible; }
 }
 
 .row-actions { position: relative; display: inline-block; }
@@ -422,6 +429,64 @@ button.kpi[data-active='true'] { border-color: var(--accent); box-shadow: 0 0 0 
   color: var(--ink-2); text-decoration: none; white-space: nowrap;
 }
 .row-actions-menu a:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
+
+/* Below the drawer breakpoint the table stops being a table. Nine columns on
+   a 380px screen is a sideways scroll nobody reads, so each package becomes a
+   card whose cells carry their own labels. Status and variance stay visible,
+   because those are the two things a reviewer opens this page to check. */
+@media (max-width: 767px) {
+  .pkg-table, .pkg-table tbody, .pkg-table td { display: block; width: 100%; }
+  .pkg-table thead { display: none; }
+  /* Scoped to this one wrapper: every other table on the site still needs its
+     horizontal scroller at this width. */
+  .table-scroll[data-packages='true'] { overflow: visible; }
+
+  /* Auto width, not 100%: a full-width row plus its own side margins would
+     push the page 24px wider than the viewport. */
+  .pkg-table tr {
+    display: block; width: auto;
+    border: 1px solid var(--line); border-radius: 9px;
+    margin: 12px; padding: 10px 12px; background: var(--surface);
+  }
+  .pkg-table tbody tr:nth-child(even) { background: var(--surface); }
+  .pkg-row:hover { background: var(--surface); }
+
+  .pkg-table td {
+    border: 0; padding: 5px 0;
+    display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  }
+  .pkg-table td[data-label]::before {
+    content: attr(data-label);
+    flex: none; color: var(--ink-3);
+    font-size: var(--fs-micro); font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .pkg-table td:first-child { display: block; padding-top: 0; }
+  .pkg-table td.right { text-align: right; }
+  .pkg-table td.bbar-col,
+  .pkg-table td.row-actions-cell { display: block; width: auto; }
+  .pkg-table td.bbar-col::before { display: block; margin-bottom: 5px; }
+  .pkg-table td.bbar-col .bbar { width: 100%; }
+  .pkg-table td.date-cell { align-items: baseline; }
+  .pkg-table td.date-cell .num { display: inline; }
+  .pkg-table td.row-actions-cell { text-align: right; padding-top: 8px; }
+  .pkg-table[data-density='compact'] .small { display: revert; }
+
+  .table-controls { flex-direction: column; align-items: stretch; }
+  .control input, .control select { width: 100%; min-width: 0; }
+  .table-controls-count { margin-left: 0; padding-bottom: 0; }
+}
+
+/* Nothing in this app animates to convey meaning, so every transition here is
+   optional by definition. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ---------- empty states ---------- */
 .empty-state { padding: 44px 30px; text-align: center; max-width: 640px; margin: 0 auto; }
@@ -460,11 +525,19 @@ input[type='text'], input[type='number'], textarea, select {
   background: var(--bg); border: 1px solid var(--line);
   border-radius: 7px; padding: 7px 10px; width: 100%;
 }
-input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
+/* The border shift happens on any focus; the ring is left to :focus-visible
+   above, which draws it in full-strength accent rather than the pale tint
+   this rule used to paint over it with. */
+input:focus, textarea:focus, select:focus { border-color: var(--accent); }
 
 /* ---------- pills ---------- */
 /* Sans, not mono. A pill says OK or APPROVED; those are words, not data. */
+/* Positioned so the .sr-only text a pill can carry is laid out against the
+   pill. Without this its containing block is the page root, and an absolutely
+   positioned nowrap string inside a horizontally scrolled table then widens
+   the whole document. */
 .pill {
+  position: relative;
   display: inline-block; font-size: var(--fs-micro);
   letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px;
   border-radius: 20px; font-weight: 650; white-space: nowrap;
@@ -511,7 +584,7 @@ tr:last-child td { border-bottom: 0; }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
 }
 
 /* ---------- bar charts ---------- */
@@ -607,7 +680,7 @@ tr:last-child td { border-bottom: 0; }
   background: transparent; border: 0; padding: 0 4px 0 14px;
   border-left: 1px solid var(--line-2); cursor: pointer; max-width: 260px;
 }
-.project-switch:focus { outline: none; color: var(--ink); }
+.project-switch:focus { color: var(--ink); }
 
 /* ---------- health / RAG status ---------- */
 .health-dot {

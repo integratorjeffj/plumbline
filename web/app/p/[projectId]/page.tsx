@@ -105,7 +105,7 @@ export default function OverviewPage() {
         means. Everything that produces a number is ordinary code, which is what makes the output
         reproducible and auditable.
       </p>
-      <div className="grid grid-4" style={{ gridTemplateColumns: 'repeat(5, minmax(0,1fr))', marginBottom: 26 }}>
+      <div className="grid grid-stages" style={{ marginBottom: 26 }}>
         {PIPELINE_STAGES.map((stage) => (
           <div key={stage.n} className="card card-pad">
             <div className="eyebrow" style={{ marginBottom: 6 }}>

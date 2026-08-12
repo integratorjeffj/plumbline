@@ -238,65 +238,67 @@ export default function ReviewPage() {
               submitted facts.
             </div>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>Field</th>
-                  <th>Extracted</th>
-                  <th className="right">Decision</th>
-                </tr>
-              </thead>
-              <tbody>
-                {fields.map((field) => {
-                  const decision = review.fields[field.key]?.status ?? 'pending';
-                  const citation = field.citation ? submission.citations[field.citation] : undefined;
-                  return (
-                    <tr key={field.key}>
-                      <td>
-                        <div>{field.label}</div>
-                        {citation && (
-                          <button
-                            className="small mono"
-                            onClick={() => jumpToCitation(field.citation)}
-                            style={{
-                              background: 'none',
-                              border: 0,
-                              padding: 0,
-                              color: 'var(--accent)',
-                              cursor: 'pointer',
-                              textAlign: 'left',
-                            }}
-                          >
-                            p.{citation.page} · {citation.section}
-                          </button>
-                        )}
-                      </td>
-                      <td className="num">{field.value}</td>
-                      <td className="right">
-                        <div className="seg">
-                          <button
-                            data-active={decision === 'approved'}
-                            onClick={() =>
-                              setFieldDecision(activeId, field.key, { status: 'approved' })
-                            }
-                          >
-                            OK
-                          </button>
-                          <button
-                            data-active={decision === 'rejected'}
-                            onClick={() =>
-                              setFieldDecision(activeId, field.key, { status: 'rejected' })
-                            }
-                          >
-                            Wrong
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <div className="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Extracted</th>
+                    <th className="right">Decision</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {fields.map((field) => {
+                    const decision = review.fields[field.key]?.status ?? 'pending';
+                    const citation = field.citation ? submission.citations[field.citation] : undefined;
+                    return (
+                      <tr key={field.key}>
+                        <td>
+                          <div>{field.label}</div>
+                          {citation && (
+                            <button
+                              className="small mono"
+                              onClick={() => jumpToCitation(field.citation)}
+                              style={{
+                                background: 'none',
+                                border: 0,
+                                padding: 0,
+                                color: 'var(--accent)',
+                                cursor: 'pointer',
+                                textAlign: 'left',
+                              }}
+                            >
+                              p.{citation.page} · {citation.section}
+                            </button>
+                          )}
+                        </td>
+                        <td className="num">{field.value}</td>
+                        <td className="right">
+                          <div className="seg">
+                            <button
+                              data-active={decision === 'approved'}
+                              onClick={() =>
+                                setFieldDecision(activeId, field.key, { status: 'approved' })
+                              }
+                            >
+                              OK
+                            </button>
+                            <button
+                              data-active={decision === 'rejected'}
+                              onClick={() =>
+                                setFieldDecision(activeId, field.key, { status: 'rejected' })
+                              }
+                            >
+                              Wrong
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
 
           {/* scope assertions, correctable */}
