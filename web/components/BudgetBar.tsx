@@ -14,6 +14,7 @@
  */
 
 import { money } from '@/lib/format';
+import { Gridlines, type Tick } from './ChartScale';
 
 export function BudgetBar({
   budget,
@@ -26,8 +27,7 @@ export function BudgetBar({
   submitted: number;
   adjusted: number;
   maxScale: number;
-  /** Shared gridline positions, as a fraction of maxScale. */
-  ticks: number[];
+  ticks: Tick[];
 }) {
   const submittedPct = (Math.min(submitted, adjusted) / maxScale) * 100;
   const levelingDelta = Math.max(0, adjusted - submitted);
@@ -41,9 +41,7 @@ export function BudgetBar({
       role="img"
       aria-label={`Lowest submitted ${money(submitted)}, ${money(adjusted)} once leveled, against a budget of ${money(budget)}`}
     >
-      {ticks.map((t) => (
-        <span key={t} className="bbar-grid" style={{ left: `${t * 100}%` }} />
-      ))}
+      <Gridlines ticks={ticks} />
       <span className="bbar-fill" data-part="submitted" style={{ width: `${submittedPct}%` }} />
       {levelingDelta > 0 && (
         <span
@@ -55,15 +53,4 @@ export function BudgetBar({
       <span className="bbar-budget" data-over={overBudget} style={{ left: `${budgetPct}%` }} />
     </div>
   );
-}
-
-/**
- * Rounded gridline stops for the shared scale. Kept to whole hundred-thousands
- * so the axis labels stay readable at the width a table column allows.
- */
-export function scaleTicks(maxScale: number): { value: number; fraction: number }[] {
-  const step = maxScale > 600_000 ? 200_000 : 100_000;
-  const out: { value: number; fraction: number }[] = [];
-  for (let v = step; v < maxScale; v += step) out.push({ value: v, fraction: v / maxScale });
-  return out;
 }

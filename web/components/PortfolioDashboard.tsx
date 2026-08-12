@@ -16,7 +16,9 @@ import type { PortfolioTotals, ProjectHealth, RagLevel } from '@/lib/portfolio';
 import { usePendingCounts } from '@/lib/pending';
 import { useShell } from '@/lib/shell';
 import { KpiTile, RagPill } from './Bits';
-import { BudgetBar, scaleTicks } from './BudgetBar';
+import { BudgetBar } from './BudgetBar';
+import { scaleTicks } from './ChartScale';
+import { moneyShort } from '@/lib/format';
 import { RowActions } from './RowActions';
 import { money, signedMoney } from '@/lib/format';
 
@@ -236,7 +238,27 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                 <th className="right">Budget</th>
                 <th className="right">Leveled low bid</th>
                 <th className="right">Variance</th>
-                <th className="bbar-col">Budget vs leveled</th>
+                <th className="bbar-col">
+                  Budget vs leveled
+                  <span className="bbar-axis" aria-hidden="true">
+                    <span className="bbar-axis-tick" style={{ left: '0%' }}>
+                      $0
+                    </span>
+                    {/* Every gridline, but only every other label: five
+                        currency labels will not fit legibly across 160px. */}
+                    {ticks
+                      .filter((_, i) => i % 2 === 0)
+                      .map((t) => (
+                        <span
+                          key={t.value}
+                          className="bbar-axis-tick"
+                          style={{ left: `${t.fraction * 100}%` }}
+                        >
+                          {moneyShort(t.value)}
+                        </span>
+                      ))}
+                  </span>
+                </th>
                 <th>Scope</th>
                 <th>Cost</th>
                 <th>Risk</th>
@@ -281,7 +303,7 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                       submitted={p.lowestSubmittedTotal}
                       adjusted={p.lowestAdjustedTotal}
                       maxScale={maxScale}
-                      ticks={ticks.map((t) => t.fraction)}
+                      ticks={ticks}
                     />
                   </td>
                   <td>
@@ -343,6 +365,20 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
           <div>
             <RagPill level="red" title="Needs a decision" /> Scope: under 80% covered · Cost: more
             than 10% over budget · Risk: three or more high-severity findings
+          </div>
+          <div className="table-legend-chart">
+            <span>
+              <span className="swatch" data-part="submitted" /> the lowest price a bidder actually
+              submitted
+            </span>
+            <span>
+              <span className="swatch" data-part="leveling" /> what gets added once the scope that
+              bidder left out is priced in
+            </span>
+            <span>
+              <span className="swatch" data-part="budget" /> the package budget, red where the
+              leveled bid crosses it
+            </span>
           </div>
         </div>
       </div>

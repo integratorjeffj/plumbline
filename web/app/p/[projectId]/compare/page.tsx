@@ -3,6 +3,7 @@
 import { useStore } from '@/lib/store';
 import { ScopePill, SectionHead, SeverityPill } from '@/components/Bits';
 import { RankingTable } from '@/components/RankingTable';
+import { ChartAxis, Gridlines, scaleTicks } from '@/components/ChartScale';
 import { money, percent, signedMoney } from '@/lib/format';
 
 export default function ComparePage() {
@@ -10,6 +11,7 @@ export default function ComparePage() {
 
   const bySubmitted = [...vendors].sort((a, b) => a.submitted_rank - b.submitted_rank);
   const maxAdjusted = Math.max(...vendors.map((v) => v.adjusted_total), data.project.budget);
+  const ticks = scaleTicks(maxAdjusted);
 
   return (
     <>
@@ -31,119 +33,102 @@ export default function ComparePage() {
         </div>
       )}
 
-      {/* ---------- leveling bars ---------- */}
-      <div className="stack" style={{ gap: 14, marginBottom: 30 }}>
-        {bySubmitted.map((v) => {
-          const submittedPct = (v.submitted_total / maxAdjusted) * 100;
-          const budgetPct = (data.project.budget / maxAdjusted) * 100;
-          return (
-            <div key={v.vendor_id} className="card card-pad">
-              <div className="row row-wrap" style={{ marginBottom: 10 }}>
-                <b style={{ flex: 1 }}>{v.vendor_name}</b>
-                <span className="pill p-muted">
-                  {v.submitted_rank} → {v.adjusted_rank}
-                </span>
-                <span className="small num">
-                  {money(v.submitted_total)} →{' '}
-                  <b style={{ color: v.leveling_delta > 0 ? 'var(--warn)' : 'inherit' }}>
-                    {money(v.adjusted_total)}
-                  </b>{' '}
-                  <span className="muted">({percent(v.leveling_delta_pct)})</span>
-                </span>
-              </div>
+      {/* ---------- leveling bars ----------
+          One card, not one per vendor: the bars only mean anything against
+          each other, and they can only share an axis if they share a
+          container that the axis can span. */}
+      <div className="card card-pad" style={{ marginBottom: 30 }}>
+        <div className="chart-rows">
+          {bySubmitted.map((v) => {
+            const submittedPct = (v.submitted_total / maxAdjusted) * 100;
+            const budgetPct = (data.project.budget / maxAdjusted) * 100;
+            const overBudget = v.adjusted_total > data.project.budget;
+            return (
+              <div key={v.vendor_id} className="chart-row">
+                <div className="row row-wrap" style={{ marginBottom: 8 }}>
+                  <b style={{ flex: 1 }}>{v.vendor_name}</b>
+                  <span className="pill p-muted">
+                    {v.submitted_rank} → {v.adjusted_rank}
+                  </span>
+                  <span className="small num">
+                    {money(v.submitted_total)} →{' '}
+                    <b style={{ color: v.leveling_delta > 0 ? 'var(--warn)' : 'inherit' }}>
+                      {money(v.adjusted_total)}
+                    </b>{' '}
+                    <span className="muted">({percent(v.leveling_delta_pct)})</span>
+                  </span>
+                </div>
 
-              <div
-                style={{
-                  position: 'relative',
-                  display: 'flex',
-                  height: 26,
-                  borderRadius: 6,
-                  overflow: 'hidden',
-                  background: 'var(--surface-2)',
-                }}
-              >
-                <div style={{ width: `${submittedPct}%`, background: 'var(--accent)' }} />
-                {v.adjustments.map((a) => (
-                  <div
-                    key={a.scope_key}
-                    title={`${a.label}: ${money(a.amount, 2)} (${a.status})`}
-                    style={{
-                      width: `${(a.amount / maxAdjusted) * 100}%`,
-                      background: 'var(--warn)',
-                      borderLeft: '1px solid var(--surface)',
-                    }}
-                  />
-                ))}
                 <div
-                  title={`Package budget ${money(data.project.budget)}`}
-                  style={{
-                    position: 'absolute',
-                    left: `${budgetPct}%`,
-                    top: -3,
-                    bottom: -3,
-                    width: 2,
-                    background: 'var(--danger)',
-                  }}
-                />
-              </div>
+                  className="chart-track"
+                  role="img"
+                  aria-label={`${v.vendor_name} submitted ${money(v.submitted_total)}, ${money(v.adjusted_total)} once leveled, against a budget of ${money(data.project.budget)}`}
+                >
+                  <Gridlines ticks={ticks} />
+                  <span
+                    className="chart-fill"
+                    data-part="submitted"
+                    style={{ width: `${submittedPct}%` }}
+                  />
+                  {v.adjustments.reduce<{ offset: number; nodes: React.ReactNode[] }>(
+                    (acc, a) => {
+                      const width = (a.amount / maxAdjusted) * 100;
+                      acc.nodes.push(
+                        <span
+                          key={a.scope_key}
+                          className="chart-fill"
+                          data-part="leveling"
+                          title={`${a.label}: ${money(a.amount, 2)} (${a.status})`}
+                          style={{ left: `${acc.offset}%`, width: `${width}%` }}
+                        />
+                      );
+                      acc.offset += width;
+                      return acc;
+                    },
+                    { offset: submittedPct, nodes: [] }
+                  ).nodes}
+                  <span
+                    className="chart-budget"
+                    data-over={overBudget}
+                    style={{ left: `${budgetPct}%` }}
+                  />
+                </div>
 
-              {v.adjustments.length > 0 ? (
-                <div className="row row-wrap small muted" style={{ marginTop: 8, gap: 14 }}>
-                  {v.adjustments.map((a) => (
-                    <span key={a.scope_key}>
-                      <span className="num" style={{ color: 'var(--warn)' }}>
-                        {signedMoney(a.amount)}
-                      </span>{' '}
-                      {a.label} <span style={{ opacity: 0.7 }}>({a.status})</span>
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <div className="small muted" style={{ marginTop: 8 }}>
-                  No scope gaps priced against this bid.
-                </div>
-              )}
-            </div>
-          );
-        })}
-        <div className="small muted row" style={{ gap: 16 }}>
+                {v.adjustments.length > 0 ? (
+                  <div className="row row-wrap small muted" style={{ marginTop: 8, gap: 14 }}>
+                    {v.adjustments.map((a) => (
+                      <span key={a.scope_key}>
+                        <span className="num" style={{ color: 'var(--warn)' }}>
+                          {signedMoney(a.amount)}
+                        </span>{' '}
+                        {a.label} <span style={{ opacity: 0.7 }}>({a.status})</span>
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="small muted" style={{ marginTop: 8 }}>
+                    No scope gaps priced against this bid.
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        <ChartAxis ticks={ticks} maxScale={maxAdjusted} budget={data.project.budget} />
+
+        <div className="chart-legend">
           <span>
-            <span
-              style={{
-                display: 'inline-block',
-                width: 10,
-                height: 10,
-                background: 'var(--accent)',
-                borderRadius: 2,
-                marginRight: 5,
-              }}
-            />
+            <span className="swatch" data-part="submitted" /> the price this vendor actually
             submitted
           </span>
           <span>
-            <span
-              style={{
-                display: 'inline-block',
-                width: 10,
-                height: 10,
-                background: 'var(--warn)',
-                borderRadius: 2,
-                marginRight: 5,
-              }}
-            />
-            priced scope gap
+            <span className="swatch" data-part="leveling" /> scope they excluded or never addressed,
+            priced at the estimator-entered value
           </span>
           <span>
-            <span
-              style={{
-                display: 'inline-block',
-                width: 2,
-                height: 10,
-                background: 'var(--danger)',
-                marginRight: 5,
-              }}
-            />
-            budget {money(data.project.budget)}
+            <span className="swatch" data-part="budget" /> the package budget, red where this bid
+            crosses it
           </span>
         </div>
       </div>
