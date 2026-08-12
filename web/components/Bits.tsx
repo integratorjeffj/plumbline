@@ -32,6 +32,29 @@ export function SeverityPill({ severity }: { severity: Severity }) {
   return <span className={`pill ${cls}`}>{severity}</span>;
 }
 
+const RAG_PILL: Record<RagLevel, { cls: string; label: string }> = {
+  green: { cls: 'p-ok', label: 'OK' },
+  amber: { cls: 'p-warn', label: 'Watch' },
+  red: { cls: 'p-danger', label: 'Flag' },
+};
+
+/**
+ * RAG status as a labeled pill.
+ *
+ * A bare colored dot asks a reader to hold a color key in their head and
+ * excludes anyone who cannot separate red from green. The word is the signal
+ * and the color reinforces it, never the other way round.
+ */
+export function RagPill({ level, title }: { level: RagLevel; title: string }) {
+  const { cls, label } = RAG_PILL[level];
+  return (
+    <span className={`pill ${cls}`} title={title}>
+      {label}
+      <span className="sr-only">. {title}</span>
+    </span>
+  );
+}
+
 /**
  * RAG status indicator. `showLabel` prints the dimension name beside the dot
  * -- used on the printable report, where color alone doesn't survive

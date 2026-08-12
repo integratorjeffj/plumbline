@@ -43,6 +43,8 @@
   --serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --mono: 'IBM Plex Mono', 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  /* Sticky table headers park directly beneath the top bar. */
+  --topbar-h: 58px;
 }
 
 html[data-theme='dark'] {
@@ -304,7 +306,78 @@ button.kpi[data-active='true'] { border-color: var(--accent); box-shadow: 0 0 0 
 }
 
 .table-empty { padding: 30px 18px; text-align: center; color: var(--ink-2); }
-.table-empty p { margin: 0 0 12px; font-size: 13.5px; }
+.table-empty p { margin: 0 auto 12px; font-size: 13.5px; max-width: 46ch; }
+
+/* ---------- table controls ---------- */
+.table-controls {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px;
+  padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surface);
+}
+.control { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.control-label {
+  font-size: 10.5px; letter-spacing: 0.07em; text-transform: uppercase;
+  font-weight: 600; color: var(--ink-3);
+}
+.control input { width: 220px; }
+.control select { width: auto; min-width: 150px; }
+.control-density .seg button { padding: 6px 11px; }
+.table-controls-count {
+  margin-left: auto; font-size: 12.5px; color: var(--ink-3);
+  font-variant-numeric: tabular-nums; padding-bottom: 7px;
+}
+
+.table-chips { padding: 12px 16px 0; }
+
+.table-legend {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 14px 16px; border-top: 1px solid var(--line);
+  font-size: 12px; color: var(--ink-3);
+}
+.table-legend > div { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+
+.linkish {
+  border: 0; background: none; padding: 0; cursor: pointer;
+  color: var(--accent); font: inherit; text-decoration: underline;
+}
+
+/* ---------- package table ---------- */
+.pkg-table thead th {
+  position: sticky; top: var(--topbar-h); z-index: 2;
+  background: var(--surface); box-shadow: inset 0 -1px 0 var(--line);
+}
+.pkg-table tbody tr:nth-child(even) { background: var(--surface-2); }
+.pkg-row { cursor: pointer; }
+.pkg-row:hover { background: var(--accent-soft); }
+.pkg-name { font-weight: 600; }
+.pkg-table[data-density='compact'] td { padding: 5px 12px; }
+.pkg-table[data-density='compact'] .small { display: none; }
+
+/* Sticky headers need a scrollport that scrolls with the page. Below this
+   width the table genuinely has to scroll sideways, and the wrapper that
+   makes that possible is also what defeats the sticky header, so the header
+   sticks only where the table already fits. */
+@media (min-width: 1360px) {
+  .table-scroll[data-sticky='true'] { overflow: visible; }
+}
+
+.row-actions { position: relative; display: inline-block; }
+.row-actions-btn {
+  border: 1px solid transparent; background: transparent; color: var(--ink-3);
+  border-radius: 6px; padding: 5px; cursor: pointer; line-height: 0;
+}
+.row-actions-btn:hover { background: var(--surface); border-color: var(--line); color: var(--ink); }
+.row-actions-menu {
+  position: absolute; right: 0; top: calc(100% + 4px); z-index: 20;
+  min-width: 210px; padding: 5px;
+  background: var(--surface); border: 1px solid var(--line-2);
+  border-radius: 8px; box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.row-actions-menu a {
+  padding: 7px 10px; border-radius: 6px; font-size: 13px;
+  color: var(--ink-2); text-decoration: none; white-space: nowrap;
+}
+.row-actions-menu a:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
 
 /* ---------- empty states ---------- */
 .empty-state { padding: 44px 30px; text-align: center; max-width: 640px; margin: 0 auto; }
