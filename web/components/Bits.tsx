@@ -1,6 +1,7 @@
 'use client';
 
 import type { ConfidenceTier, ReviewStatus, ScopeStatus, Severity } from '@/lib/types';
+import type { RagLevel } from '@/lib/portfolio';
 
 const SCOPE_PILL: Record<ScopeStatus, { cls: string; label: string }> = {
   Included: { cls: 'p-included', label: 'Included' },
@@ -28,6 +29,28 @@ export function StatusPill({ status }: { status: ReviewStatus }) {
 export function SeverityPill({ severity }: { severity: Severity }) {
   const cls = severity === 'HIGH' ? 'p-danger' : severity === 'MEDIUM' ? 'p-warn' : 'p-muted';
   return <span className={`pill ${cls}`}>{severity}</span>;
+}
+
+/**
+ * RAG status indicator. `showLabel` prints the dimension name beside the dot
+ * -- used on the printable report, where color alone doesn't survive
+ * black-and-white printing.
+ */
+export function HealthDot({
+  level,
+  label,
+  showLabel = false,
+}: {
+  level: RagLevel;
+  label: string;
+  showLabel?: boolean;
+}) {
+  return (
+    <span className="row" style={{ display: 'inline-flex', gap: 6 }}>
+      <span className="health-dot" data-level={level} title={label} aria-label={label} />
+      {showLabel && <span className="small muted">{label}</span>}
+    </span>
+  );
 }
 
 export function Kpi({

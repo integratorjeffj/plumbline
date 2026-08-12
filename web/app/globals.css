@@ -256,3 +256,42 @@ tr:last-child td { border-bottom: 0; }
   border-left: 1px solid var(--line-2); cursor: pointer; max-width: 260px;
 }
 .project-switch:focus { outline: none; color: var(--ink); }
+
+/* ---------- health / RAG status ---------- */
+.health-dot {
+  display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+  flex: none;
+}
+.health-dot[data-level='green'] { background: var(--ok); }
+.health-dot[data-level='amber'] { background: var(--warn); }
+.health-dot[data-level='red']  { background: var(--danger); }
+
+/* ---------- print ---------- */
+/*
+ * The stakeholder report is meant to be handed to someone outside the
+ * console via the browser's own print-to-PDF, not a bundled PDF library.
+ * Forcing light-theme values here regardless of the page's current
+ * data-theme is deliberate: a dark background sent to a printer, or baked
+ * into a "dark mode" PDF, is unusable output, and the report must read
+ * correctly no matter which theme the reviewer happened to be in.
+ */
+@media print {
+  .demo-banner, .masthead, .nav, .no-print, footer { display: none !important; }
+
+  :root, html[data-theme='dark'] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f4f4f5;
+    --ink: #111111;
+    --ink-2: #333333;
+    --ink-3: #555555;
+    --line: #cccccc;
+    --line-2: #999999;
+  }
+
+  .wrap { max-width: none; padding: 0; }
+  .page { padding: 0; }
+  .card { break-inside: avoid; border: 1px solid #ccc; box-shadow: none; }
+
+  @page { size: letter; margin: 0.5in; }
+}

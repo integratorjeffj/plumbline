@@ -48,6 +48,28 @@ interface PersistedState {
   reviews: Record<string, BidReview>;
 }
 
+export function projectStorageKey(projectId: string): string {
+  return `plumbline.console.v1.project.${projectId}`;
+}
+
+/**
+ * Read a project's persisted review decisions directly, without a mounted
+ * ProjectStoreProvider. Used by the Directory route's pending-reviews tile,
+ * which renders above/outside any project's provider and still wants to
+ * reflect review progress a visitor has already made in this browser.
+ * Returns null if nothing is stored yet or storage is unavailable.
+ */
+export function readPersistedReviews(projectId: string): Record<string, BidReview> | null {
+  try {
+    const raw = window.localStorage.getItem(projectStorageKey(projectId));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<PersistedState>;
+    return parsed.reviews ?? null;
+  } catch {
+    return null;
+  }
+}
+
 function emptyReview(estimator: string): BidReview {
   return {
     status: 'pending',
@@ -104,7 +126,7 @@ export function ProjectStoreProvider({
     throw new Error(`Unknown project: ${projectId}`);
   }
 
-  const storageKey = `plumbline.console.v1.project.${projectId}`;
+  const storageKey = projectStorageKey(projectId);
   const [state, setState] = useState<PersistedState>(() => initialState(data));
   const [hydrated, setHydrated] = useState(false);
 

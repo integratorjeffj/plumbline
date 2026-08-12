@@ -14,6 +14,7 @@ const ROUTE_TABS = [
   { segment: 'compare', label: 'Compare' },
   { segment: 'settings', label: 'Scope & weighting' },
   { segment: 'sources', label: 'Data sources' },
+  { segment: 'report', label: 'Stakeholder report' },
 ];
 
 /**

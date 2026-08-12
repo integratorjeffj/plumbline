@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { HealthDot } from './Bits';
+import type { RagLevel } from '@/lib/portfolio';
 
 export function ProjectCard({
   id,
@@ -6,12 +8,14 @@ export function ProjectCard({
   packageLabel,
   bidCount,
   alertCount,
+  health,
 }: {
   id: string;
   name: string;
   packageLabel: string;
   bidCount: number;
   alertCount: number;
+  health?: { scope: RagLevel; cost: RagLevel; risk: RagLevel };
 }) {
   return (
     <Link href={`/p/${id}/`} className="card card-pad project-card">
@@ -20,6 +24,15 @@ export function ProjectCard({
         {alertCount > 0 && <span className="pill p-danger">{alertCount} alert{alertCount === 1 ? '' : 's'}</span>}
       </div>
       <div className="project-card-meta">{packageLabel}</div>
+
+      {health && (
+        <div className="row" style={{ gap: 14, marginBottom: 14 }}>
+          <HealthDot level={health.scope} label="Scope" showLabel />
+          <HealthDot level={health.cost} label="Cost" showLabel />
+          <HealthDot level={health.risk} label="Risk" showLabel />
+        </div>
+      )}
+
       <div className="project-card-stats">
         <div>
           <div className="project-card-stat-v">{bidCount}</div>

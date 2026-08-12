@@ -39,12 +39,25 @@ actually works in:
   dollar value. Change a grade and the ranking recomputes on the spot.
 - **Data sources** carries the connector placeholders and a live-mode upload that computes a real
   SHA-256 in the browser.
+- **Stakeholder report** is a one-page, print-to-PDF summary of a single package -- budget, leveled
+  low bid, RAG health, the ranking table, and top findings -- for sharing outside the console.
 
 The console opens on a **project directory** listing every active bid package, since a real
 estimator carries more than one job at a time. Each package -- Falcon Medical's electrical scope,
 a mechanical package, a second electrical package with its own vendors and taxonomy -- is a fully
 separate leveling run with its own scope weights and review decisions, so approving a bid on one
-package never touches another.
+package never touches another. The directory itself carries a portfolio rollup: combined budget,
+leveled bid exposure across every package, and a RAG health table (Scope / Cost / Risk, in green /
+amber / red) so a program manager can see where attention is needed before opening any single
+package. The health thresholds are exact and computed, not eyeballed -- see
+`web/lib/portfolio.ts`.
+
+**On RAG health, deliberately.** Only Scope, Cost, and Risk get a health indicator, because those
+are the only three dimensions the engine actually computes something for. Plumbline has no
+schedule or safety data, so there's no Time or Safety dot -- adding one would mean inventing a
+number. Likewise, the portfolio KPI language says "leveled bid exposure," never "committed" or
+"paid": Plumbline is a pre-award tool, and it stops at a human approving an extraction. It does not
+track anything that happens after a bid is awarded.
 
 Nothing is auto-accepted. Every AI inference is stored as a separate lineage record with a
 `review_status` a human has to clear.
@@ -84,6 +97,8 @@ Two rules make this work:
 - **Bid leveling** with adjusted pricing and rank-movement tracking
 - **Seven deterministic anomaly rules**: arithmetic discrepancy, stale drawing revision, required scope missing from every bidder, large leveling delta, unclear scope, over budget, superseded revision
 - **Revision tracking** so a reissued proposal supersedes its predecessor instead of double-counting as another bidder
+- **Portfolio rollup** across every bid package: combined budget, leveled exposure, variance, and per-package RAG health, computed live from the same engine each package's own pages use
+- **Printable stakeholder report**, one page, via the browser's native print-to-PDF
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
