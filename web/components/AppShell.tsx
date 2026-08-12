@@ -1,24 +1,43 @@
 'use client';
 
+import { useMemo } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useStore } from '@/lib/store';
+import { useParams, usePathname, useRouter } from 'next/navigation';
+import { usePrefs } from '@/lib/prefs';
+import { PROJECT_IDS, getProject } from '@/lib/projects';
+import { verifyAgainstPipeline } from '@/lib/leveling';
 import { Plumb } from './Plumb';
 
-const ROUTES = [
-  { href: '/', label: 'Overview' },
-  { href: '/review/', label: 'Review' },
-  { href: '/compare/', label: 'Compare' },
-  { href: '/settings/', label: 'Scope & weighting' },
-  { href: '/sources/', label: 'Data sources' },
+const ROUTE_TABS = [
+  { segment: '', label: 'Overview' },
+  { segment: 'review', label: 'Review' },
+  { segment: 'compare', label: 'Compare' },
+  { segment: 'settings', label: 'Scope & weighting' },
+  { segment: 'sources', label: 'Data sources' },
 ];
 
+/**
+ * Renders both outside and inside a project (the Directory route has no
+ * project at all), so it resolves project identity itself from the URL and
+ * the static manifest rather than depending on ProjectStoreProvider -- that
+ * provider only wraps /p/[projectId]/*, and the masthead needs to work above
+ * it too.
+ */
 export function AppShell({ children }: { children: React.ReactNode }) {
-  const { theme, setTheme, mode, data, parity } = useStore();
+  const { theme, setTheme, mode } = usePrefs();
   const pathname = usePathname();
+  const router = useRouter();
+  const params = useParams<{ projectId?: string }>();
+  const projectId = params?.projectId;
+  const project = projectId ? getProject(projectId) : undefined;
+
+  const parity = useMemo(
+    () => (project ? verifyAgainstPipeline(project) : null),
+    [project]
+  );
 
   const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href.replace(/\/$/, ''));
+    href === `/p/${projectId}/` ? pathname === href : pathname.startsWith(href);
 
   return (
     <>
@@ -44,13 +63,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 Plumb<span>line</span>
               </span>
             </Link>
-            <div className="mark-sub">
-              {data.project.project_name} · {data.project.bid_package_number}
-            </div>
+
+            {project && projectId && (
+              <select
+                className="project-switch"
+                value={projectId}
+                onChange={(e) => router.push(`/p/${e.target.value}/`)}
+                aria-label="Switch project"
+              >
+                {PROJECT_IDS.map((id) => {
+                  const p = getProject(id)!;
+                  return (
+                    <option key={id} value={id}>
+                      {p.project.project_name} · {p.project.bid_package_number}
+                    </option>
+                  );
+                })}
+              </select>
+            )}
 
             <div className="masthead-spacer" />
 
-            {!parity.ok && (
+            {parity && !parity.ok && (
               <span className="pill p-danger" title="Client leveling disagrees with the pipeline export">
                 parity failed
               </span>
@@ -64,13 +98,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </button>
           </div>
 
-          <nav className="nav">
-            {ROUTES.map((route) => (
-              <Link key={route.href} href={route.href} data-active={isActive(route.href)}>
-                {route.label}
-              </Link>
-            ))}
-          </nav>
+          {project && projectId && (
+            <nav className="nav">
+              {ROUTE_TABS.map((route) => {
+                const href = `/p/${projectId}/${route.segment ? `${route.segment}/` : ''}`;
+                return (
+                  <Link key={route.segment} href={href} data-active={isActive(href)}>
+                    {route.label}
+                  </Link>
+                );
+              })}
+            </nav>
+          )}
         </div>
       </header>
 

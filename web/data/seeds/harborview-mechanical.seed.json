@@ -1,0 +1,361 @@
+{
+  "project": {
+    "project_number": "27-0212",
+    "project_name": "Harborview Medical Office Building",
+    "customer": "Harborview Health Alliance",
+    "bid_package_number": "27-0212-BP-23",
+    "bid_package_description": "Division 23 - Mechanical / HVAC",
+    "budget": 415000.0,
+    "drawing_revision": "Rev 2",
+    "general_contractor": "Crestmark Construction Partners",
+    "estimator": "Renee Ostrander"
+  },
+  "scope_taxonomy": [
+    { "key": "mechanical_mobilization_supervision", "label": "Mechanical mobilization and supervision", "in_package_scope": true },
+    { "key": "rooftop_unit_installation", "label": "Rooftop unit (RTU) installation", "in_package_scope": true },
+    { "key": "ductwork_distribution", "label": "Ductwork distribution and insulation", "in_package_scope": true },
+    { "key": "hydronic_piping_specialties", "label": "Hydronic piping and specialties", "in_package_scope": true },
+    { "key": "building_automation_integration", "label": "Building automation system (BAS) integration", "in_package_scope": true },
+    { "key": "testing_adjusting_balancing", "label": "Testing, adjusting, and balancing (TAB)", "in_package_scope": true },
+    { "key": "mechanical_permit_fees", "label": "Mechanical permit fees", "in_package_scope": true },
+    { "key": "commissioning_support", "label": "Commissioning support and functional testing", "in_package_scope": true },
+    { "key": "performance_payment_bond", "label": "Performance and payment bond", "in_package_scope": true },
+    { "key": "refrigerant_management", "label": "Refrigerant management and EPA compliance documentation", "in_package_scope": true },
+    { "key": "electrical_power_to_mechanical_equipment", "label": "Electrical power connections to mechanical equipment", "in_package_scope": false }
+  ],
+  "required_scope": [
+    { "scope_key": "rooftop_unit_installation", "spec_section": "23 74 13", "title": "Packaged Rooftop Air-Conditioning Units", "critical": true },
+    { "scope_key": "testing_adjusting_balancing", "spec_section": "23 05 93", "title": "Testing, Adjusting, and Balancing for HVAC", "critical": true },
+    { "scope_key": "building_automation_integration", "spec_section": "23 09 00", "title": "Instrumentation and Control for HVAC", "critical": false }
+  ],
+  "adjustment_rules": {
+    "entered_by": "Renee Ostrander",
+    "entered_role": "Senior Mechanical Estimator",
+    "source": "estimator_entered",
+    "rules": [
+      {
+        "scope_key": "building_automation_integration",
+        "applies_when_status": ["Excluded", "NotFound"],
+        "amount": 28000.0,
+        "rationale": "Carry a BAS integration allowance sized to the specified controls scope for bidders who excluded it."
+      },
+      {
+        "scope_key": "commissioning_support",
+        "applies_when_status": ["Excluded", "NotFound"],
+        "amount": 9500.0,
+        "rationale": "Estimated cost to retain a third-party commissioning agent if a bidder does not carry this scope."
+      },
+      {
+        "scope_key": "mechanical_permit_fees",
+        "applies_when_status": ["Excluded", "NotFound"],
+        "amount": 5200.0,
+        "rationale": "Estimated Division 23 permit fees based on prior Harborview-area healthcare work."
+      },
+      {
+        "scope_key": "performance_payment_bond",
+        "applies_when_status": ["Excluded", "NotFound"],
+        "amount": 6800.0,
+        "rationale": "Estimated bond premium if not carried by the bidder."
+      },
+      {
+        "scope_key": "testing_adjusting_balancing",
+        "applies_when_status": ["Excluded", "NotFound"],
+        "amount": 11000.0,
+        "rationale": "Estimated cost to retain an independent TAB agency if a bidder does not carry this scope."
+      },
+      {
+        "scope_key": "refrigerant_management",
+        "applies_when_status": ["Excluded", "NotFound"],
+        "amount": 3200.0,
+        "rationale": "Estimated cost of EPA-compliant refrigerant handling and documentation if not carried."
+      }
+    ]
+  },
+  "submissions": [
+    {
+      "vendor_id": "meridian-mechanical",
+      "vendor_name": "Meridian Mechanical Systems",
+      "revision_label": "Original",
+      "filename": "meridian_mechanical_proposal.pdf",
+      "format": "PDF proposal, 4 pages",
+      "sha256": "20c669f6bf2e68b1075afa72292bf525effca9d28a69c1aa57c103475d75cf4f",
+      "page_count": 4,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "MERIDIAN MECHANICAL SYSTEMS\nCommercial HVAC & Mechanical Construction - Norfolk, VA\nPROPOSAL SUMMARY\nProposal Date: September 3, 2026\nSubmitted To: Crestmark Construction Partners\nAttention: Renee Ostrander, Senior Mechanical Estimator\nProject: Harborview Medical Office Building\nProject Number: 27-0212\nBid Package: 27-0212-BP-23 - Division 23 Mechanical / HVAC\nBase Bid: $398,500.00\nBid Validity: 30 calendar days from the Proposal Date\nThis proposal is based on Contract Drawings Revision 2 and the Project Manual issued for bid, and covers the full Division 23 mechanical scope described in the sections that follow."
+        },
+        {
+          "page_number": 2,
+          "text": "MERIDIAN MECHANICAL SYSTEMS\nSCOPE OF WORK\nThe following scope is included in our Base Bid of $398,500.00:\n1 Mechanical mobilization and on-site supervision for the duration of our work.\n2 Furnish and install all rooftop units (RTUs) shown on the mechanical Contract Drawings.\n3 Ductwork distribution and insulation throughout, per the Contract Drawings and Project Manual.\n4 Hydronic piping and specialties serving the mechanical rooms and air-handling equipment.\n5 Integration of our equipment with the building automation system (BAS) specified in Section 23 09 00.\n6 Testing, adjusting, and balancing (TAB) of all air and water systems per Section 23 05 93.\n7 Mechanical permit fees associated with our Division 23 scope of work.\n8 Support for third-party commissioning, including functional testing coordination.\nMeridian Mechanical Systems - Harborview Medical Office Building, Project 27-0212, Bid Package 27-0212-BP-23"
+        },
+        {
+          "page_number": 3,
+          "text": "MERIDIAN MECHANICAL SYSTEMS\nCLARIFICATIONS AND EXCLUSIONS\nThis proposal is based on the Contract Drawings (Revision 2) and Project Manual issued for bid. The following items are excluded from our Base Bid:\n1 Performance and payment bond. Excluded from the Base Bid; available as an add-alternate if required by Crestmark.\n2 Electrical power connections to mechanical equipment - by others (Division 26).\nRefrigerant handling is included as part of our standard installation practice; a separate EPA-compliance documentation package is not addressed in this proposal and would need to be confirmed with Crestmark if required as a deliverable."
+        },
+        {
+          "page_number": 4,
+          "text": "MERIDIAN MECHANICAL SYSTEMS\nCOMMERCIAL AND SCHEDULE TERMS\nAnticipated duration is 20 weeks from mobilization, subject to an approved project schedule. This proposal remains valid for 30 calendar days from the Proposal Date stated on Page 1.\nRespectfully submitted,\nCarlos Mendieta\nSenior Estimator, Meridian Mechanical Systems\ncarlos.mendieta@meridian-mech-demo.example"
+        }
+      ],
+      "email": {
+        "subject": "Harborview MOB - Div 23 Mechanical Proposal - Meridian Mechanical",
+        "sender_name": "Carlos Mendieta",
+        "sender_email": "carlos.mendieta@meridian-mech-demo.example",
+        "received_at": "2026-09-03T14:10:00-04:00",
+        "body_text": "Hi Renee,\n\nAttached is our proposal for the Division 23 Mechanical package on Harborview Medical Office Building (Project 27-0212). Let us know if you have any questions.\n\nBest,\nCarlos",
+        "pricing_in_body": false
+      },
+      "base_bid": 398500.0,
+      "line_items": [],
+      "line_item_count": 0,
+      "line_item_total": null,
+      "scope_assertions": {
+        "mechanical_mobilization_supervision": "Included",
+        "rooftop_unit_installation": "Included",
+        "ductwork_distribution": "Included",
+        "hydronic_piping_specialties": "Included",
+        "building_automation_integration": "Included",
+        "testing_adjusting_balancing": "Included",
+        "mechanical_permit_fees": "Included",
+        "commissioning_support": "Included",
+        "performance_payment_bond": "Excluded",
+        "refrigerant_management": "NotFound",
+        "electrical_power_to_mechanical_equipment": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 2",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": { "page": 1, "section": "Proposal Summary" },
+        "performance_payment_bond": { "page": 3, "section": "Clarifications and Exclusions" },
+        "drawing_revision_referenced": { "page": 1, "section": "Proposal Summary" }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "hv-bid-meridian-0001",
+      "ai_inference_id": "hv-inf-meridian-0001",
+      "superseded": false
+    },
+    {
+      "vendor_id": "coastal-air",
+      "vendor_name": "Coastal Air Balance & Controls",
+      "revision_label": "Original",
+      "filename": "coastal_air_pricing.xlsx",
+      "format": "Excel workbook, 4 sheets",
+      "sha256": "1286e37265631f3f2aaacdded42ee3ea925c2275cda9124333f5a5505bb762ba",
+      "page_count": 4,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "[Sheet: Bid Summary]\nCOASTAL AIR BALANCE & CONTROLS\nMechanical Construction - Chesapeake, VA\nProposal Date:  September 3, 2026\nSubmitted To:  Crestmark Construction Partners\nAttention:  Renee Ostrander, Senior Mechanical Estimator\nProject:  Harborview Medical Office Building\nProject Number:  27-0212\nBid Package:  27-0212-BP-23 - Division 23 Mechanical / HVAC\nDrawing Revision:  Rev 2\nBase Bid:  $345,000.00\nBid Validity:  30 calendar days"
+        },
+        {
+          "page_number": 2,
+          "text": "[Sheet: Pricing Detail]\nLine Item  Amount\nMobilization, supervision, and project management  $18,000.00\nRooftop unit installation and startup  $142,000.00\nDuctwork distribution and insulation  $98,500.00\nHydronic piping and specialties  $61,500.00\nControls wiring rough-in (equipment-side only)  $25,000.00\nTOTAL BASE BID  $345,000.00"
+        },
+        {
+          "page_number": 3,
+          "text": "[Sheet: Exclusions]\nExcluded Scope\nBuilding automation system (BAS) integration - NOT INCLUDED. Controls contractor to coordinate directly with owner's BAS vendor.\nTesting, adjusting, and balancing (TAB) - NOT INCLUDED.\nMechanical permit fees - NOT INCLUDED. Assumed carried by Crestmark.\nCommissioning support - NOT INCLUDED.\nPerformance and payment bond - NOT INCLUDED.\nElectrical power connections to mechanical equipment - NOT INCLUDED (by others)."
+        },
+        {
+          "page_number": 4,
+          "text": "[Sheet: Notes]\nClarifications and Assumptions\nPricing based on mechanical Contract Drawings Revision 2 and the Project Manual issued for bid.\nRefrigerant handling practices to be confirmed during submittal review; no separate compliance documentation package is carried in this proposal.\nProposal valid 30 calendar days from the date above. Anticipated duration 17 weeks from mobilization."
+        }
+      ],
+      "email": {
+        "subject": "Harborview MOB 27-0212-BP-23 Mechanical Pricing - Coastal Air",
+        "sender_name": "Denise Okafor",
+        "sender_email": "denise.okafor@coastal-air-demo.example",
+        "received_at": "2026-09-03T11:05:00-04:00",
+        "body_text": "Renee,\n\nOur pricing workbook for the Div 23 mechanical package is attached, broken out by line item on the Pricing Detail tab. Exclusions are called out on their own tab.\n\nDenise Okafor\nCoastal Air Balance & Controls",
+        "pricing_in_body": false
+      },
+      "base_bid": 345000.0,
+      "line_items": [
+        { "description": "Mobilization, supervision, and project management", "amount": 18000.0 },
+        { "description": "Rooftop unit installation and startup", "amount": 142000.0 },
+        { "description": "Ductwork distribution and insulation", "amount": 98500.0 },
+        { "description": "Hydronic piping and specialties", "amount": 61500.0 },
+        { "description": "Controls wiring rough-in (equipment-side only)", "amount": 25000.0 }
+      ],
+      "line_item_count": 5,
+      "line_item_total": 345000.0,
+      "scope_assertions": {
+        "mechanical_mobilization_supervision": "Included",
+        "rooftop_unit_installation": "Included",
+        "ductwork_distribution": "Included",
+        "hydronic_piping_specialties": "Included",
+        "building_automation_integration": "Excluded",
+        "testing_adjusting_balancing": "Excluded",
+        "mechanical_permit_fees": "Excluded",
+        "commissioning_support": "Excluded",
+        "performance_payment_bond": "Excluded",
+        "refrigerant_management": "NotFound",
+        "electrical_power_to_mechanical_equipment": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 2",
+      "confidence_tier": "LOW",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": { "page": 1, "section": "Bid Summary" },
+        "building_automation_integration": { "page": 3, "section": "Exclusions" },
+        "drawing_revision_referenced": { "page": 1, "section": "Bid Summary" }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "hv-bid-coastal-0001",
+      "ai_inference_id": "hv-inf-coastal-0001",
+      "superseded": false
+    },
+    {
+      "vendor_id": "vantage-hvac",
+      "vendor_name": "Vantage HVAC Group",
+      "revision_label": "Original",
+      "filename": "vantage_hvac_proposal.pdf",
+      "format": "PDF proposal, 5 pages",
+      "sha256": "0a4f3747093d29a0429fed7903be9337f562c5a54dc8441ba60398bcd4ddd3b0",
+      "page_count": 5,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "VANTAGE HVAC GROUP\nDesign-Build Mechanical Contracting - Richmond, VA\nPROPOSAL SUMMARY\nProposal Date: September 4, 2026\nSubmitted To: Crestmark Construction Partners\nAttention: Renee Ostrander, Senior Mechanical Estimator\nProject: Harborview Medical Office Building\nProject Number: 27-0212\nBid Package: 27-0212-BP-23 - Division 23 Mechanical / HVAC\nBase Bid: $412,750.00\nBid Validity: 30 calendar days from the Proposal Date\nBased on Contract Drawings Revision 2 and the Project Manual issued for bid."
+        },
+        {
+          "page_number": 2,
+          "text": "VANTAGE HVAC GROUP\nSCOPE OF WORK\nIncluded in our Base Bid of $412,750.00:\n1 Mechanical mobilization and supervision.\n2 Rooftop unit (RTU) installation per the mechanical Contract Drawings.\n3 Ductwork distribution and insulation.\n4 Hydronic piping and specialties.\n5 Building automation system (BAS) integration per Section 23 09 00.\n6 Testing, adjusting, and balancing (TAB) per Section 23 05 93.\n7 Mechanical permit fees.\n8 Commissioning support and functional testing coordination.\nVantage HVAC Group - Harborview Medical Office Building, Project 27-0212, Bid Package 27-0212-BP-23"
+        },
+        {
+          "page_number": 3,
+          "text": "VANTAGE HVAC GROUP\nREFRIGERANT MANAGEMENT\nOur standard practice follows EPA Section 608 requirements for refrigerant handling. Whether a formal compliance documentation package is a deliverable under this contract, versus retained internally per our standard operating procedure, should be confirmed with Crestmark during scope review; pricing above assumes internal retention only."
+        },
+        {
+          "page_number": 4,
+          "text": "VANTAGE HVAC GROUP\nCLARIFICATIONS AND EXCLUSIONS\nThe following is excluded from our Base Bid:\n1 Performance and payment bond. Available as an add-alternate if required.\n2 Electrical power connections to mechanical equipment - by others (Division 26)."
+        },
+        {
+          "page_number": 5,
+          "text": "VANTAGE HVAC GROUP\nCOMMERCIAL AND SCHEDULE TERMS\nAnticipated duration is 19 weeks from mobilization. This proposal remains valid for 30 calendar days from the Proposal Date stated on Page 1.\nRespectfully submitted,\nTasha Whitfield\nSenior Estimator, Vantage HVAC Group\ntasha.whitfield@vantage-hvac-demo.example"
+        }
+      ],
+      "email": {
+        "subject": "Harborview MOB - Div 23 Mechanical Proposal - Vantage HVAC",
+        "sender_name": "Tasha Whitfield",
+        "sender_email": "tasha.whitfield@vantage-hvac-demo.example",
+        "received_at": "2026-09-04T09:30:00-04:00",
+        "body_text": "Hi Renee,\n\nPlease find our Division 23 proposal attached for Harborview Medical Office Building. We flagged one item on refrigerant documentation for your review on page 3.\n\nTasha Whitfield\nVantage HVAC Group",
+        "pricing_in_body": false
+      },
+      "base_bid": 412750.0,
+      "line_items": [],
+      "line_item_count": 0,
+      "line_item_total": null,
+      "scope_assertions": {
+        "mechanical_mobilization_supervision": "Included",
+        "rooftop_unit_installation": "Included",
+        "ductwork_distribution": "Included",
+        "hydronic_piping_specialties": "Included",
+        "building_automation_integration": "Included",
+        "testing_adjusting_balancing": "Included",
+        "mechanical_permit_fees": "Included",
+        "commissioning_support": "Included",
+        "performance_payment_bond": "Excluded",
+        "refrigerant_management": "Unclear",
+        "electrical_power_to_mechanical_equipment": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 2",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": { "page": 1, "section": "Proposal Summary" },
+        "refrigerant_management": { "page": 3, "section": "Refrigerant Management" },
+        "performance_payment_bond": { "page": 4, "section": "Clarifications and Exclusions" },
+        "drawing_revision_referenced": { "page": 1, "section": "Proposal Summary" }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "hv-bid-vantage-0001",
+      "ai_inference_id": "hv-inf-vantage-0001",
+      "superseded": false
+    },
+    {
+      "vendor_id": "palmetto-mechanical",
+      "vendor_name": "Palmetto Mechanical Contractors",
+      "revision_label": "Original",
+      "filename": "palmetto_mechanical_proposal.pdf",
+      "format": "PDF proposal, 4 pages",
+      "sha256": "6ae9e9b801e1c1a3055caf8d04fd497155979a707a9015e49b6f48b4eabd5eea",
+      "page_count": 4,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "PALMETTO MECHANICAL CONTRACTORS\nCommercial HVAC Construction - Portsmouth, VA\nPROPOSAL SUMMARY\nProposal Date: September 2, 2026\nSubmitted To: Crestmark Construction Partners\nAttention: Renee Ostrander, Senior Mechanical Estimator\nProject: Harborview Medical Office Building\nProject Number: 27-0212\nBid Package: 27-0212-BP-23 - Division 23 Mechanical / HVAC\nBase Bid: $371,200.00\nBid Validity: 30 calendar days from the Proposal Date\nThis proposal is based on Contract Drawings Revision 1 as most recently issued to our office; please advise if a later revision governs."
+        },
+        {
+          "page_number": 2,
+          "text": "PALMETTO MECHANICAL CONTRACTORS\nSCOPE OF WORK\nIncluded in our Base Bid of $371,200.00:\n1 Mechanical mobilization and supervision.\n2 Rooftop unit (RTU) installation.\n3 Ductwork distribution and insulation.\n4 Hydronic piping and specialties.\nBuilding automation integration is anticipated to be coordinated directly between our controls subcontractor and the owner's BAS vendor; scope and pricing responsibility to be finalized during submittal review."
+        },
+        {
+          "page_number": 3,
+          "text": "PALMETTO MECHANICAL CONTRACTORS\nCLARIFICATIONS AND EXCLUSIONS\nThe following is excluded from our Base Bid:\n1 Mechanical permit fees - assumed carried by Crestmark.\n2 Performance and payment bond.\n3 Electrical power connections to mechanical equipment - by others.\nTesting, adjusting, and balancing and refrigerant management documentation are not addressed in this proposal; please advise if a separate scope clarification is needed."
+        },
+        {
+          "page_number": 4,
+          "text": "PALMETTO MECHANICAL CONTRACTORS\nCOMMERCIAL AND SCHEDULE TERMS\nAnticipated duration is 18 weeks from mobilization. This proposal remains valid for 30 calendar days from the Proposal Date stated on Page 1.\nRespectfully submitted,\nGreg Alcott\nSenior Estimator, Palmetto Mechanical Contractors\ngreg.alcott@palmetto-mech-demo.example"
+        }
+      ],
+      "email": {
+        "subject": "Harborview MOB - Div 23 Mechanical Proposal - Palmetto Mechanical",
+        "sender_name": "Greg Alcott",
+        "sender_email": "greg.alcott@palmetto-mech-demo.example",
+        "received_at": "2026-09-02T15:50:00-04:00",
+        "body_text": "Hi Renee,\n\nAttached is our Division 23 proposal for Harborview MOB. Note we're referencing the drawing revision most recently issued to our office -- please confirm we have the current set.\n\nGreg Alcott\nPalmetto Mechanical Contractors",
+        "pricing_in_body": false
+      },
+      "base_bid": 371200.0,
+      "line_items": [],
+      "line_item_count": 0,
+      "line_item_total": null,
+      "scope_assertions": {
+        "mechanical_mobilization_supervision": "Included",
+        "rooftop_unit_installation": "Included",
+        "ductwork_distribution": "Included",
+        "hydronic_piping_specialties": "Included",
+        "building_automation_integration": "Unclear",
+        "testing_adjusting_balancing": "NotFound",
+        "mechanical_permit_fees": "Excluded",
+        "commissioning_support": "NotFound",
+        "performance_payment_bond": "Excluded",
+        "refrigerant_management": "NotFound",
+        "electrical_power_to_mechanical_equipment": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 1",
+      "confidence_tier": "REVIEW",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": { "page": 1, "section": "Proposal Summary" },
+        "building_automation_integration": { "page": 2, "section": "Scope of Work" },
+        "drawing_revision_referenced": { "page": 1, "section": "Proposal Summary" }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "hv-bid-palmetto-0001",
+      "ai_inference_id": "hv-inf-palmetto-0001",
+      "superseded": false
+    }
+  ],
+  "revisions": [],
+  "superseded": []
+}

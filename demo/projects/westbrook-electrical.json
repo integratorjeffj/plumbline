@@ -1,0 +1,623 @@
+{
+  "project": {
+    "project_number": "28-0355",
+    "project_name": "Westbrook Logistics Center",
+    "customer": "Westbrook Distribution Partners",
+    "bid_package_number": "28-0355-BP-26",
+    "bid_package_description": "Division 26 - Electrical",
+    "budget": 260000,
+    "drawing_revision": "Rev 1",
+    "general_contractor": "Crestmark Construction Partners",
+    "estimator": "Melissa Tran"
+  },
+  "submissions": [
+    {
+      "vendor_id": "summit-electric",
+      "vendor_name": "Summit Electric Partners",
+      "revision_label": "Original",
+      "filename": "summit_electric_proposal.pdf",
+      "format": "PDF proposal, 4 pages",
+      "sha256": "502a474674a0b45315b7e0f46daf7c5628316f90bf46f1c929af0443d379844f",
+      "page_count": 4,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "SUMMIT ELECTRIC PARTNERS\nCommercial & Industrial Electrical Construction - Suffolk, VA\nPROPOSAL SUMMARY\nProposal Date: October 6, 2026\nSubmitted To: Crestmark Construction Partners\nAttention: Melissa Tran, Senior Estimator\nProject: Westbrook Logistics Center\nProject Number: 28-0355\nBid Package: 28-0355-BP-26 - Division 26 Electrical\nBase Bid: $214,500.00\nBid Validity: 30 calendar days from the Proposal Date\nBased on Contract Drawings Revision 1 and the Project Manual issued for bid."
+        },
+        {
+          "page_number": 2,
+          "text": "SUMMIT ELECTRIC PARTNERS\nSCOPE OF WORK\nIncluded in our Base Bid of $214,500.00:\n1 Electrical mobilization and supervision.\n2 Warehouse power distribution and panelboards per the Contract Drawings.\n3 High-bay lighting fixtures and controls throughout the warehouse floor.\n4 Dock leveler and dock equipment power connections at all dock positions shown.\n5 Emergency and egress lighting per the Contract Drawings and applicable code.\n6 Electrical permit fees associated with our Division 26 scope of work.\n7 Fire alarm device connections shown on the electrical Contract Drawings.\nSummit Electric Partners - Westbrook Logistics Center, Project 28-0355, Bid Package 28-0355-BP-26"
+        },
+        {
+          "page_number": 3,
+          "text": "SUMMIT ELECTRIC PARTNERS\nCLARIFICATIONS AND EXCLUSIONS\nThe following is excluded from our Base Bid:\n1 Performance and payment bond. Available as an add-alternate if required by Crestmark.\n2 Utility transformer coordination and metering - by others, coordinated directly with the utility.\nAn arc-flash hazard study is not addressed in this proposal; please advise if this is required as a deliverable under our contract or is being retained separately by Crestmark."
+        },
+        {
+          "page_number": 4,
+          "text": "SUMMIT ELECTRIC PARTNERS\nCOMMERCIAL AND SCHEDULE TERMS\nAnticipated duration is 14 weeks from mobilization, subject to an approved project schedule. This proposal remains valid for 30 calendar days from the Proposal Date stated on Page 1.\nRespectfully submitted,\nAnthony Ruiz\nSenior Estimator, Summit Electric Partners\nanthony.ruiz@summit-electric-demo.example"
+        }
+      ],
+      "email": {
+        "subject": "Westbrook Logistics Center - Div 26 Electrical Proposal - Summit Electric",
+        "sender_name": "Anthony Ruiz",
+        "sender_email": "anthony.ruiz@summit-electric-demo.example",
+        "received_at": "2026-10-06T13:20:00-04:00",
+        "body_text": "Hi Melissa,\n\nAttached is our proposal for the Division 26 Electrical package on Westbrook Logistics Center. We flagged the arc-flash study question on page 3 for your review.\n\nThanks,\nAnthony Ruiz\nSummit Electric Partners",
+        "pricing_in_body": false
+      },
+      "base_bid": 214500,
+      "line_items": [],
+      "line_item_count": 0,
+      "line_item_total": null,
+      "scope_assertions": {
+        "electrical_mobilization_supervision": "Included",
+        "warehouse_power_distribution": "Included",
+        "high_bay_lighting": "Included",
+        "dock_equipment_power": "Included",
+        "emergency_egress_lighting": "Included",
+        "electrical_permit_fees": "Included",
+        "performance_payment_bond": "Excluded",
+        "fire_alarm_device_connections": "Included",
+        "arc_flash_study": "NotFound",
+        "utility_transformer_coordination": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 1",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Proposal Summary"
+        },
+        "performance_payment_bond": {
+          "page": 3,
+          "section": "Clarifications and Exclusions"
+        },
+        "drawing_revision_referenced": {
+          "page": 1,
+          "section": "Proposal Summary"
+        }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "wb-bid-summit-0001",
+      "ai_inference_id": "wb-inf-summit-0001",
+      "superseded": false
+    },
+    {
+      "vendor_id": "gridline-power",
+      "vendor_name": "Gridline Power Solutions",
+      "revision_label": "Original",
+      "filename": "gridline_power_pricing.xlsx",
+      "format": "Excel workbook, 4 sheets",
+      "sha256": "ca68fb2aebea73170692a018524a32b3750c9e3f8f55c1002d9dccef4ee7ab1c",
+      "page_count": 4,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "[Sheet: Bid Summary]\nGRIDLINE POWER SOLUTIONS\nElectrical Contracting - Chesapeake, VA\nProposal Date:  October 6, 2026\nSubmitted To:  Crestmark Construction Partners\nAttention:  Melissa Tran, Senior Estimator\nProject:  Westbrook Logistics Center\nProject Number:  28-0355\nBid Package:  28-0355-BP-26 - Division 26 Electrical\nDrawing Revision:  Rev 1\nBase Bid:  $189,900.00\nBid Validity:  30 calendar days"
+        },
+        {
+          "page_number": 2,
+          "text": "[Sheet: Pricing Detail]\nLine Item  Amount\nMobilization, supervision, and project management  $14,200.00\nWarehouse power distribution and panelboards  $86,400.00\nEmergency and egress lighting  $19,800.00\nFire alarm device connections (electrical drawings)  $11,600.00\nGeneral conditions and closeout  $7,900.00\nSubtotal, priced scope above  $139,900.00\nAllowance carried for owner-directed changes  $50,000.00\nTOTAL BASE BID  $189,900.00"
+        },
+        {
+          "page_number": 3,
+          "text": "[Sheet: Exclusions]\nExcluded Scope\nHigh-bay lighting fixtures and controls - NOT INCLUDED. Priced separately upon request.\nDock leveler and dock equipment power connections - NOT INCLUDED.\nElectrical permit fees - NOT INCLUDED. Assumed carried by Crestmark.\nPerformance and payment bond - NOT INCLUDED.\nUtility transformer coordination and metering - NOT INCLUDED (by others)."
+        },
+        {
+          "page_number": 4,
+          "text": "[Sheet: Notes]\nClarifications and Assumptions\nPricing based on electrical Contract Drawings Revision 1 and the Project Manual issued for bid.\nArc-flash hazard study is not addressed in this proposal.\nProposal valid 30 calendar days from the date above. Anticipated duration 13 weeks from mobilization."
+        }
+      ],
+      "email": {
+        "subject": "Westbrook Logistics Center 28-0355-BP-26 Electrical Pricing - Gridline Power",
+        "sender_name": "Wanda Kessler",
+        "sender_email": "wanda.kessler@gridline-power-demo.example",
+        "received_at": "2026-10-06T10:45:00-04:00",
+        "body_text": "Melissa,\n\nOur pricing workbook is attached, broken out on the Pricing Detail tab with exclusions called out separately. Let me know if you have questions.\n\nWanda Kessler\nGridline Power Solutions",
+        "pricing_in_body": false
+      },
+      "base_bid": 189900,
+      "line_items": [
+        {
+          "description": "Mobilization, supervision, and project management",
+          "amount": 14200
+        },
+        {
+          "description": "Warehouse power distribution and panelboards",
+          "amount": 86400
+        },
+        {
+          "description": "Emergency and egress lighting",
+          "amount": 19800
+        },
+        {
+          "description": "Fire alarm device connections (electrical drawings)",
+          "amount": 11600
+        },
+        {
+          "description": "General conditions and closeout",
+          "amount": 7900
+        },
+        {
+          "description": "Allowance carried for owner-directed changes",
+          "amount": 50000
+        }
+      ],
+      "line_item_count": 6,
+      "line_item_total": 189900,
+      "scope_assertions": {
+        "electrical_mobilization_supervision": "Included",
+        "warehouse_power_distribution": "Included",
+        "high_bay_lighting": "Excluded",
+        "dock_equipment_power": "Excluded",
+        "emergency_egress_lighting": "Included",
+        "electrical_permit_fees": "Excluded",
+        "performance_payment_bond": "Excluded",
+        "fire_alarm_device_connections": "Included",
+        "arc_flash_study": "NotFound",
+        "utility_transformer_coordination": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 1",
+      "confidence_tier": "REVIEW",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Bid Summary"
+        },
+        "high_bay_lighting": {
+          "page": 3,
+          "section": "Exclusions"
+        },
+        "drawing_revision_referenced": {
+          "page": 1,
+          "section": "Bid Summary"
+        }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "wb-bid-gridline-0001",
+      "ai_inference_id": "wb-inf-gridline-0001",
+      "superseded": false
+    },
+    {
+      "vendor_id": "anchor-electrical",
+      "vendor_name": "Anchor Electrical Co.",
+      "revision_label": "Original",
+      "filename": "anchor_electrical_proposal.pdf",
+      "format": "PDF proposal, 5 pages",
+      "sha256": "c9086df8d4b5bf21458eafed8c2e037caffd17510bba0c7d67f1682e7fc16586",
+      "page_count": 5,
+      "page_text": [
+        {
+          "page_number": 1,
+          "text": "ANCHOR ELECTRICAL CO.\nCommercial & Industrial Electrical Construction - Newport News, VA\nPROPOSAL SUMMARY\nProposal Date: October 7, 2026\nSubmitted To: Crestmark Construction Partners\nAttention: Melissa Tran, Senior Estimator\nProject: Westbrook Logistics Center\nProject Number: 28-0355\nBid Package: 28-0355-BP-26 - Division 26 Electrical\nBase Bid: $228,750.00\nBid Validity: 30 calendar days from the Proposal Date\nBased on Contract Drawings Revision 1 and the Project Manual issued for bid."
+        },
+        {
+          "page_number": 2,
+          "text": "ANCHOR ELECTRICAL CO.\nSCOPE OF WORK\nIncluded in our Base Bid of $228,750.00:\n1 Electrical mobilization and supervision.\n2 Warehouse power distribution and panelboards.\n3 High-bay lighting fixtures and controls.\n4 Dock leveler and dock equipment power connections.\n5 Emergency and egress lighting.\n6 Electrical permit fees.\n7 Fire alarm device connections shown on the electrical Contract Drawings.\nAnchor Electrical Co. - Westbrook Logistics Center, Project 28-0355, Bid Package 28-0355-BP-26"
+        },
+        {
+          "page_number": 3,
+          "text": "ANCHOR ELECTRICAL CO.\nBONDING\nA performance and payment bond is included in our Base Bid stated on Page 1. Bond rate and surety information available upon request."
+        },
+        {
+          "page_number": 4,
+          "text": "ANCHOR ELECTRICAL CO.\nCLARIFICATIONS AND EXCLUSIONS\nThe following is excluded from our Base Bid:\n1 Utility transformer coordination and metering - by others.\nAn arc-flash hazard study is not addressed in this proposal; we recommend this be confirmed as a deliverable during the electrical submittal process."
+        },
+        {
+          "page_number": 5,
+          "text": "ANCHOR ELECTRICAL CO.\nCOMMERCIAL AND SCHEDULE TERMS\nAnticipated duration is 15 weeks from mobilization, subject to an approved project schedule. This proposal remains valid for 30 calendar days from the Proposal Date stated on Page 1.\nRespectfully submitted,\nDeborah Voss\nSenior Estimator, Anchor Electrical Co.\ndeborah.voss@anchor-electrical-demo.example"
+        }
+      ],
+      "email": {
+        "subject": "Westbrook Logistics Center - Div 26 Electrical Proposal - Anchor Electrical",
+        "sender_name": "Deborah Voss",
+        "sender_email": "deborah.voss@anchor-electrical-demo.example",
+        "received_at": "2026-10-07T08:55:00-04:00",
+        "body_text": "Hi Melissa,\n\nOur proposal for the Division 26 package on Westbrook Logistics Center is attached, including bonding. We noted the arc-flash study question on page 4.\n\nBest,\nDeborah Voss\nAnchor Electrical Co.",
+        "pricing_in_body": false
+      },
+      "base_bid": 228750,
+      "line_items": [],
+      "line_item_count": 0,
+      "line_item_total": null,
+      "scope_assertions": {
+        "electrical_mobilization_supervision": "Included",
+        "warehouse_power_distribution": "Included",
+        "high_bay_lighting": "Included",
+        "dock_equipment_power": "Included",
+        "emergency_egress_lighting": "Included",
+        "electrical_permit_fees": "Included",
+        "performance_payment_bond": "Included",
+        "fire_alarm_device_connections": "Included",
+        "arc_flash_study": "NotFound",
+        "utility_transformer_coordination": "Excluded"
+      },
+      "drawing_revision_referenced": "Rev 1",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "prompt_version": "extract_bid_v1",
+      "review_status": "pending",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Proposal Summary"
+        },
+        "performance_payment_bond": {
+          "page": 3,
+          "section": "Bonding"
+        },
+        "drawing_revision_referenced": {
+          "page": 1,
+          "section": "Proposal Summary"
+        }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "wb-bid-anchor-0001",
+      "ai_inference_id": "wb-inf-anchor-0001",
+      "superseded": false
+    }
+  ],
+  "vendors": [
+    {
+      "vendor_id": "summit-electric",
+      "vendor_name": "Summit Electric Partners",
+      "revision_label": "Original",
+      "submitted_total": 214500,
+      "adjusted_total": 224500,
+      "submitted_rank": 2,
+      "adjusted_rank": 1,
+      "rank_movement": 1,
+      "leveling_delta": 10000,
+      "leveling_delta_pct": 4.66,
+      "confidence_tier": "HIGH",
+      "unclear_scope_keys": [],
+      "adjustments": [
+        {
+          "scope_key": "performance_payment_bond",
+          "label": "Performance and payment bond",
+          "status": "Excluded",
+          "amount": 4200,
+          "rationale": "Estimated bond premium if not carried by the bidder."
+        },
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash hazard study",
+          "status": "NotFound",
+          "amount": 5800,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    },
+    {
+      "vendor_id": "gridline-power",
+      "vendor_name": "Gridline Power Solutions",
+      "revision_label": "Original",
+      "submitted_total": 189900,
+      "adjusted_total": 233500,
+      "submitted_rank": 1,
+      "adjusted_rank": 2,
+      "rank_movement": -1,
+      "leveling_delta": 43600,
+      "leveling_delta_pct": 22.96,
+      "confidence_tier": "REVIEW",
+      "unclear_scope_keys": [],
+      "adjustments": [
+        {
+          "scope_key": "high_bay_lighting",
+          "label": "High-bay lighting fixtures and controls",
+          "status": "Excluded",
+          "amount": 22000,
+          "rationale": "Carry a high-bay fixture and controls allowance for bidders who excluded this scope."
+        },
+        {
+          "scope_key": "dock_equipment_power",
+          "label": "Dock leveler and dock equipment power connections",
+          "status": "Excluded",
+          "amount": 8500,
+          "rationale": "Estimated cost of dock equipment power connections if not carried by the bidder."
+        },
+        {
+          "scope_key": "electrical_permit_fees",
+          "label": "Electrical permit fees",
+          "status": "Excluded",
+          "amount": 3100,
+          "rationale": "Estimated Division 26 permit fees for the Westbrook site."
+        },
+        {
+          "scope_key": "performance_payment_bond",
+          "label": "Performance and payment bond",
+          "status": "Excluded",
+          "amount": 4200,
+          "rationale": "Estimated bond premium if not carried by the bidder."
+        },
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash hazard study",
+          "status": "NotFound",
+          "amount": 5800,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    },
+    {
+      "vendor_id": "anchor-electrical",
+      "vendor_name": "Anchor Electrical Co.",
+      "revision_label": "Original",
+      "submitted_total": 228750,
+      "adjusted_total": 234550,
+      "submitted_rank": 3,
+      "adjusted_rank": 3,
+      "rank_movement": 0,
+      "leveling_delta": 5800,
+      "leveling_delta_pct": 2.54,
+      "confidence_tier": "HIGH",
+      "unclear_scope_keys": [],
+      "adjustments": [
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash hazard study",
+          "status": "NotFound",
+          "amount": 5800,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    }
+  ],
+  "scope_items": [
+    {
+      "key": "electrical_mobilization_supervision",
+      "label": "Electrical mobilization and supervision",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Included",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "warehouse_power_distribution",
+      "label": "Warehouse power distribution and panelboards",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Included",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "high_bay_lighting",
+      "label": "High-bay lighting fixtures and controls",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Excluded",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "dock_equipment_power",
+      "label": "Dock leveler and dock equipment power connections",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Excluded",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "emergency_egress_lighting",
+      "label": "Emergency and egress lighting",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Included",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "electrical_permit_fees",
+      "label": "Electrical permit fees",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Excluded",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "performance_payment_bond",
+      "label": "Performance and payment bond",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Excluded",
+        "gridline-power": "Excluded",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "fire_alarm_device_connections",
+      "label": "Fire alarm device connections",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "Included",
+        "gridline-power": "Included",
+        "anchor-electrical": "Included"
+      }
+    },
+    {
+      "key": "arc_flash_study",
+      "label": "Arc-flash hazard study",
+      "in_package_scope": true,
+      "statuses": {
+        "summit-electric": "NotFound",
+        "gridline-power": "NotFound",
+        "anchor-electrical": "NotFound"
+      }
+    },
+    {
+      "key": "utility_transformer_coordination",
+      "label": "Utility transformer coordination and metering",
+      "in_package_scope": false,
+      "statuses": {
+        "summit-electric": "Excluded",
+        "gridline-power": "Excluded",
+        "anchor-electrical": "Excluded"
+      }
+    }
+  ],
+  "required_scope": [
+    {
+      "scope_key": "warehouse_power_distribution",
+      "spec_section": "26 24 16",
+      "title": "Panelboards",
+      "critical": true
+    },
+    {
+      "scope_key": "high_bay_lighting",
+      "spec_section": "26 51 00",
+      "title": "Interior Lighting",
+      "critical": true
+    },
+    {
+      "scope_key": "arc_flash_study",
+      "spec_section": "26 05 73",
+      "title": "Overcurrent Protective Device Coordination Study",
+      "critical": true
+    }
+  ],
+  "adjustment_rules": {
+    "entered_by": "Melissa Tran",
+    "entered_role": "Senior Estimator",
+    "source": "estimator_entered",
+    "rules": [
+      {
+        "scope_key": "high_bay_lighting",
+        "applies_when_status": [
+          "Excluded",
+          "NotFound"
+        ],
+        "amount": 22000,
+        "rationale": "Carry a high-bay fixture and controls allowance for bidders who excluded this scope."
+      },
+      {
+        "scope_key": "dock_equipment_power",
+        "applies_when_status": [
+          "Excluded",
+          "NotFound"
+        ],
+        "amount": 8500,
+        "rationale": "Estimated cost of dock equipment power connections if not carried by the bidder."
+      },
+      {
+        "scope_key": "electrical_permit_fees",
+        "applies_when_status": [
+          "Excluded",
+          "NotFound"
+        ],
+        "amount": 3100,
+        "rationale": "Estimated Division 26 permit fees for the Westbrook site."
+      },
+      {
+        "scope_key": "performance_payment_bond",
+        "applies_when_status": [
+          "Excluded",
+          "NotFound"
+        ],
+        "amount": 4200,
+        "rationale": "Estimated bond premium if not carried by the bidder."
+      },
+      {
+        "scope_key": "emergency_egress_lighting",
+        "applies_when_status": [
+          "Excluded",
+          "NotFound"
+        ],
+        "amount": 6600,
+        "rationale": "Estimated cost of code-required emergency and egress lighting if not carried."
+      },
+      {
+        "scope_key": "arc_flash_study",
+        "applies_when_status": [
+          "Excluded",
+          "NotFound"
+        ],
+        "amount": 5800,
+        "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+      }
+    ]
+  },
+  "findings": [
+    {
+      "code": "large_leveling_delta",
+      "severity": "HIGH",
+      "vendor_id": "gridline-power",
+      "vendor_name": "Gridline Power Solutions",
+      "summary": "Gridline Power Solutions rises +23.0% ($43,600.00) once excluded scope is priced, from $189,900.00 to $233,500.00.",
+      "detail": {
+        "submitted_total": 189900,
+        "adjusted_total": 233500,
+        "delta_pct": 22.96,
+        "adjustments": [
+          "high_bay_lighting",
+          "dock_equipment_power",
+          "electrical_permit_fees",
+          "performance_payment_bond",
+          "arc_flash_study"
+        ]
+      }
+    },
+    {
+      "code": "required_scope_missing_all_bidders",
+      "severity": "HIGH",
+      "vendor_id": null,
+      "vendor_name": null,
+      "summary": "Arc-flash hazard study is required by specification section 26 05 73 but is not included by ANY bidder.",
+      "detail": {
+        "scope_key": "arc_flash_study",
+        "spec_section": "26 05 73",
+        "spec_title": "Overcurrent Protective Device Coordination Study",
+        "statuses_by_vendor": {
+          "summit-electric": "NotFound",
+          "gridline-power": "NotFound",
+          "anchor-electrical": "NotFound"
+        }
+      }
+    },
+    {
+      "code": "pricing_outlier_low",
+      "severity": "MEDIUM",
+      "vendor_id": "gridline-power",
+      "vendor_name": "Gridline Power Solutions",
+      "summary": "Gridline Power Solutions is 11.5% below the median submitted price of $214,500.00.",
+      "detail": {
+        "submitted_total": 189900,
+        "median": 214500,
+        "pct_below": 11.468531468531468
+      }
+    }
+  ],
+  "revisions": [],
+  "superseded": [],
+  "summary": {
+    "leveling_changes_the_answer": true,
+    "lowest_submitted": "Gridline Power Solutions",
+    "lowest_submitted_total": 189900,
+    "lowest_adjusted": "Summit Electric Partners",
+    "lowest_adjusted_total": 224500,
+    "active_bidders": 3,
+    "documents_processed": 3,
+    "high_severity_findings": 2
+  }
+}

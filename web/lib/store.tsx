@@ -1,12 +1,14 @@
 'use client';
 
 /**
- * Console state: review decisions, scope weighting, and data-source mode.
+ * Project-scoped console state: review decisions and scope weighting.
  *
- * Persisted to localStorage so a reviewer can close the tab mid-package and
- * come back to their decisions. Reads are deferred to an effect because the app
- * is statically exported and the first render happens with no browser storage
- * available.
+ * Persisted to localStorage, namespaced per project, so a reviewer can close
+ * the tab mid-package and come back to their decisions -- and so decisions on
+ * one bid package never bleed into another (see ./prefs.tsx for the global,
+ * project-independent state that intentionally does persist across
+ * projects). Reads are deferred to an effect because the app is statically
+ * exported and the first render happens with no browser storage available.
  */
 
 import {
@@ -19,16 +21,10 @@ import {
   type ReactNode,
 } from 'react';
 
-import pipeline from '@/data/pipeline.json';
+import { getProject } from './projects';
 import { defaultSettings, buildComparison, verifyAgainstPipeline, type LevelingSettings } from './leveling';
 import { computeFindings } from './findings';
 import type { Finding, Importance, PipelineData, ReviewStatus, ScopeStatus, VendorComparison } from './types';
-
-const DATA = pipeline as unknown as PipelineData;
-
-const STORAGE_KEY = 'plumbline.console.v1';
-
-export type SourceMode = 'demo' | 'live';
 
 export interface FieldDecision {
   status: ReviewStatus;
@@ -50,14 +46,12 @@ export interface BidReview {
 interface PersistedState {
   settings: LevelingSettings;
   reviews: Record<string, BidReview>;
-  mode: SourceMode;
-  theme: 'light' | 'dark';
 }
 
-function emptyReview(): BidReview {
+function emptyReview(estimator: string): BidReview {
   return {
     status: 'pending',
-    reviewer: DATA.project.estimator,
+    reviewer: estimator,
     decidedAt: null,
     note: '',
     fields: {},
@@ -65,12 +59,12 @@ function emptyReview(): BidReview {
   };
 }
 
-function initialState(): PersistedState {
+function initialState(data: PipelineData): PersistedState {
   return {
-    settings: defaultSettings(DATA),
-    reviews: Object.fromEntries(DATA.submissions.map((s) => [s.bid_id, emptyReview()])),
-    mode: 'demo',
-    theme: 'light',
+    settings: defaultSettings(data),
+    reviews: Object.fromEntries(
+      data.submissions.map((s) => [s.bid_id, emptyReview(data.project.estimator)])
+    ),
   };
 }
 
@@ -92,27 +86,36 @@ interface StoreValue extends PersistedState {
   setFieldDecision: (bidId: string, field: string, decision: FieldDecision) => void;
   setScopeOverride: (bidId: string, scopeKey: string, status: ScopeStatus) => void;
   clearScopeOverride: (bidId: string, scopeKey: string) => void;
-
-  setMode: (mode: SourceMode) => void;
-  setTheme: (theme: 'light' | 'dark') => void;
 }
 
 const StoreContext = createContext<StoreValue | null>(null);
 
-export function StoreProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<PersistedState>(initialState);
+export function ProjectStoreProvider({
+  projectId,
+  children,
+}: {
+  projectId: string;
+  children: ReactNode;
+}) {
+  const data = getProject(projectId);
+  if (!data) {
+    // generateStaticParams only ever builds routes for known project ids, so
+    // this indicates a manifest/route mismatch, not a reachable user state.
+    throw new Error(`Unknown project: ${projectId}`);
+  }
+
+  const storageKey = `plumbline.console.v1.project.${projectId}`;
+  const [state, setState] = useState<PersistedState>(() => initialState(data));
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
+      const raw = window.localStorage.getItem(storageKey);
       if (raw) {
         const parsed = JSON.parse(raw) as Partial<PersistedState>;
         setState((current) => ({
           settings: { ...current.settings, ...parsed.settings },
           reviews: { ...current.reviews, ...parsed.reviews },
-          mode: parsed.mode ?? current.mode,
-          theme: parsed.theme ?? current.theme,
         }));
       }
     } catch {
@@ -120,26 +123,26 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       // console simply opens at pipeline defaults.
     }
     setHydrated(true);
+    // storageKey only changes if this component is remounted under a
+    // different projectId (the route tree keys the provider on projectId),
+    // so this effect intentionally runs once per mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (!hydrated) return;
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      window.localStorage.setItem(storageKey, JSON.stringify(state));
     } catch {
       /* private browsing, quota, etc. */
     }
-  }, [state, hydrated]);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', state.theme);
-  }, [state.theme]);
+  }, [state, hydrated, storageKey]);
 
   // Scope corrections made during review feed straight back into leveling, so
   // fixing a misread exclusion re-ranks the package immediately.
   const overrides = useMemo(() => {
     const out: Record<string, { scope_assertions: Record<string, ScopeStatus> }> = {};
-    for (const submission of DATA.submissions) {
+    for (const submission of data.submissions) {
       const review = state.reviews[submission.bid_id];
       if (!review || !Object.keys(review.scopeOverrides).length) continue;
       out[submission.bid_id] = {
@@ -147,19 +150,19 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       };
     }
     return out;
-  }, [state.reviews]);
+  }, [data.submissions, state.reviews]);
 
   const vendors = useMemo(
-    () => buildComparison(DATA, state.settings, overrides),
-    [state.settings, overrides]
+    () => buildComparison(data, state.settings, overrides),
+    [data, state.settings, overrides]
   );
   const findings = useMemo(
-    () => computeFindings(DATA, vendors, state.settings),
-    [vendors, state.settings]
+    () => computeFindings(data, vendors, state.settings),
+    [data, vendors, state.settings]
   );
-  const parity = useMemo(() => verifyAgainstPipeline(DATA), []);
+  const parity = useMemo(() => verifyAgainstPipeline(data), [data]);
 
-  const defaults = useMemo(() => defaultSettings(DATA), []);
+  const defaults = useMemo(() => defaultSettings(data), [data]);
   const isDirty = useMemo(
     () => JSON.stringify(state.settings) !== JSON.stringify(defaults),
     [state.settings, defaults]
@@ -170,14 +173,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       ...s,
       reviews: {
         ...s.reviews,
-        [bidId]: { ...(s.reviews[bidId] ?? emptyReview()), ...patch },
+        [bidId]: { ...(s.reviews[bidId] ?? emptyReview(data.project.estimator)), ...patch },
       },
     }));
-  }, []);
+  }, [data.project.estimator]);
 
   const value: StoreValue = {
     ...state,
-    data: DATA,
+    data,
     vendors,
     findings,
     parity,
@@ -196,14 +199,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       })),
     setPriceUnclearScope: (on) =>
       setState((s) => ({ ...s, settings: { ...s.settings, priceUnclearScope: on } })),
-    resetSettings: () => setState((s) => ({ ...s, settings: defaultSettings(DATA) })),
+    resetSettings: () => setState((s) => ({ ...s, settings: defaultSettings(data) })),
 
     setBidStatus: (bidId, status) =>
       patchReview(bidId, { status, decidedAt: status === 'pending' ? null : new Date().toISOString() }),
     setBidNote: (bidId, note) => patchReview(bidId, { note }),
     setFieldDecision: (bidId, field, decision) =>
       setState((s) => {
-        const review = s.reviews[bidId] ?? emptyReview();
+        const review = s.reviews[bidId] ?? emptyReview(data.project.estimator);
         return {
           ...s,
           reviews: {
@@ -214,7 +217,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }),
     setScopeOverride: (bidId, scopeKey, status) =>
       setState((s) => {
-        const review = s.reviews[bidId] ?? emptyReview();
+        const review = s.reviews[bidId] ?? emptyReview(data.project.estimator);
         return {
           ...s,
           reviews: {
@@ -225,14 +228,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       }),
     clearScopeOverride: (bidId, scopeKey) =>
       setState((s) => {
-        const review = s.reviews[bidId] ?? emptyReview();
+        const review = s.reviews[bidId] ?? emptyReview(data.project.estimator);
         const next = { ...review.scopeOverrides };
         delete next[scopeKey];
         return { ...s, reviews: { ...s.reviews, [bidId]: { ...review, scopeOverrides: next } } };
       }),
-
-    setMode: (mode) => setState((s) => ({ ...s, mode })),
-    setTheme: (theme) => setState((s) => ({ ...s, theme })),
   };
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
@@ -240,11 +240,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
 export function useStore(): StoreValue {
   const ctx = useContext(StoreContext);
-  if (!ctx) throw new Error('useStore must be used inside StoreProvider');
+  if (!ctx) throw new Error('useStore must be used inside ProjectStoreProvider');
   return ctx;
 }
 
 export function useReview(bidId: string): BidReview {
-  const { reviews } = useStore();
-  return reviews[bidId] ?? emptyReview();
+  const { reviews, data } = useStore();
+  return reviews[bidId] ?? emptyReview(data.project.estimator);
 }

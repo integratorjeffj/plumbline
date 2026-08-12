@@ -1,14 +1,17 @@
-"""Export real pipeline output as JSON for the public demo page.
+"""Export real pipeline output as JSON for the public demo page and console.
 
 The demo at index.html shows actual computed output, not hand-typed numbers.
-Running this regenerates demo/data.json from the same code path the tests
-exercise, so the published page can never quietly drift away from what the
-pipeline really produces.
+Running this regenerates demo/projects/falcon-medical.json from the same code
+path the tests exercise, so the published page can never quietly drift away
+from what the pipeline really produces.
 
     python scripts/export_demo_data.py
 
-Then re-inline demo/data.json into index.html (the page embeds its data so it
-works with zero network requests).
+Then re-inline demo/projects/falcon-medical.json into index.html (the page
+embeds its data so it works with zero network requests). The console reads
+every file under demo/projects/ directly (see web/scripts/sync-data.mjs) --
+Falcon Medical is the one Python-derived project; other demo projects in that
+directory are hand-authored, see web/scripts/build-demo-projects.ts.
 """
 
 import json
@@ -27,7 +30,7 @@ from src.pipeline import run_package  # noqa: E402
 
 PROJECT_NUMBER = "26-0147"
 BID_PACKAGE_NUMBER = "26-0147-BP-26"
-OUTPUT_PATH = REPO_ROOT / "demo" / "data.json"
+OUTPUT_PATH = REPO_ROOT / "demo" / "projects" / "falcon-medical.json"
 
 SUBMISSION_ORDER = [
     "apex_electrical_bid_received.json",

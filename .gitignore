@@ -3,7 +3,7 @@ __pycache__/
 node_modules/
 web/.next/
 web/out/
-web/data/pipeline.json
+web/data/projects/
 next-env.d.ts
 demo/_export.db
 node_modules/

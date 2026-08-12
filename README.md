@@ -40,6 +40,12 @@ actually works in:
 - **Data sources** carries the connector placeholders and a live-mode upload that computes a real
   SHA-256 in the browser.
 
+The console opens on a **project directory** listing every active bid package, since a real
+estimator carries more than one job at a time. Each package -- Falcon Medical's electrical scope,
+a mechanical package, a second electrical package with its own vendors and taxonomy -- is a fully
+separate leveling run with its own scope weights and review decisions, so approving a bid on one
+package never touches another.
+
 Nothing is auto-accepted. Every AI inference is stored as a separate lineage record with a
 `review_status` a human has to clear.
 
@@ -130,19 +136,32 @@ Or just visit the [live demo](https://integratorjeffj.github.io/plumbline).
 
 ### Building the console
 
-The console is a Next.js app that static-exports into `console/`. The Python pipeline is its data
-source, so regenerate that first:
+The console is a Next.js app that static-exports into `docs/console/` (GitHub Pages serves this
+repo from `/docs`). Every bid package it can open lives as one file under `demo/projects/`.
+Falcon Medical's is Python-derived; regenerate it from the pipeline:
 
 ```bash
 python scripts/export_demo_data.py
 ```
 
+The other demo packages are hand-authored seeds run through the same TypeScript leveling and
+findings engine the browser calls at runtime (`web/lib/leveling.ts`, `web/lib/findings.ts`), so
+their numbers are computed, not typed by hand -- see `web/data/seeds/*.seed.json` and
+`web/scripts/build-demo-projects.ts`:
+
 ```bash
-cd web && npm install && npm run build
+cd web && npm install && npm run build:demo-projects
 ```
 
-`npm run build` syncs the exported pipeline data, builds, and publishes the static output to
-`console/` at the repo root, which is what GitHub Pages serves.
+Then build and publish:
+
+```bash
+npm run build
+```
+
+`npm run build` syncs every file in `demo/projects/` into the app, builds, and publishes the
+static output to `docs/console/`. Adding a new bid package to the directory is: a new file under
+`demo/projects/`, one line in `web/lib/projects.ts`, rebuild.
 
 ---
 
