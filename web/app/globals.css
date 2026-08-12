@@ -529,6 +529,26 @@ tr:last-child td { border-bottom: 0; }
   font-size: 10.5px; color: var(--ink-2); white-space: nowrap;
 }
 
+/* ---------- activity strip ---------- */
+.activity {
+  display: flex; align-items: flex-end; gap: 4px;
+  height: 84px; padding-bottom: 1px; border-bottom: 1px solid var(--line-2);
+}
+.activity-day { flex: 1; height: 100%; display: flex; align-items: flex-end; min-width: 0; }
+.activity-bars { display: flex; align-items: flex-end; gap: 2px; width: 100%; height: 100%; }
+.activity-bar { flex: 1; min-height: 2px; border-radius: 2px 2px 0 0; }
+.activity-bar[data-part='raised'] { background: var(--accent); }
+.activity-bar[data-part='resolved'] { background: var(--ok); }
+.activity-axis {
+  display: flex; justify-content: space-between;
+  margin-top: 6px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3);
+}
+.swatch[data-part='raised'] { background: var(--accent); }
+.swatch[data-part='resolved'] { background: var(--ok); }
+
+.date-cell { white-space: nowrap; }
+.date-cell .num { display: block; font-size: 12.5px; }
+
 .chart-legend, .table-legend-chart {
   display: flex; flex-wrap: wrap; gap: 6px 18px;
   font-size: 12px; color: var(--ink-3);

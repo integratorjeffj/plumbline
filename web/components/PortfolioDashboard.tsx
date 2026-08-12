@@ -18,7 +18,9 @@ import { useShell } from '@/lib/shell';
 import { KpiTile, RagPill } from './Bits';
 import { BudgetBar } from './BudgetBar';
 import { scaleTicks } from './ChartScale';
-import { moneyShort } from '@/lib/format';
+import { moneyShort, formatDay, relativeDays } from '@/lib/format';
+import { packageTiming } from '@/lib/timeline';
+import { getProject } from '@/lib/projects';
 import { RowActions } from './RowActions';
 import { money, signedMoney } from '@/lib/format';
 
@@ -259,6 +261,8 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                       ))}
                   </span>
                 </th>
+                <th>Bid due</th>
+                <th>Last reviewed</th>
                 <th>Scope</th>
                 <th>Cost</th>
                 <th>Risk</th>
@@ -268,7 +272,9 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
               </tr>
             </thead>
             <tbody>
-              {rows.map((p) => (
+              {rows.map((p) => {
+                const timing = packageTiming(p.projectId, getProject(p.projectId)!);
+                return (
                 <tr
                   key={p.projectId}
                   className="pkg-row"
@@ -287,7 +293,9 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                         {pending[p.projectId]} pending
                       </span>
                     )}
-                    <div className="small muted">{p.packageLabel}</div>
+                    <div className="small muted">
+                      {p.packageLabel} · last bid {relativeDays(timing.daysSinceLastSubmission)}
+                    </div>
                   </td>
                   <td className="right num">{money(p.budget)}</td>
                   <td className="right num">{money(p.lowestAdjustedTotal)}</td>
@@ -305,6 +313,22 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                       maxScale={maxScale}
                       ticks={ticks}
                     />
+                  </td>
+                  <td className="date-cell">
+                    <span className="num">{formatDay(timing.bidDueAt)}</span>
+                    <span className="small muted">{relativeDays(timing.daysSinceBidDue)}</span>
+                  </td>
+                  <td className="date-cell">
+                    {timing.lastReviewedAt ? (
+                      <>
+                        <span className="num">{formatDay(timing.lastReviewedAt)}</span>
+                        <span className="small muted">
+                          {relativeDays(timing.daysSinceLastReview!)}
+                        </span>
+                      </>
+                    ) : (
+                      <span className="small muted">Not opened yet</span>
+                    )}
                   </td>
                   <td>
                     <RagPill
@@ -336,7 +360,8 @@ export function PortfolioDashboard({ portfolio }: { portfolio: PortfolioTotals }
                     />
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>

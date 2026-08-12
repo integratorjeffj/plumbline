@@ -31,6 +31,21 @@ export function percent(value: number, decimals = 1): string {
   return `${sign}${value.toFixed(decimals)}%`;
 }
 
+/** Date only, for table cells where the time of day is noise. */
+export function formatDay(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+/** "3 days ago", "in 4 days", "today" -- against a caller-supplied reference. */
+export function relativeDays(days: number): string {
+  if (days === 0) return 'today';
+  if (days > 0) return `${days} day${days === 1 ? '' : 's'} ago`;
+  const ahead = Math.abs(days);
+  return `in ${ahead} day${ahead === 1 ? '' : 's'}`;
+}
+
 export function ordinal(n: number): string {
   const suffix = ['th', 'st', 'nd', 'rd'][(n % 100 - 20) % 10] ?? ['th', 'st', 'nd', 'rd'][n % 100] ?? 'th';
   return `${n}${suffix}`;

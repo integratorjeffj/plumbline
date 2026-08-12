@@ -1,5 +1,6 @@
 import { computePortfolioTotals } from '@/lib/portfolio';
 import { PortfolioDashboard } from '@/components/PortfolioDashboard';
+import { ActivityStrip } from '@/components/ActivityStrip';
 import { SectionHead } from '@/components/Bits';
 
 export default function DirectoryPage() {
@@ -13,6 +14,7 @@ export default function DirectoryPage() {
       </SectionHead>
 
       <PortfolioDashboard portfolio={portfolio} />
+      <ActivityStrip />
     </>
   );
 }
