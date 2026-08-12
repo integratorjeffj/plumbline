@@ -1,0 +1,786 @@
+{
+  "project": {
+    "project_number": "26-0147",
+    "project_name": "Falcon Medical Center Expansion",
+    "customer": "Falcon Health Partners",
+    "bid_package_number": "26-0147-BP-26",
+    "bid_package_description": "Division 26 - Electrical",
+    "budget": 185000.0,
+    "drawing_revision": "Rev 3",
+    "general_contractor": "Crestmark Construction Partners",
+    "estimator": "Daniel Cho"
+  },
+  "submissions": [
+    {
+      "vendor_id": "apex-electrical",
+      "vendor_name": "Apex Electrical Contractors",
+      "revision_label": "Original",
+      "filename": "apex_electrical_proposal.pdf",
+      "format": "PDF proposal, 5 pages",
+      "sha256": "f333af8b9e4f2774ceda611f2fcefd784d6b8204c79780646a3760ba385a397e",
+      "pages": 5,
+      "base_bid": 191850.0,
+      "line_item_count": 0,
+      "line_item_total": null,
+      "drawing_revision_referenced": "Revision 3",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Proposal Summary"
+        },
+        "lighting_fixture_allowance": {
+          "page": 3,
+          "section": "Allowances"
+        },
+        "alternate_a1": {
+          "page": 3,
+          "section": "Alternates"
+        },
+        "performance_payment_bond": {
+          "page": 4,
+          "section": "Clarifications and Exclusions"
+        },
+        "electrical_permit_fees": {
+          "page": 2,
+          "section": "Scope of Work"
+        },
+        "drawing_revision_referenced": {
+          "page": 4,
+          "section": "Clarifications and Exclusions"
+        }
+      },
+      "allowances": [
+        {
+          "name": "Lighting fixture allowance",
+          "amount": 42500.0,
+          "included_in_base_bid": true
+        }
+      ],
+      "alternates": [
+        {
+          "id": "A1",
+          "amount": 8750.0,
+          "included_in_base_bid": false
+        }
+      ],
+      "bid_id": "47505577-65c3-41f4-b648-198e174f8664",
+      "ai_inference_id": "04719288-d911-43a8-b908-417a8ce41d64"
+    },
+    {
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "revision_label": "Original",
+      "filename": "voltage_systems_pricing.xlsx",
+      "format": "Excel workbook, 4 sheets",
+      "sha256": "b1a8179ae141af6b34c42c984c73071c11ae1c03735830488c28f1f8a67a95ab",
+      "pages": 4,
+      "base_bid": 167400.0,
+      "line_item_count": 7,
+      "line_item_total": 167400.0,
+      "drawing_revision_referenced": "Revision 3",
+      "confidence_tier": "REVIEW",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Bid Summary"
+        },
+        "line_items": {
+          "page": 2,
+          "section": "Pricing Detail"
+        },
+        "lighting_fixtures": {
+          "page": 3,
+          "section": "Exclusions"
+        },
+        "electrical_permit_fees": {
+          "page": 3,
+          "section": "Exclusions"
+        },
+        "performance_payment_bond": {
+          "page": 3,
+          "section": "Exclusions"
+        },
+        "feeder_branch_circuit_testing": {
+          "page": 4,
+          "section": "Notes"
+        },
+        "drawing_revision_referenced": {
+          "page": 4,
+          "section": "Notes"
+        }
+      },
+      "allowances": [],
+      "alternates": [],
+      "bid_id": "6c1be0b6-b13a-4d63-9e5d-1dca5862d43c",
+      "ai_inference_id": "67a4907a-017e-49f0-a852-59548b6813e9"
+    },
+    {
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "revision_label": "Original",
+      "filename": "meridian_electric_scope_letter.pdf",
+      "format": "Pricing in email body + PDF scope letter",
+      "sha256": "8270ef112880abb7ea5e99c6124f4b39bf192edcaceac2831b964880bab64b5e",
+      "pages": 2,
+      "base_bid": 178950.0,
+      "line_item_count": 7,
+      "line_item_total": 181450.0,
+      "drawing_revision_referenced": "Revision 1",
+      "confidence_tier": "REVIEW",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Email body - pricing"
+        },
+        "line_items": {
+          "page": 1,
+          "section": "Email body - pricing"
+        },
+        "lighting_fixture_allowance": {
+          "page": 1,
+          "section": "Included Scope"
+        },
+        "electrical_permit_fees": {
+          "page": 1,
+          "section": "Included Scope"
+        },
+        "performance_payment_bond": {
+          "page": 2,
+          "section": "Exclusions"
+        },
+        "temporary_power": {
+          "page": 2,
+          "section": "Clarifications"
+        },
+        "drawing_revision_referenced": {
+          "page": 1,
+          "section": "Scope Letter"
+        }
+      },
+      "allowances": [
+        {
+          "name": "Lighting fixture allowance",
+          "amount": 38000.0,
+          "included_in_base_bid": true
+        }
+      ],
+      "alternates": [],
+      "bid_id": "62575cb0-db14-459d-8438-ea7ff4954170",
+      "ai_inference_id": "e5f11d1e-07f6-4187-a400-ebf0ef3255cf"
+    },
+    {
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "revision_label": "Original",
+      "filename": "ironclad_power_proposal.pdf",
+      "format": "PDF proposal, 3 pages",
+      "sha256": "3d136f65749ac90615f82d81be479df5aa0e1fd1d04246370de41a30f6c88e6b",
+      "pages": 3,
+      "base_bid": 184300.0,
+      "line_item_count": 9,
+      "line_item_total": 184300.0,
+      "drawing_revision_referenced": "Revision 3",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Proposal Summary"
+        },
+        "lighting_fixture_allowance": {
+          "page": 2,
+          "section": "Pricing Detail"
+        },
+        "performance_payment_bond": {
+          "page": 3,
+          "section": "Included Scope"
+        },
+        "electrical_permit_fees": {
+          "page": 3,
+          "section": "Included Scope"
+        },
+        "drawing_revision_referenced": {
+          "page": 1,
+          "section": "Proposal Summary"
+        }
+      },
+      "allowances": [
+        {
+          "name": "Lighting fixture allowance",
+          "amount": 41000.0,
+          "included_in_base_bid": true
+        }
+      ],
+      "alternates": [],
+      "bid_id": "535f57e9-5f86-4ae6-83db-d5ec62e650b6",
+      "ai_inference_id": "2438c6d8-4167-4842-88a9-6b559f6d5819"
+    },
+    {
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "revision_label": "Revision 1",
+      "filename": "ironclad_power_proposal_rev1.pdf",
+      "format": "PDF proposal, 3 pages (Revision 1)",
+      "sha256": "27be99631ed3e4a61f197f7ef713530d79d52048d5480815baf7e70733782192",
+      "pages": 3,
+      "base_bid": 179750.0,
+      "line_item_count": 9,
+      "line_item_total": 179750.0,
+      "drawing_revision_referenced": "Revision 3",
+      "confidence_tier": "HIGH",
+      "provider": "fake",
+      "model": "fake-recorded-v1",
+      "citations": {
+        "base_bid": {
+          "page": 1,
+          "section": "Proposal Summary"
+        },
+        "lighting_fixture_allowance": {
+          "page": 2,
+          "section": "Pricing Detail"
+        },
+        "performance_payment_bond": {
+          "page": 3,
+          "section": "Included Scope"
+        },
+        "electrical_permit_fees": {
+          "page": 3,
+          "section": "Included Scope"
+        },
+        "drawing_revision_referenced": {
+          "page": 1,
+          "section": "Proposal Summary"
+        }
+      },
+      "allowances": [
+        {
+          "name": "Lighting fixture allowance",
+          "amount": 41000.0,
+          "included_in_base_bid": true
+        }
+      ],
+      "alternates": [],
+      "bid_id": "930c70ad-2539-4ca6-a587-8ec9914980b9",
+      "ai_inference_id": "96ac2844-70ab-4f04-8eb2-eb3281472d26"
+    }
+  ],
+  "vendors": [
+    {
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "revision_label": "Original",
+      "submitted_total": 167400.0,
+      "adjusted_total": 223700.0,
+      "submitted_rank": 1,
+      "adjusted_rank": 4,
+      "rank_movement": -3,
+      "leveling_delta": 56300.0,
+      "leveling_delta_pct": 33.63,
+      "confidence_tier": "REVIEW",
+      "unclear_scope_keys": [
+        "feeder_branch_circuit_testing"
+      ],
+      "adjustments": [
+        {
+          "scope_key": "lighting_fixtures",
+          "label": "Lighting fixtures",
+          "status": "Excluded",
+          "amount": 42500.0,
+          "rationale": "Carry Apex's stated fixture allowance as the leveling value for bidders who excluded fixtures."
+        },
+        {
+          "scope_key": "electrical_permit_fees",
+          "label": "Electrical permit fees",
+          "status": "Excluded",
+          "amount": 4200.0,
+          "rationale": "Estimated Division 26 permit fees for the Falcon expansion based on prior Atlanta-metro healthcare work."
+        },
+        {
+          "scope_key": "performance_payment_bond",
+          "label": "Performance and payment bond",
+          "status": "Excluded",
+          "amount": 3100.0,
+          "rationale": "Bond cost at approximately 1.7% of base bid where the bidder excluded bonding."
+        },
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash study (Spec 26 05 73)",
+          "status": "NotFound",
+          "amount": 6500.0,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    },
+    {
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "revision_label": "Original",
+      "submitted_total": 178950.0,
+      "adjusted_total": 188550.0,
+      "submitted_rank": 2,
+      "adjusted_rank": 2,
+      "rank_movement": 0,
+      "leveling_delta": 9600.0,
+      "leveling_delta_pct": 5.36,
+      "confidence_tier": "REVIEW",
+      "unclear_scope_keys": [
+        "temporary_power"
+      ],
+      "adjustments": [
+        {
+          "scope_key": "performance_payment_bond",
+          "label": "Performance and payment bond",
+          "status": "Excluded",
+          "amount": 3100.0,
+          "rationale": "Bond cost at approximately 1.7% of base bid where the bidder excluded bonding."
+        },
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash study (Spec 26 05 73)",
+          "status": "NotFound",
+          "amount": 6500.0,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    },
+    {
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "revision_label": "Revision 1",
+      "submitted_total": 179750.0,
+      "adjusted_total": 186250.0,
+      "submitted_rank": 3,
+      "adjusted_rank": 1,
+      "rank_movement": 2,
+      "leveling_delta": 6500.0,
+      "leveling_delta_pct": 3.62,
+      "confidence_tier": "HIGH",
+      "unclear_scope_keys": [],
+      "adjustments": [
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash study (Spec 26 05 73)",
+          "status": "NotFound",
+          "amount": 6500.0,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    },
+    {
+      "vendor_id": "apex-electrical",
+      "vendor_name": "Apex Electrical Contractors",
+      "revision_label": "Original",
+      "submitted_total": 191850.0,
+      "adjusted_total": 201450.0,
+      "submitted_rank": 4,
+      "adjusted_rank": 3,
+      "rank_movement": 1,
+      "leveling_delta": 9600.0,
+      "leveling_delta_pct": 5.0,
+      "confidence_tier": "HIGH",
+      "unclear_scope_keys": [],
+      "adjustments": [
+        {
+          "scope_key": "performance_payment_bond",
+          "label": "Performance and payment bond",
+          "status": "Excluded",
+          "amount": 3100.0,
+          "rationale": "Bond cost at approximately 1.7% of base bid where the bidder excluded bonding."
+        },
+        {
+          "scope_key": "arc_flash_study",
+          "label": "Arc-flash study (Spec 26 05 73)",
+          "status": "NotFound",
+          "amount": 6500.0,
+          "rationale": "Arc-flash hazard analysis per Spec 26 05 73, not addressed by any bidder."
+        }
+      ]
+    }
+  ],
+  "scope_items": [
+    {
+      "key": "electrical_mobilization_supervision",
+      "label": "Electrical mobilization and supervision",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Included",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "branch_power_rough_in",
+      "label": "Branch power rough-in",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Included",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "lighting_branch_circuitry",
+      "label": "Lighting branch circuitry",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Included",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "lighting_fixtures",
+      "label": "Lighting fixtures",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Excluded",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "electrical_permit_fees",
+      "label": "Electrical permit fees",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Excluded",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "temporary_power",
+      "label": "Temporary power for own work",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Included",
+        "meridian-electric": "Unclear",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "fire_alarm_device_connections",
+      "label": "Fire alarm device connections",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Included",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "feeder_branch_circuit_testing",
+      "label": "Testing of feeders and branch circuits",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Unclear",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "closeout_documentation",
+      "label": "Closeout documentation",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Included",
+        "voltage-systems": "Included",
+        "meridian-electric": "Included",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "performance_payment_bond",
+      "label": "Performance and payment bond",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "Excluded",
+        "voltage-systems": "Excluded",
+        "meridian-electric": "Excluded",
+        "ironclad-power": "Included"
+      }
+    },
+    {
+      "key": "arc_flash_study",
+      "label": "Arc-flash study (Spec 26 05 73)",
+      "in_package_scope": true,
+      "statuses": {
+        "apex-electrical": "NotFound",
+        "voltage-systems": "NotFound",
+        "meridian-electric": "NotFound",
+        "ironclad-power": "NotFound"
+      }
+    },
+    {
+      "key": "utility_company_charges",
+      "label": "Utility-company charges and fees",
+      "in_package_scope": false,
+      "statuses": {
+        "apex-electrical": "Excluded",
+        "voltage-systems": "Excluded",
+        "meridian-electric": "Excluded",
+        "ironclad-power": "Excluded"
+      }
+    },
+    {
+      "key": "structured_cabling_div27",
+      "label": "Structured cabling (Div 27)",
+      "in_package_scope": false,
+      "statuses": {
+        "apex-electrical": "Excluded",
+        "voltage-systems": "Excluded",
+        "meridian-electric": "Excluded",
+        "ironclad-power": "Excluded"
+      }
+    },
+    {
+      "key": "security_access_control_div28",
+      "label": "Security / access control (Div 28)",
+      "in_package_scope": false,
+      "statuses": {
+        "apex-electrical": "Excluded",
+        "voltage-systems": "Excluded",
+        "meridian-electric": "Excluded",
+        "ironclad-power": "Excluded"
+      }
+    }
+  ],
+  "required_scope": [
+    {
+      "scope_key": "branch_power_rough_in",
+      "spec_section": "26 05 19",
+      "title": "Low-Voltage Electrical Power Conductors and Cables",
+      "critical": true
+    },
+    {
+      "scope_key": "lighting_fixtures",
+      "spec_section": "26 51 00",
+      "title": "Interior Lighting",
+      "critical": true
+    },
+    {
+      "scope_key": "electrical_permit_fees",
+      "spec_section": "26 00 00",
+      "title": "General Electrical Requirements - Permits",
+      "critical": true
+    },
+    {
+      "scope_key": "feeder_branch_circuit_testing",
+      "spec_section": "26 08 00",
+      "title": "Commissioning of Electrical Systems",
+      "critical": true
+    },
+    {
+      "scope_key": "arc_flash_study",
+      "spec_section": "26 05 73",
+      "title": "Power System Studies - Arc-Flash Hazard Analysis",
+      "critical": true
+    },
+    {
+      "scope_key": "closeout_documentation",
+      "spec_section": "26 00 00",
+      "title": "General Electrical Requirements - Closeout Submittals",
+      "critical": false
+    }
+  ],
+  "findings": [
+    {
+      "code": "arithmetic_discrepancy",
+      "severity": "HIGH",
+      "summary": "Meridian Electric & Controls states a base bid of $178,950.00 but its line items sum to $181,450.00 (difference $2,500.00).",
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "detail": {
+        "stated_total": 178950.0,
+        "line_item_total": 181450.0,
+        "delta": 2500.0
+      }
+    },
+    {
+      "code": "large_leveling_delta",
+      "severity": "HIGH",
+      "summary": "Voltage Systems Inc. rises 33.6% ($56,300.00) once excluded scope is priced -- from $167,400.00 to $223,700.00.",
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "detail": {
+        "submitted_total": 167400.0,
+        "adjusted_total": 223700.0,
+        "delta_pct": 33.63,
+        "adjustments": [
+          "lighting_fixtures",
+          "electrical_permit_fees",
+          "performance_payment_bond",
+          "arc_flash_study"
+        ]
+      }
+    },
+    {
+      "code": "required_scope_missing_all_bidders",
+      "severity": "HIGH",
+      "summary": "Arc-flash study (Spec 26 05 73) is required by specification section 26 05 73 but is not included by ANY bidder.",
+      "vendor_id": null,
+      "vendor_name": null,
+      "detail": {
+        "scope_key": "arc_flash_study",
+        "spec_section": "26 05 73",
+        "spec_title": "Power System Studies - Arc-Flash Hazard Analysis",
+        "statuses_by_vendor": {
+          "apex-electrical": "NotFound",
+          "voltage-systems": "NotFound",
+          "meridian-electric": "NotFound",
+          "ironclad-power": "NotFound"
+        }
+      }
+    },
+    {
+      "code": "stale_drawing_revision",
+      "severity": "HIGH",
+      "summary": "Meridian Electric & Controls priced against drawings Revision 1, but the project is at Rev 3.",
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "detail": {
+        "referenced": "Revision 1",
+        "project_revision": "Rev 3"
+      }
+    },
+    {
+      "code": "adjusted_over_budget",
+      "severity": "MEDIUM",
+      "summary": "Apex Electrical Contractors adjusted total $201,450.00 exceeds the $185,000.00 package budget by $16,450.00.",
+      "vendor_id": "apex-electrical",
+      "vendor_name": "Apex Electrical Contractors",
+      "detail": {
+        "adjusted_total": 201450.0,
+        "budget": 185000.0,
+        "over_by": 16450.0
+      }
+    },
+    {
+      "code": "adjusted_over_budget",
+      "severity": "MEDIUM",
+      "summary": "Voltage Systems Inc. adjusted total $223,700.00 exceeds the $185,000.00 package budget by $38,700.00.",
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "detail": {
+        "adjusted_total": 223700.0,
+        "budget": 185000.0,
+        "over_by": 38700.0
+      }
+    },
+    {
+      "code": "adjusted_over_budget",
+      "severity": "MEDIUM",
+      "summary": "Meridian Electric & Controls adjusted total $188,550.00 exceeds the $185,000.00 package budget by $3,550.00.",
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "detail": {
+        "adjusted_total": 188550.0,
+        "budget": 185000.0,
+        "over_by": 3550.0
+      }
+    },
+    {
+      "code": "adjusted_over_budget",
+      "severity": "MEDIUM",
+      "summary": "Ironclad Power & Electric adjusted total $186,250.00 exceeds the $185,000.00 package budget by $1,250.00.",
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "detail": {
+        "adjusted_total": 186250.0,
+        "budget": 185000.0,
+        "over_by": 1250.0
+      }
+    },
+    {
+      "code": "unclear_scope_requires_clarification",
+      "severity": "MEDIUM",
+      "summary": "Voltage Systems Inc. leaves 1 scope item(s) ambiguous: Testing of feeders and branch circuits",
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "detail": {
+        "scope_keys": [
+          "feeder_branch_circuit_testing"
+        ]
+      }
+    },
+    {
+      "code": "unclear_scope_requires_clarification",
+      "severity": "MEDIUM",
+      "summary": "Meridian Electric & Controls leaves 1 scope item(s) ambiguous: Temporary power for own work",
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "detail": {
+        "scope_keys": [
+          "temporary_power"
+        ]
+      }
+    },
+    {
+      "code": "superseded_revision",
+      "severity": "INFO",
+      "summary": "Ironclad Power & Electric: Original superseded by Revision 1. Comparison uses the latest revision.",
+      "vendor_id": null,
+      "vendor_name": "Ironclad Power & Electric",
+      "detail": {
+        "note": "Original superseded by Revision 1"
+      }
+    }
+  ],
+  "revisions": [
+    {
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "previous_label": "Original",
+      "current_label": "Revision 1",
+      "previous_total": 184300.0,
+      "current_total": 179750.0,
+      "total_delta": -4550.0,
+      "changes": [
+        {
+          "label": "Base bid",
+          "previous": 184300.0,
+          "current": 179750.0,
+          "delta": -4550.0
+        },
+        {
+          "label": "Feeders and distribution equipment",
+          "previous": 44550.0,
+          "current": 40000.0,
+          "delta": -4550.0
+        }
+      ]
+    }
+  ],
+  "superseded": [
+    {
+      "vendor_name": "Ironclad Power & Electric",
+      "note": "Original superseded by Revision 1"
+    }
+  ],
+  "summary": {
+    "leveling_changes_the_answer": true,
+    "lowest_submitted": "Voltage Systems Inc.",
+    "lowest_submitted_total": 167400.0,
+    "lowest_adjusted": "Ironclad Power & Electric",
+    "lowest_adjusted_total": 186250.0,
+    "active_bidders": 4,
+    "documents_processed": 5,
+    "high_severity_findings": 4
+  }
+}
