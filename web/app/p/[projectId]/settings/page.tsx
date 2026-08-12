@@ -159,7 +159,7 @@ export default function SettingsPage() {
                           className="num"
                         />
                       ) : (
-                        <span className="muted">—</span>
+                        <span className="muted small">not priced</span>
                       )}
                     </td>
                     <td className="right num" style={{ width: 120 }}>

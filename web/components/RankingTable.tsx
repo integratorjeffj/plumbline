@@ -34,7 +34,7 @@ export function RankingTable({ vendors }: { vendors: VendorComparison[] }) {
                   <td className="right num">{money(adj.adjusted_total)}</td>
                   <td className="right num">
                     {adj.rank_movement === 0 ? (
-                      <span className="muted">—</span>
+                      <span className="muted">0</span>
                     ) : (
                       <span style={{ color: adj.rank_movement > 0 ? 'var(--ok)' : 'var(--danger)' }}>
                         {adj.rank_movement > 0 ? '+' : ''}

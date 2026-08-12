@@ -28,7 +28,10 @@ It also finds what a price comparison structurally cannot: the **arc-flash study
 ### The review console
 
 The [console](https://integratorjeffj.github.io/plumbline/console/) is the interface an estimator
-actually works in:
+actually works in. It sits in a persistent application shell: a left sidebar carrying program-level
+navigation and, when a package is open, that package's own routes nested beneath it, plus a top bar
+with the breadcrumb, a global package search, and the theme toggle. The sidebar collapses to an
+icon rail, and below 768px it leaves the layout entirely and returns as a drawer.
 
 - **Review** puts the source document beside the extraction. Click any extracted figure to jump to
   the page and section it was cited from, then approve it, correct it, or reject the submission.
@@ -42,22 +45,37 @@ actually works in:
 - **Stakeholder report** is a one-page, print-to-PDF summary of a single package -- budget, leveled
   low bid, RAG health, the ranking table, and top findings -- for sharing outside the console.
 
-The console opens on a **project directory** listing every active bid package, since a real
-estimator carries more than one job at a time. Each package -- Falcon Medical's electrical scope,
-a mechanical package, a second electrical package with its own vendors and taxonomy -- is a fully
-separate leveling run with its own scope weights and review decisions, so approving a bid on one
-package never touches another. The directory itself carries a portfolio rollup: combined budget,
-leveled bid exposure across every package, and a RAG health table (Scope / Cost / Risk, in green /
-amber / red) so a program manager can see where attention is needed before opening any single
-package. The health thresholds are exact and computed, not eyeballed -- see
+The console opens on **Bid packages**, listing every active package, since a real estimator carries
+more than one job at a time. Each package -- Falcon Medical's electrical scope, a mechanical
+package, a second electrical package with its own vendors and taxonomy -- is a fully separate
+leveling run with its own scope weights and review decisions, so approving a bid on one package
+never touches another.
+
+That page is one table and five metric tiles, and nothing else. The tiles are not decorative:
+pressing **Variance to budget** or **High-severity findings** narrows the table to exactly the
+packages that metric is about. The table carries search, a status filter, sort, a density toggle,
+labeled OK / Watch / Flag status pills with the thresholds behind them stated in a legend, a
+per-package pending-review badge, an inline budget-vs-leveled bar on a scale shared down the
+column, bid dates, and a per-row menu into that package's routes. Below it, a fortnight of findings
+raised against findings cleared. The health thresholds are exact and computed, not eyeballed -- see
 `web/lib/portfolio.ts`.
 
 **On RAG health, deliberately.** Only Scope, Cost, and Risk get a health indicator, because those
 are the only three dimensions the engine actually computes something for. Plumbline has no
-schedule or safety data, so there's no Time or Safety dot -- adding one would mean inventing a
+schedule or safety data, so there's no Time or Safety pill -- adding one would mean inventing a
 number. Likewise, the portfolio KPI language says "leveled bid exposure," never "committed" or
 "paid": Plumbline is a pre-award tool, and it stops at a human approving an extraction. It does not
 track anything that happens after a bid is awarded.
+
+**On the dates, deliberately.** Plumbline records when a submission arrived and nothing else: no
+event log, no review audit trail, no bid calendar. The bid dates, review timestamps, and the
+day-to-day shape of the activity strip are therefore generated, and the strip says so on its face.
+Two things keep that from being decoration. Nothing reads the wall clock -- "now" is the most
+recent submission in the dataset, because a static export prerendered at build time that computed
+"days ago" against `Date.now()` would disagree with itself between the build and the browser and
+drift further every day the demo sat unvisited. And the generated series are pinned to real engine
+output at both ends: the raised series sums to the actual finding count, and the backlog left
+standing equals the actual high-severity count. See `web/lib/timeline.ts`.
 
 Nothing is auto-accepted. Every AI inference is stored as a separate lineage record with a
 `review_status` a human has to clear.
@@ -98,7 +116,9 @@ Two rules make this work:
 - **Seven deterministic anomaly rules**: arithmetic discrepancy, stale drawing revision, required scope missing from every bidder, large leveling delta, unclear scope, over budget, superseded revision
 - **Revision tracking** so a reissued proposal supersedes its predecessor instead of double-counting as another bidder
 - **Portfolio rollup** across every bid package: combined budget, leveled exposure, variance, and per-package RAG health, computed live from the same engine each package's own pages use
+- **A working table, not a list**: search, status filter, sort, density, labeled status pills with their thresholds stated, inline budget-vs-leveled bars on a shared scale, and metric tiles that filter the rows beneath them
 - **Printable stakeholder report**, one page, via the browser's native print-to-PDF
+- **Responsive to 380px**, where the package table becomes stacked cards rather than a sideways scroll, with keyboard focus rings throughout and `prefers-reduced-motion` honored
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
@@ -117,6 +137,16 @@ Two rules make this work:
 **Confidence is `HIGH`, `REVIEW`, or `LOW`.** Never a percentage. A model reporting "87% confident" implies a calibration that does not exist, and estimators reasonably treat invented precision as a reason to distrust everything else on the page.
 
 **The default test run never calls a live model.** Software CI stays deterministic using recorded responses. Live-model evaluation is a separate, explicitly triggered concern. A test suite that fails because an API was slow teaches people to ignore failing tests.
+
+**One job per color, one scale for type.** The stylesheet opens with a written color contract, and
+the interface holds to it. Indigo means you can act on it and never encodes a quantity, which is
+why the money bars are teal: a colored bar sitting next to a link has to be visibly not a link.
+Amber means something needs attention, green means good or resolved, red means a threshold is
+breached, slate is a neutral provenance label. Monospace is the data face, so it appears on dollar
+figures, dates, counts, package codes, spec sections, hashes, and file paths, and nowhere else --
+project names and status pills are words and take the body face. Font sizes come from a nine-step
+scale declared as custom properties rather than being invented per component. Every text pair in
+the palette clears 4.5:1 in both light and dark.
 
 ---
 
