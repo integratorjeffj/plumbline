@@ -123,34 +123,136 @@ button { font: inherit; }
   .no-stick-mobile { position: static !important; }
 }
 
-/* ---------- header ---------- */
-.masthead {
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-  position: sticky; top: 0; z-index: 30;
-}
-.masthead-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; }
-.mark { display: flex; align-items: center; gap: 10px; }
-.wordmark { font-family: var(--serif); font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
-.wordmark span { color: var(--accent); }
-.mark-sub {
-  font-size: 12.5px; color: var(--ink-3);
-  border-left: 1px solid var(--line-2); padding-left: 14px;
-}
-.masthead-spacer { margin-left: auto; }
+/* ---------- app shell ---------- */
+.icon { display: block; flex: none; }
 
-.nav {
-  display: flex; gap: 2px; border-top: 1px solid var(--line);
-  /* Scroll rather than clip once the route names outgrow a phone. */
-  overflow-x: auto; scrollbar-width: none;
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+.shell { display: flex; align-items: flex-start; }
+.shell-main { flex: 1; min-width: 0; }
+
+.sidebar {
+  position: sticky; top: 0; z-index: 30;
+  flex: none; width: 232px; height: 100vh;
+  display: flex; flex-direction: column;
+  background: var(--surface); border-right: 1px solid var(--line);
+  overflow-y: auto;
 }
-.nav::-webkit-scrollbar { display: none; }
-.nav a {
-  font-size: 13.5px; color: var(--ink-2); padding: 10px 14px;
-  border-bottom: 2px solid transparent; text-decoration: none; white-space: nowrap;
+
+.sidebar-brand { padding: 14px 14px 10px; }
+.mark { display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.mark:hover { text-decoration: none; }
+.wordmark { font-family: var(--serif); font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+.wordmark span { color: var(--accent); }
+
+.sidebar-nav { flex: 1; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px; }
+.sidebar-link {
+  display: flex; align-items: center; gap: 10px; white-space: nowrap;
+  padding: 8px 10px; border-radius: 7px;
+  color: var(--ink-2); font-size: 13.5px; text-decoration: none;
 }
-.nav a:hover { color: var(--ink); text-decoration: none; }
-.nav a[data-active='true'] { color: var(--accent); border-bottom-color: var(--accent); font-weight: 550; }
+.sidebar-link:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
+.sidebar-link[data-active='true'] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+.sidebar-sub {
+  margin: 2px 0 6px 22px; padding-left: 10px;
+  border-left: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 1px;
+}
+.sidebar-sub-head {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-3); padding: 5px 8px 3px;
+}
+.sidebar-sublink {
+  font-size: 12.5px; color: var(--ink-2); padding: 5px 8px;
+  border-radius: 6px; text-decoration: none;
+}
+.sidebar-sublink:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
+.sidebar-sublink[data-active='true'] { color: var(--accent); font-weight: 600; }
+
+.sidebar-collapse {
+  display: flex; align-items: center; gap: 10px;
+  width: calc(100% - 16px); margin: 8px; padding: 8px 10px;
+  border: 0; border-radius: 7px; cursor: pointer;
+  background: transparent; color: var(--ink-3); font-size: 12.5px;
+}
+.sidebar-collapse:hover { background: var(--surface-2); color: var(--ink); }
+.sidebar-collapse-caret { display: inline-flex; transform: rotate(180deg); transition: transform 140ms ease; }
+.shell[data-collapsed='true'] .sidebar-collapse-caret { transform: none; }
+
+.sidebar-scrim { display: none; }
+
+/* Icon-only rail. Scoped above the drawer breakpoint so a phone, where the
+   sidebar leaves the flow entirely, always shows full labels in its drawer. */
+@media (min-width: 768px) {
+  .shell[data-collapsed='true'] .sidebar { width: 60px; }
+  .shell[data-collapsed='true'] .sidebar-label { display: none; }
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 25;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 22px;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.topbar-menu { display: none; padding: 6px 8px; }
+
+.crumbs {
+  display: flex; align-items: center; gap: 6px; min-width: 0;
+  font-size: 12.5px; color: var(--ink-3); white-space: nowrap;
+}
+.crumb { display: inline-flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; }
+.crumb-sep { color: var(--line-2); }
+.crumbs a { color: var(--ink-2); }
+.crumbs a:hover { color: var(--accent); }
+.crumbs [aria-current='page'] { color: var(--ink); font-weight: 550; }
+
+.topbar-search { position: relative; margin-left: auto; flex: none; width: 236px; }
+.topbar-search input { padding-left: 30px; }
+.topbar-search-icon {
+  position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+  color: var(--ink-3); display: inline-flex; pointer-events: none;
+}
+
+.freshness {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--ink-3); white-space: nowrap;
+}
+
+@media (max-width: 1240px) { .freshness span { display: none; } }
+@media (max-width: 980px) { .topbar-search { width: 170px; } }
+
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed; inset: 0 auto 0 0; height: 100%;
+    width: 244px; transform: translateX(-100%);
+    transition: transform 160ms ease; z-index: 60; box-shadow: var(--shadow);
+  }
+  .shell[data-drawer='true'] .sidebar { transform: none; }
+  .shell[data-drawer='true'] .sidebar-scrim {
+    display: block; position: fixed; inset: 0; z-index: 50;
+    background: rgba(6, 10, 18, 0.5); border: 0; padding: 0; cursor: pointer;
+  }
+  .sidebar-collapse { display: none; }
+  .topbar-menu { display: inline-flex; }
+  .topbar { padding: 10px 14px; gap: 8px; }
+  /* A breadcrumb truncated to "Pr / Bi" tells a reader nothing. On a phone
+     the drawer and the page heading carry location instead. */
+  .crumbs { display: none; }
+  .topbar-search { flex: 1; width: auto; min-width: 0; margin-left: 0; }
+  .project-switch { max-width: 120px; }
+}
+
+/* ---------- empty states ---------- */
+.empty-state { padding: 44px 30px; text-align: center; max-width: 640px; margin: 0 auto; }
+.empty-state-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent); margin-bottom: 14px;
+}
+.empty-state-title { font-size: 18px; margin-bottom: 8px; }
+.empty-state-body { color: var(--ink-2); font-size: 13.5px; margin: 0 auto 18px; max-width: 54ch; }
 
 /* ---------- controls ---------- */
 .btn {
@@ -276,7 +378,8 @@ tr:last-child td { border-bottom: 0; }
  * correctly no matter which theme the reviewer happened to be in.
  */
 @media print {
-  .demo-banner, .masthead, .nav, .no-print, footer { display: none !important; }
+  .demo-banner, .sidebar, .topbar, .no-print, footer { display: none !important; }
+  .shell { display: block; }
 
   :root, html[data-theme='dark'] {
     --bg: #ffffff;

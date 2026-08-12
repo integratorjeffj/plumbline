@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { PrefsProvider } from '@/lib/prefs';
+import { ShellProvider } from '@/lib/shell';
 import { AppShell } from '@/components/AppShell';
 
 export const metadata: Metadata = {
@@ -14,7 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="light" suppressHydrationWarning>
       <body>
         <PrefsProvider>
-          <AppShell>{children}</AppShell>
+          <ShellProvider>
+            <AppShell>{children}</AppShell>
+          </ShellProvider>
         </PrefsProvider>
       </body>
     </html>
