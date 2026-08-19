@@ -723,6 +723,21 @@
   },
   "findings": [
     {
+      "code": "addenda_not_acknowledged",
+      "severity": "HIGH",
+      "summary": "Palmetto Mechanical Contractors priced against Rev 1 and has not incorporated Addendum 2.",
+      "vendor_id": "palmetto-mechanical",
+      "vendor_name": "Palmetto Mechanical Contractors",
+      "detail": {
+        "drawing_revision_referenced": "Rev 1",
+        "acknowledged_through": 1,
+        "missing_addenda": [
+          2
+        ],
+        "current_addendum": 2
+      }
+    },
+    {
       "code": "large_leveling_delta",
       "severity": "HIGH",
       "vendor_id": "coastal-air",
@@ -800,6 +815,22 @@
           "building_automation_integration"
         ]
       }
+    },
+    {
+      "code": "invitation_no_response",
+      "severity": "INFO",
+      "summary": "1 invited bidder(s) never responded: Bayline HVAC Services.",
+      "vendor_id": null,
+      "vendor_name": null,
+      "detail": {
+        "vendors": [
+          {
+            "vendor_id": "bayline-hvac",
+            "vendor_name": "Bayline HVAC Services",
+            "note": "Two follow-ups sent; no acknowledgment received."
+          }
+        ]
+      }
     }
   ],
   "revisions": [],
@@ -812,6 +843,1067 @@
     "lowest_adjusted_total": 406900,
     "active_bidders": 4,
     "documents_processed": 4,
-    "high_severity_findings": 2
+    "high_severity_findings": 3
+  },
+  "prequalification": {
+    "coastal-air": {
+      "vendor_id": "coastal-air",
+      "vendor_name": "Coastal Air Balance & Controls",
+      "eligible": true,
+      "status": "warn",
+      "disqualifying_reason": null,
+      "emr": 0.86,
+      "last_reviewed": "2026-07-14",
+      "bond_utilization_pct": 50.8,
+      "participation_certifications": [
+        "MBE",
+        "SBE"
+      ],
+      "gates": [
+        {
+          "code": "emr_above_high_risk_maximum",
+          "label": "Experience modification rate",
+          "status": "warn",
+          "summary": "EMR of 0.86 clears the 1.00 maximum for this package but exceeds the 0.85 ceiling used on high-risk work.",
+          "detail": {
+            "emr": 0.86,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 1.9,
+            "lost_time_incidents_3yr": 0
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2027-02-28.",
+          "detail": {
+            "certificate_expires": "2027-02-28",
+            "days_remaining": 219,
+            "warning_days": 45,
+            "as_of": "2026-07-24"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $408,700 sits well inside the $5,000,000 single-project limit written by Keystone Indemnity Company.",
+          "detail": {
+            "bid_amount": 408700,
+            "single_project_limit": 5000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 4500000.0,
+            "surety": "Keystone Indemnity Company",
+            "am_best_rating": "A- (Excellent)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 54.2% of the $12,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 12000000,
+            "current_backlog": 6100000,
+            "projected_backlog": 6508700,
+            "utilization_pct": 54.2,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-07-14, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-07-14",
+            "months_since_review": 0,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.86,
+        "emr_year": 2025,
+        "trir": 1.9,
+        "osha_recordables_3yr": 2,
+        "lost_time_incidents_3yr": 0
+      },
+      "bonding": {
+        "surety": "Keystone Indemnity Company",
+        "am_best_rating": "A- (Excellent)",
+        "single_project_limit": 5000000,
+        "aggregate_limit": 12000000,
+        "current_backlog": 6100000
+      },
+      "insurance": {
+        "general_liability_occurrence": 1000000,
+        "general_liability_aggregate": 2000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2027-02-28"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": true,
+        "wbe": false,
+        "sbe": true,
+        "certifying_agency": "Georgia Minority Supplier Development Council"
+      },
+      "performance": {
+        "packages_bid": 7,
+        "packages_awarded": 3,
+        "packages_completed": 3,
+        "change_order_rate_pct": 4.2,
+        "on_time_closeout_pct": 86.0,
+        "avg_rfi_per_package": 9.1,
+        "years_working_together": 3
+      },
+      "schedule": {
+        "proposed_duration_weeks": 28,
+        "mobilization_weeks": 5,
+        "crew_size_committed": 8,
+        "concurrent_awarded_packages": 1
+      }
+    },
+    "meridian-mechanical": {
+      "vendor_id": "meridian-mechanical",
+      "vendor_name": "Meridian Mechanical Systems",
+      "eligible": true,
+      "status": "warn",
+      "disqualifying_reason": null,
+      "emr": 0.9,
+      "last_reviewed": "2026-06-30",
+      "bond_utilization_pct": 53.8,
+      "participation_certifications": [],
+      "gates": [
+        {
+          "code": "emr_above_high_risk_maximum",
+          "label": "Experience modification rate",
+          "status": "warn",
+          "summary": "EMR of 0.90 clears the 1.00 maximum for this package but exceeds the 0.85 ceiling used on high-risk work.",
+          "detail": {
+            "emr": 0.9,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 2.2,
+            "lost_time_incidents_3yr": 0
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2027-05-31.",
+          "detail": {
+            "certificate_expires": "2027-05-31",
+            "days_remaining": 311,
+            "warning_days": 45,
+            "as_of": "2026-07-24"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $408,500 sits well inside the $15,000,000 single-project limit written by Granite Mutual Surety.",
+          "detail": {
+            "bid_amount": 408500,
+            "single_project_limit": 15000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 13500000.0,
+            "surety": "Granite Mutual Surety",
+            "am_best_rating": "A (Excellent)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 54.8% of the $40,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 40000000,
+            "current_backlog": 21500000,
+            "projected_backlog": 21908500,
+            "utilization_pct": 54.8,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-06-30, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-06-30",
+            "months_since_review": 1,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.9,
+        "emr_year": 2025,
+        "trir": 2.2,
+        "osha_recordables_3yr": 3,
+        "lost_time_incidents_3yr": 0
+      },
+      "bonding": {
+        "surety": "Granite Mutual Surety",
+        "am_best_rating": "A (Excellent)",
+        "single_project_limit": 15000000,
+        "aggregate_limit": 40000000,
+        "current_backlog": 21500000
+      },
+      "insurance": {
+        "general_liability_occurrence": 2000000,
+        "general_liability_aggregate": 4000000,
+        "auto_liability": 2000000,
+        "umbrella": 10000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2027-05-31"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": false,
+        "wbe": false,
+        "sbe": false,
+        "certifying_agency": null
+      },
+      "performance": {
+        "packages_bid": 22,
+        "packages_awarded": 9,
+        "packages_completed": 8,
+        "change_order_rate_pct": 1.8,
+        "on_time_closeout_pct": 97.0,
+        "avg_rfi_per_package": 4.6,
+        "years_working_together": 11
+      },
+      "schedule": {
+        "proposed_duration_weeks": 26,
+        "mobilization_weeks": 4,
+        "crew_size_committed": 9,
+        "concurrent_awarded_packages": 2
+      }
+    },
+    "palmetto-mechanical": {
+      "vendor_id": "palmetto-mechanical",
+      "vendor_name": "Palmetto Mechanical Contractors",
+      "eligible": true,
+      "status": "warn",
+      "disqualifying_reason": null,
+      "emr": 0.94,
+      "last_reviewed": "2026-06-05",
+      "bond_utilization_pct": 58.6,
+      "participation_certifications": [],
+      "gates": [
+        {
+          "code": "emr_above_high_risk_maximum",
+          "label": "Experience modification rate",
+          "status": "warn",
+          "summary": "EMR of 0.94 clears the 1.00 maximum for this package but exceeds the 0.85 ceiling used on high-risk work.",
+          "detail": {
+            "emr": 0.94,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 3.1,
+            "lost_time_incidents_3yr": 1
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2026-11-30.",
+          "detail": {
+            "certificate_expires": "2026-11-30",
+            "days_remaining": 129,
+            "warning_days": 45,
+            "as_of": "2026-07-24"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $406,900 sits well inside the $9,000,000 single-project limit written by Harbor Line Casualty.",
+          "detail": {
+            "bid_amount": 406900,
+            "single_project_limit": 9000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 8100000.0,
+            "surety": "Harbor Line Casualty",
+            "am_best_rating": "B++ (Good)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 60.5% of the $22,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 22000000,
+            "current_backlog": 12900000,
+            "projected_backlog": 13306900,
+            "utilization_pct": 60.5,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-06-05, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-06-05",
+            "months_since_review": 1,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.94,
+        "emr_year": 2025,
+        "trir": 3.1,
+        "osha_recordables_3yr": 5,
+        "lost_time_incidents_3yr": 1
+      },
+      "bonding": {
+        "surety": "Harbor Line Casualty",
+        "am_best_rating": "B++ (Good)",
+        "single_project_limit": 9000000,
+        "aggregate_limit": 22000000,
+        "current_backlog": 12900000
+      },
+      "insurance": {
+        "general_liability_occurrence": 1000000,
+        "general_liability_aggregate": 2000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2026-11-30"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": false,
+        "wbe": false,
+        "sbe": false,
+        "certifying_agency": null
+      },
+      "performance": {
+        "packages_bid": 12,
+        "packages_awarded": 4,
+        "packages_completed": 4,
+        "change_order_rate_pct": 3.4,
+        "on_time_closeout_pct": 90.0,
+        "avg_rfi_per_package": 7.8,
+        "years_working_together": 5
+      },
+      "schedule": {
+        "proposed_duration_weeks": 25,
+        "mobilization_weeks": 3,
+        "crew_size_committed": 10,
+        "concurrent_awarded_packages": 1
+      }
+    },
+    "vantage-hvac": {
+      "vendor_id": "vantage-hvac",
+      "vendor_name": "Vantage HVAC Group",
+      "eligible": true,
+      "status": "warn",
+      "disqualifying_reason": null,
+      "emr": 0.88,
+      "last_reviewed": "2026-05-19",
+      "bond_utilization_pct": 59.2,
+      "participation_certifications": [],
+      "gates": [
+        {
+          "code": "emr_above_high_risk_maximum",
+          "label": "Experience modification rate",
+          "status": "warn",
+          "summary": "EMR of 0.88 clears the 1.00 maximum for this package but exceeds the 0.85 ceiling used on high-risk work.",
+          "detail": {
+            "emr": 0.88,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 2.4,
+            "lost_time_incidents_3yr": 0
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2027-01-31.",
+          "detail": {
+            "certificate_expires": "2027-01-31",
+            "days_remaining": 191,
+            "warning_days": 45,
+            "as_of": "2026-07-24"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $419,550 sits well inside the $10,000,000 single-project limit written by Granite Mutual Surety.",
+          "detail": {
+            "bid_amount": 419550,
+            "single_project_limit": 10000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 9000000.0,
+            "surety": "Granite Mutual Surety",
+            "am_best_rating": "A (Excellent)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 60.9% of the $25,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 25000000,
+            "current_backlog": 14800000,
+            "projected_backlog": 15219550,
+            "utilization_pct": 60.9,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-05-19, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-05-19",
+            "months_since_review": 2,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.88,
+        "emr_year": 2025,
+        "trir": 2.4,
+        "osha_recordables_3yr": 4,
+        "lost_time_incidents_3yr": 0
+      },
+      "bonding": {
+        "surety": "Granite Mutual Surety",
+        "am_best_rating": "A (Excellent)",
+        "single_project_limit": 10000000,
+        "aggregate_limit": 25000000,
+        "current_backlog": 14800000
+      },
+      "insurance": {
+        "general_liability_occurrence": 2000000,
+        "general_liability_aggregate": 4000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2027-01-31"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": false,
+        "wbe": false,
+        "sbe": false,
+        "certifying_agency": null
+      },
+      "performance": {
+        "packages_bid": 16,
+        "packages_awarded": 6,
+        "packages_completed": 6,
+        "change_order_rate_pct": 2.6,
+        "on_time_closeout_pct": 93.0,
+        "avg_rfi_per_package": 6.3,
+        "years_working_together": 7
+      },
+      "schedule": {
+        "proposed_duration_weeks": 24,
+        "mobilization_weeks": 2,
+        "crew_size_committed": 12,
+        "concurrent_awarded_packages": 2
+      }
+    }
+  },
+  "coverage": {
+    "issued_date": "2026-06-08",
+    "bids_due": "2026-07-17",
+    "invited_count": 6,
+    "responded_count": 4,
+    "declined_count": 1,
+    "no_response_count": 1,
+    "response_rate_pct": 66.7,
+    "health": "healthy",
+    "minimum_bidders": 3,
+    "target_bidders": 4,
+    "current_addendum": 2,
+    "invitations": [
+      {
+        "vendor_id": "meridian-mechanical",
+        "vendor_name": "Meridian Mechanical Systems",
+        "invited_at": "2026-06-08",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "coastal-air",
+        "vendor_name": "Coastal Air Balance & Controls",
+        "invited_at": "2026-06-08",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "vantage-hvac",
+        "vendor_name": "Vantage HVAC Group",
+        "invited_at": "2026-06-08",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "palmetto-mechanical",
+        "vendor_name": "Palmetto Mechanical Contractors",
+        "invited_at": "2026-06-08",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "tidewater-mechanical",
+        "vendor_name": "Tidewater Mechanical Inc.",
+        "invited_at": "2026-06-08",
+        "status": "declined",
+        "note": "Declined; crews committed to a competing healthcare project through Q2 2027."
+      },
+      {
+        "vendor_id": "bayline-hvac",
+        "vendor_name": "Bayline HVAC Services",
+        "invited_at": "2026-06-08",
+        "status": "no_response",
+        "note": "Two follow-ups sent; no acknowledgment received."
+      }
+    ],
+    "acknowledgments": [
+      {
+        "vendor_id": "meridian-mechanical",
+        "vendor_name": "Meridian Mechanical Systems",
+        "drawing_revision_referenced": "Rev 2",
+        "acknowledged_through": 2,
+        "missing_addenda": [],
+        "acknowledged": true,
+        "unstated": false
+      },
+      {
+        "vendor_id": "coastal-air",
+        "vendor_name": "Coastal Air Balance & Controls",
+        "drawing_revision_referenced": "Rev 2",
+        "acknowledged_through": 2,
+        "missing_addenda": [],
+        "acknowledged": true,
+        "unstated": false
+      },
+      {
+        "vendor_id": "vantage-hvac",
+        "vendor_name": "Vantage HVAC Group",
+        "drawing_revision_referenced": "Rev 2",
+        "acknowledged_through": 2,
+        "missing_addenda": [],
+        "acknowledged": true,
+        "unstated": false
+      },
+      {
+        "vendor_id": "palmetto-mechanical",
+        "vendor_name": "Palmetto Mechanical Contractors",
+        "drawing_revision_referenced": "Rev 1",
+        "acknowledged_through": 1,
+        "missing_addenda": [
+          2
+        ],
+        "acknowledged": false,
+        "unstated": false
+      }
+    ],
+    "addenda": [
+      {
+        "number": 1,
+        "issued_date": "2026-06-18",
+        "drawing_revision": "Rev 1",
+        "description": "Revised rooftop unit curb details; added vibration isolation at the penthouse."
+      },
+      {
+        "number": 2,
+        "issued_date": "2026-07-02",
+        "drawing_revision": "Rev 2",
+        "description": "Reworked the chilled water riser routing and added test-and-balance scope to the base contract."
+      }
+    ]
+  },
+  "award": {
+    "weights": {
+      "cost": 40.0,
+      "experience": 30.0,
+      "safety": 20.0,
+      "schedule": 10.0
+    },
+    "scores": [
+      {
+        "vendor_id": "meridian-mechanical",
+        "vendor_name": "Meridian Mechanical Systems",
+        "adjusted_total": 408500,
+        "submitted_total": 398500,
+        "total_score": 94.91,
+        "eligible": true,
+        "disqualifying_reason": null,
+        "rank": 1,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 99.61,
+            "weight": 40.0,
+            "weighted": 39.84,
+            "basis": "$408,500 leveled, $1,600 above the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 408500,
+              "best_total": 406900,
+              "premium_over_best": 1600
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 91.9,
+            "weight": 30.0,
+            "weighted": 27.57,
+            "basis": "1.8% change-order rate, 97% on-time closeout, 8 package(s) completed over 11 years",
+            "detail": {
+              "components": {
+                "change_orders": 82.0,
+                "closeout": 97.0,
+                "depth": 100.0,
+                "relationship": 100.0
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 1.8,
+              "on_time_closeout_pct": 97.0,
+              "packages_completed": 8,
+              "years_working_together": 11,
+              "avg_rfi_per_package": 4.6
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 87.5,
+            "weight": 20.0,
+            "weighted": 17.5,
+            "basis": "EMR 0.90 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.9,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 2.2,
+              "lost_time_incidents_3yr": 0
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 100.0,
+            "weight": 10.0,
+            "weighted": 10.0,
+            "basis": "26 weeks inside the 26-week requirement, 9-person crew",
+            "detail": {
+              "components": {
+                "duration": 100.0,
+                "mobilization": 100.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 26,
+              "required_duration_weeks": 26,
+              "weeks_over": 0,
+              "mobilization_weeks": 4,
+              "crew_size_committed": 9,
+              "concurrent_awarded_packages": 2
+            }
+          }
+        ]
+      },
+      {
+        "vendor_id": "coastal-air",
+        "vendor_name": "Coastal Air Balance & Controls",
+        "adjusted_total": 408700,
+        "submitted_total": 345000,
+        "total_score": 86.04,
+        "eligible": true,
+        "disqualifying_reason": null,
+        "rank": 4,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 99.56,
+            "weight": 40.0,
+            "weighted": 39.82,
+            "basis": "$408,700 leveled, $1,800 above the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 408700,
+              "best_total": 406900,
+              "premium_over_best": 1800
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 62.75,
+            "weight": 30.0,
+            "weighted": 18.82,
+            "basis": "4.2% change-order rate, 86% on-time closeout, 3 package(s) completed over 3 years",
+            "detail": {
+              "components": {
+                "change_orders": 58.0,
+                "closeout": 86.0,
+                "depth": 50.0,
+                "relationship": 37.5
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 4.2,
+              "on_time_closeout_pct": 86.0,
+              "packages_completed": 3,
+              "years_working_together": 3,
+              "avg_rfi_per_package": 9.1
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 97.5,
+            "weight": 20.0,
+            "weighted": 19.5,
+            "basis": "EMR 0.86 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.86,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 1.9,
+              "lost_time_incidents_3yr": 0
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 79.0,
+            "weight": 10.0,
+            "weighted": 7.9,
+            "basis": "28 weeks against a 26-week requirement (2 over), 8-person crew",
+            "detail": {
+              "components": {
+                "duration": 70.0,
+                "mobilization": 80.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 28,
+              "required_duration_weeks": 26,
+              "weeks_over": 2,
+              "mobilization_weeks": 5,
+              "crew_size_committed": 8,
+              "concurrent_awarded_packages": 1
+            }
+          }
+        ]
+      },
+      {
+        "vendor_id": "vantage-hvac",
+        "vendor_name": "Vantage HVAC Group",
+        "adjusted_total": 419550,
+        "submitted_total": 412750,
+        "total_score": 93.17,
+        "eligible": true,
+        "disqualifying_reason": null,
+        "rank": 2,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 96.98,
+            "weight": 40.0,
+            "weighted": 38.79,
+            "basis": "$419,550 leveled, $12,650 above the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 419550,
+              "best_total": 406900,
+              "premium_over_best": 12650
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 86.25,
+            "weight": 30.0,
+            "weighted": 25.88,
+            "basis": "2.6% change-order rate, 93% on-time closeout, 6 package(s) completed over 7 years",
+            "detail": {
+              "components": {
+                "change_orders": 74.0,
+                "closeout": 93.0,
+                "depth": 100.0,
+                "relationship": 87.5
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 2.6,
+              "on_time_closeout_pct": 93.0,
+              "packages_completed": 6,
+              "years_working_together": 7,
+              "avg_rfi_per_package": 6.3
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 92.5,
+            "weight": 20.0,
+            "weighted": 18.5,
+            "basis": "EMR 0.88 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.88,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 2.4,
+              "lost_time_incidents_3yr": 0
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 100.0,
+            "weight": 10.0,
+            "weighted": 10.0,
+            "basis": "24 weeks inside the 26-week requirement, 12-person crew",
+            "detail": {
+              "components": {
+                "duration": 100.0,
+                "mobilization": 100.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 24,
+              "required_duration_weeks": 26,
+              "weeks_over": 0,
+              "mobilization_weeks": 2,
+              "crew_size_committed": 12,
+              "concurrent_awarded_packages": 2
+            }
+          }
+        ]
+      },
+      {
+        "vendor_id": "palmetto-mechanical",
+        "vendor_name": "Palmetto Mechanical Contractors",
+        "adjusted_total": 406900,
+        "submitted_total": 371200,
+        "total_score": 87.39,
+        "eligible": true,
+        "disqualifying_reason": null,
+        "rank": 3,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 100.0,
+            "weight": 40.0,
+            "weighted": 40.0,
+            "basis": "$406,900 leveled, the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 406900,
+              "best_total": 406900,
+              "premium_over_best": 0
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 72.98,
+            "weight": 30.0,
+            "weighted": 21.89,
+            "basis": "3.4% change-order rate, 90% on-time closeout, 4 package(s) completed over 5 years",
+            "detail": {
+              "components": {
+                "change_orders": 66.0,
+                "closeout": 90.0,
+                "depth": 66.67,
+                "relationship": 62.5
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 3.4,
+              "on_time_closeout_pct": 90.0,
+              "packages_completed": 4,
+              "years_working_together": 5,
+              "avg_rfi_per_package": 7.8
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 77.5,
+            "weight": 20.0,
+            "weighted": 15.5,
+            "basis": "EMR 0.94 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.94,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 3.1,
+              "lost_time_incidents_3yr": 1
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 100.0,
+            "weight": 10.0,
+            "weighted": 10.0,
+            "basis": "25 weeks inside the 26-week requirement, 10-person crew",
+            "detail": {
+              "components": {
+                "duration": 100.0,
+                "mobilization": 100.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 25,
+              "required_duration_weeks": 26,
+              "weeks_over": 0,
+              "mobilization_weeks": 3,
+              "crew_size_committed": 10,
+              "concurrent_awarded_packages": 1
+            }
+          }
+        ]
+      }
+    ],
+    "recommended_vendor_id": "meridian-mechanical",
+    "runner_up_vendor_id": "vantage-hvac",
+    "margin": 1.74,
+    "agrees_with_lowest_leveled": false,
+    "narrative": "Recommend award to Meridian Mechanical Systems at $408,500 leveled, scoring 94.9 of 100, ahead of Vantage HVAC Group at 93.2 (1.7 points). This is not the cheapest eligible bid. Palmetto Mechanical Contractors is $1,600 lower leveled, and the weighted model still prefers Meridian Mechanical Systems on non-price factors. Strongest factor is schedule and capacity at 100 of 100 (26 weeks inside the 26-week requirement, 9-person crew); weakest is safety record at 88 (EMR 0.90 on a scale where 0.85 scores 100 and 1.25 scores 0). Weights applied: leveled cost 40%, experience and past performance 30%, safety record 20%, schedule and capacity 10%."
+  },
+  "policy": {
+    "prequalification": {
+      "policy_owner": "Maya Ellison",
+      "effective_date": "2026-01-01",
+      "review_cycle_months": 12,
+      "emr_maximum": 1.0,
+      "emr_high_risk_maximum": 0.85,
+      "emr_disqualifying": 1.25,
+      "single_project_bond_headroom_pct": 10.0,
+      "aggregate_backlog_utilization_max_pct": 85.0,
+      "insurance_minimums_usd": {
+        "general_liability_occurrence": 1000000,
+        "general_liability_aggregate": 2000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000
+      },
+      "certificate_expiry_warning_days": 45,
+      "policy_note": "Safety and insurance are gates, not weights. A subcontractor over the EMR maximum or under a required insurance limit is removed from award consideration before price is discussed, because carrying that risk is not something a lower number buys back."
+    },
+    "coverage": {
+      "minimum_bidders_per_package": 3,
+      "target_bidders_per_package": 4,
+      "minimum_response_rate_pct": 40.0,
+      "policy_note": "A package with fewer than three responsive bidders is not competitively bid, and the leveled spread stops being evidence of a market price. Coverage is tracked from the invitation out, not from the bids in, because the bids that never arrived are the ones that do not show up in any comparison."
+    },
+    "schedule_requirement": {
+      "required_duration_weeks": 26,
+      "max_mobilization_weeks": 4,
+      "min_crew_size": 8,
+      "notice_to_proceed": "2026-09-14"
+    },
+    "evaluation_date": "2026-07-24"
   }
 }
