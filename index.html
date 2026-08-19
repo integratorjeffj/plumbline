@@ -400,7 +400,7 @@ footer a:hover { text-decoration: underline; }
     <div class="icard">
       <span class="pill p-live">Live</span>
       <h3 style="margin-top:9px">Anomaly detection</h3>
-      <p>Seven deterministic rules. No model involved, so every finding is reproducible and explainable line by line.</p>
+      <p>Ten deterministic rules. No model involved, so every finding is reproducible and explainable line by line.</p>
     </div>
     <div class="icard">
       <span class="pill p-ready">Ready · key required</span>
@@ -740,7 +740,7 @@ footer a:hover { text-decoration: underline; }
     <div class="sec-n">Step 05 · Findings</div>
     <h2>What the estimator needs to act on</h2>
     <p>
-      Eleven findings from seven deterministic rules, sorted by severity. Every one is arithmetic or a
+      Thirteen findings from ten deterministic rules, sorted by severity. Every one is arithmetic or a
       set comparison, so each can be explained and reproduced exactly.
     </p>
   </div>
@@ -781,6 +781,13 @@ footer a:hover { text-decoration: underline; }
     <div class="f-body">
       <div class="f-code">stale_drawing_revision</div>
       <p class="f-sum">Meridian Electric &amp; Controls priced against drawings Revision 1, but the project is at Rev 3.</p>
+    </div>
+  </div>
+  <div class="finding f-high">
+    <span class="sev sev-high">HIGH</span>
+    <div class="f-body">
+      <div class="f-code">addenda_not_acknowledged</div>
+      <p class="f-sum">Meridian Electric &amp; Controls priced against Revision 1 and has not incorporated Addenda 2, 3 &mdash; and Addendum 3 is the one that added the arc-flash requirement.</p>
     </div>
   </div>
   <div class="finding f-med">
@@ -826,7 +833,7 @@ footer a:hover { text-decoration: underline; }
 
   <div class="integ">
     <div class="icard">
-      <h3>75 deterministic tests</h3>
+      <h3>138 deterministic tests</h3>
       <p>The full suite runs with recorded model responses, so continuous integration never depends on a live API call, a network connection, or a model's mood on a given day.</p>
     </div>
     <div class="icard">

@@ -13,6 +13,7 @@ A general contractor's estimator gets four bids for the same electrical package 
 1. **Look at the ranking table below.** The low bidder at $167,400 lands fourth at $223,700 once its missing lighting allowance and permit fees are priced in. The rank-movement column is the whole product in one number.
 2. **Open the [Review Console](https://integratorjeffj.github.io/plumbline/console/) and click any extracted figure.** It jumps to the page and section it was cited from. Approve it, correct it, or reject it, and correcting a scope status re-levels the package on the spot.
 3. **Go to Scope & weighting and change an importance grade.** The ranking recomputes in the browser. The parity badge on the overview page is checking that browser math against the Python pipeline's exported totals on every load, and turns red if they ever disagree.
+4. **Open Award and click "Track record first."** The recommendation flips from the cheapest eligible bid to the incumbent with the better change-order history, and the written rationale rewrites itself to explain the $15,200 premium. Two bidders never enter the ranking at all -- Prequalification shows which gate stopped each one.
 
 ---
 
@@ -48,6 +49,12 @@ icon rail, and below 768px it leaves the layout entirely and returns as a drawer
   Correcting a scope status re-levels the package immediately.
 - **Compare** shows the leveling bars, both rankings, the full scope matrix, revision history, and
   every finding.
+- **Prequalification** is the eligibility record behind each bidder: EMR against the policy band,
+  bonding capacity, insurance limits against the contract minimums, past performance, and every
+  gate that passed, warned, or stopped them.
+- **Award** weighs the eligible bidders across cost, experience, safety, and schedule. Drag a
+  weight and the ranking and the written rationale both move; gated bidders stay visible but
+  never enter the ranking.
 - **Scope & weighting** is where the estimator assigns each scope item an importance grade and a
   dollar value. Change a grade and the ranking recomputes on the spot.
 - **Data sources** carries the connector placeholders and a live-mode upload that computes a real
@@ -116,6 +123,53 @@ Two rules make this work:
 - **`NotFound` never collapses into `Excluded`.** "The vendor said no" and "the proposal never mentions it" carry different risk. Conflating them would have erased the arc-flash finding entirely.
 - **Scope carried by other bid packages is never priced.** Division 27, Division 28, and utility charges are excluded by all four bidders, but adding them here would double-count against another package's budget. The engine records that decision rather than silently skipping the rows.
 
+
+### Eligibility is a separate question from price
+
+Leveling produces a defensible number. It does not produce a decision, and treating it as one is
+how a package gets awarded to a firm the GC's insurer will not accept.
+
+So Plumbline separates the two. **Gates** decide whether a subcontractor may be carried at all;
+**weights** rank whoever is left. A gate is never a weight, because a weight lets a low price buy
+back a safety record, and that is exactly the trade the policy exists to forbid.
+
+On the Falcon Medical electrical package, two of four bidders clear prequalification:
+
+| Bidder | Leveled | EMR | Outcome |
+|---|---|---|---|
+| Ironclad Power & Electric | $186,250 | 0.78 | Eligible |
+| Meridian Electric & Controls | $188,550 | 1.12 | **Gated** -- EMR above the 1.00 maximum |
+| Apex Electrical Contractors | $201,450 | 0.89 | Eligible, with a certificate expiring in 37 days |
+| Voltage Systems Inc. | $223,700 | 0.96 | **Gated** -- umbrella carried at $2M against a $5M requirement |
+
+Meridian is the finding leveling alone cannot produce. It levels to second, within $2,300 of the
+lead, so on price it is a live candidate right up until someone reads its loss history. Gated
+bidders are still scored and still shown, because the number a gate cost is exactly what a reviewer
+needs to weigh the gate against -- but that number never becomes selectable.
+
+The award model then weighs the survivors across cost, experience, safety, and schedule, defaulting
+to a conventional 40/30/20/10 split. Move the weights and the ranking moves with them: at the
+default, Ironclad wins on price and safety; weight past performance to 60% and Apex takes it on a
+better change-order rate and a longer track record, at a $15,200 premium. The recommendation
+rewrites itself to say so, naming the exclusions and what each one cost.
+
+The rationale is generated deterministically rather than by a model call. A recommendation an
+estimator signs their name to has to read the same every time it is produced and has to be
+reconstructible from the numbers alone.
+
+### Coverage: the bids that never arrived
+
+A package can look healthy because four proposals sit side by side, when the reason the spread is
+narrow is that the firms who would have priced it lower never responded. Coverage is therefore
+measured from the invitation out -- seven invited, four responsive, two declined with reasons, one
+silent after two follow-ups.
+
+Addendum acknowledgment is inferred from the drawing revision each proposal states it priced
+against, rather than from a signed acknowledgment page. Meridian priced Revision 1 while the package
+is at Revision 3, so it never incorporated Addenda 2 and 3 -- and Addendum 3 is the one that added
+the arc-flash requirement. A signature would have proved someone signed a page; the cited revision
+proves what the number actually covers.
+
 ---
 
 ## Features
@@ -123,8 +177,11 @@ Two rules make this work:
 - **Four input formats**, one pipeline: PDF, Excel workbook, email-body pricing, and revised resubmissions
 - **Scope normalization** onto a canonical Division 26 taxonomy with a four-state vocabulary
 - **Bid leveling** with adjusted pricing and rank-movement tracking
-- **Seven deterministic anomaly rules**: arithmetic discrepancy, stale drawing revision, required scope missing from every bidder, large leveling delta, unclear scope, over budget, superseded revision
+- **Ten deterministic anomaly rules**: arithmetic discrepancy, stale drawing revision, required scope missing from every bidder, large leveling delta, unclear scope, over budget, superseded revision, unacknowledged addenda, thin bid coverage, silent invitations
 - **Revision tracking** so a reissued proposal supersedes its predecessor instead of double-counting as another bidder
+- **Prequalification gates** -- EMR, insurance limits, certificate currency, single-project and aggregate bonding capacity, review staleness -- evaluated as of a stated date, with DBE/MBE/WBE participation surfaced
+- **Weighted award recommendation** across cost, experience, safety, and schedule, re-ranking live as the weights move, with a generated rationale that names every exclusion and the price it cost
+- **Bid coverage tracking** measured from the invitation out: invited, responded, declined, silent, plus addendum acknowledgment inferred from the drawing revision each proposal priced
 - **Portfolio rollup** across every bid package: combined budget, leveled exposure, variance, and per-package RAG health, computed live from the same engine each package's own pages use
 - **A working table, not a list**: search, status filter, sort, density, labeled status pills with their thresholds stated, inline budget-vs-leveled bars on a shared scale, and metric tiles that filter the rows beneath them
 - **Printable stakeholder report**, one page, via the browser's native print-to-PDF
@@ -132,7 +189,7 @@ Two rules make this work:
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
-- **75 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
+- **138 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
 
 ---
 
@@ -228,7 +285,10 @@ The demo page labels this too, because a portfolio project that implies connecti
 |---|---|---|
 | PDF and Excel extraction | Live | Real parsing, real files, positions preserved for citation |
 | Scope normalization and leveling | Live | Deterministic Python |
-| Anomaly detection | Live | Seven rules, no model involved |
+| Anomaly detection | Live | Ten rules, no model involved |
+| Prequalification gates | Live | Deterministic Python, evaluated as of a stated date |
+| Weighted award model | Live | Scored in Python, mirrored in the browser under a parity check |
+| Bid coverage and addenda | Live | Invitation log plus acknowledgment inferred from cited drawing revisions |
 | Human review and sign-off | Live | Side-by-side console, per-field decisions, persisted locally |
 | Scope weighting and re-leveling | Live | Importance grades recompute rankings and findings in the browser |
 | Claude extraction | Ready, key required | Adapter built and schema-constrained via tool use |
@@ -248,8 +308,8 @@ All demo data is synthetic. Crestmark Construction Partners, the Falcon Medical 
 - [ ] Generated leveling report as a shareable PDF rather than a screen
 - [ ] Live mailbox intake via Microsoft Graph, replacing the simulated email fixtures
 - [ ] CRM writeback to Procore so leveled results land where the estimator already works
-- [ ] Vendor performance history, so past change-order behavior informs the current comparison
 - [ ] Live-model evaluation harness measuring extraction accuracy against the golden set across model versions
+- [ ] Resolve vendor identity across bid packages so prequalification and performance history roll up program-wide
 
 ---
 
