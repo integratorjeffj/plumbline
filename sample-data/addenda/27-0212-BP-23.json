@@ -1,0 +1,21 @@
+{
+  "bid_package_number": "27-0212-BP-23",
+  "current_addendum": 2,
+  "issued_by": "Leah Morgan",
+  "acknowledgment_note": "Acknowledgment is inferred from the drawing revision each proposal states it was priced against. A bidder pricing an older revision has not received, or has not incorporated, every addendum issued since.",
+  "addenda": [
+    {
+      "number": 1,
+      "issued_date": "2026-06-18",
+      "drawing_revision": "Rev 1",
+      "description": "Revised rooftop unit curb details; added vibration isolation at the penthouse."
+    },
+    {
+      "number": 2,
+      "issued_date": "2026-07-02",
+      "drawing_revision": "Rev 2",
+      "description": "Reworked the chilled water riser routing and added test-and-balance scope to the base contract."
+    }
+  ],
+  "synthetic_notice": "Fictional addenda log created for the Bid Intelligence & Procurement Copilot demonstration."
+}

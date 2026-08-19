@@ -1,0 +1,67 @@
+{
+  "vendor_id": "summit-electric",
+  "name": "Summit Electric Partners",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "summit-electric-demo.example",
+  "characteristics": [
+    "Cheapest bid once leveled and eligible on every gate",
+    "Fastest proposed duration in the Westbrook set",
+    "Steady mid-tier performance history"
+  ],
+  "contacts": [
+    {
+      "name": "Rosa Delgado",
+      "title": "Chief Estimator",
+      "email": "rosa.delgado@summit-electric-demo.example"
+    }
+  ],
+  "prequalification": {
+    "last_reviewed": "2026-07-08",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.88,
+      "emr_year": 2025,
+      "trir": 2.3,
+      "osha_recordables_3yr": 3,
+      "lost_time_incidents_3yr": 0
+    },
+    "bonding": {
+      "surety": "Granite Mutual Surety",
+      "am_best_rating": "A (Excellent)",
+      "single_project_limit": 8000000,
+      "aggregate_limit": 18000000,
+      "current_backlog": 9600000
+    },
+    "insurance": {
+      "general_liability_occurrence": 2000000,
+      "general_liability_aggregate": 4000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-04-30"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": false,
+      "sbe": false,
+      "certifying_agency": null
+    },
+    "performance": {
+      "packages_bid": 13,
+      "packages_awarded": 5,
+      "packages_completed": 5,
+      "change_order_rate_pct": 3.0,
+      "on_time_closeout_pct": 91.0,
+      "avg_rfi_per_package": 6.5,
+      "years_working_together": 6
+    },
+    "schedule": {
+      "proposed_duration_weeks": 17,
+      "mobilization_weeks": 2,
+      "crew_size_committed": 7,
+      "concurrent_awarded_packages": 1
+    }
+  },
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

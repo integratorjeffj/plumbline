@@ -1,0 +1,29 @@
+{
+  "project_number": "28-0355",
+  "project_name": "Westbrook Logistics Center",
+  "general_contractor_id": "crestmark",
+  "customer_owner": "Westbrook Distribution Partners",
+  "location": "Fictional Nashville metro location",
+  "project_type": "Distribution and logistics, ground-up",
+  "delivery_method": "Design-Build",
+  "current_drawing_revision": "Rev 1",
+  "current_specification_issue": "Issued for Bid",
+  "bid_packages": [
+    {
+      "bid_package_number": "28-0355-BP-26",
+      "csi_division": "26",
+      "description": "Division 26 - Electrical",
+      "budget_usd": 260000.0,
+      "primary_human_reviewer": "Melissa Tran",
+      "bid_due_date": "2026-08-21",
+      "evaluation_date": "2026-08-28",
+      "schedule_requirement": {
+        "required_duration_weeks": 18,
+        "max_mobilization_weeks": 3,
+        "min_crew_size": 5,
+        "notice_to_proceed": "2026-10-19"
+      }
+    }
+  ],
+  "synthetic_notice": "Fictional project record created for the Bid Intelligence & Procurement Copilot demonstration."
+}

@@ -1,0 +1,68 @@
+{
+  "vendor_id": "palmetto-mechanical",
+  "name": "Palmetto Mechanical Contractors",
+  "trade": "Division 23 - Mechanical / HVAC",
+  "email_domain": "palmetto-mechanical-demo.example",
+  "characteristics": [
+    "Cheapest bid once leveled, by $1,600 over the runner-up",
+    "Priced against a superseded drawing revision",
+    "Middling change-order history relative to the rest of the set",
+    "Wins on price and loses the weighted model on everything else"
+  ],
+  "contacts": [
+    {
+      "name": "Andre Boyd",
+      "title": "Preconstruction Lead",
+      "email": "andre.boyd@palmetto-mechanical-demo.example"
+    }
+  ],
+  "prequalification": {
+    "last_reviewed": "2026-06-05",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.94,
+      "emr_year": 2025,
+      "trir": 3.1,
+      "osha_recordables_3yr": 5,
+      "lost_time_incidents_3yr": 1
+    },
+    "bonding": {
+      "surety": "Harbor Line Casualty",
+      "am_best_rating": "B++ (Good)",
+      "single_project_limit": 9000000,
+      "aggregate_limit": 22000000,
+      "current_backlog": 12900000
+    },
+    "insurance": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2026-11-30"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": false,
+      "sbe": false,
+      "certifying_agency": null
+    },
+    "performance": {
+      "packages_bid": 12,
+      "packages_awarded": 4,
+      "packages_completed": 4,
+      "change_order_rate_pct": 3.4,
+      "on_time_closeout_pct": 90.0,
+      "avg_rfi_per_package": 7.8,
+      "years_working_together": 5
+    },
+    "schedule": {
+      "proposed_duration_weeks": 25,
+      "mobilization_weeks": 3,
+      "crew_size_committed": 10,
+      "concurrent_awarded_packages": 1
+    }
+  },
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

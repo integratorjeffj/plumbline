@@ -1,0 +1,67 @@
+{
+  "vendor_id": "gridline-power",
+  "name": "Gridline Power Solutions",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "gridline-power-demo.example",
+  "characteristics": [
+    "Lowest submitted price, second once leveled",
+    "Weakest performance history and slowest schedule in the set",
+    "Newest relationship with this general contractor"
+  ],
+  "contacts": [
+    {
+      "name": "Tobias Krause",
+      "title": "Estimator",
+      "email": "tobias.krause@gridline-power-demo.example"
+    }
+  ],
+  "prequalification": {
+    "last_reviewed": "2026-04-27",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.97,
+      "emr_year": 2025,
+      "trir": 3.4,
+      "osha_recordables_3yr": 5,
+      "lost_time_incidents_3yr": 1
+    },
+    "bonding": {
+      "surety": "Harbor Line Casualty",
+      "am_best_rating": "B++ (Good)",
+      "single_project_limit": 4000000,
+      "aggregate_limit": 9000000,
+      "current_backlog": 5200000
+    },
+    "insurance": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-03-15"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": true,
+      "sbe": true,
+      "certifying_agency": "Georgia Women in Business Council"
+    },
+    "performance": {
+      "packages_bid": 8,
+      "packages_awarded": 2,
+      "packages_completed": 2,
+      "change_order_rate_pct": 5.5,
+      "on_time_closeout_pct": 82.0,
+      "avg_rfi_per_package": 10.4,
+      "years_working_together": 2
+    },
+    "schedule": {
+      "proposed_duration_weeks": 21,
+      "mobilization_weeks": 4,
+      "crew_size_committed": 4,
+      "concurrent_awarded_packages": 0
+    }
+  },
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

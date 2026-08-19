@@ -110,9 +110,9 @@ export default function OverviewPage() {
             <CoveragePill health={coverage.health} />
           </div>
           <p className="muted" style={{ marginTop: 0, marginBottom: 14, maxWidth: '76ch' }}>
-            Measured from the invitation out, not from the bids in. Four proposals side by side can
-            look like a competitive package when the reason the spread is narrow is that the firms
-            who would have priced it lower never responded.
+            Measured from the invitation out, not from the bids in. A handful of proposals side by
+            side can look like a competitive package when the reason the spread is narrow is that
+            the firms who would have priced it lower never responded.
           </p>
 
           <div className="coverage-bar" role="img"

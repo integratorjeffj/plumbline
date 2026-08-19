@@ -1,0 +1,68 @@
+{
+  "vendor_id": "anchor-electrical",
+  "name": "Anchor Electrical Co.",
+  "trade": "Division 26 - Electrical",
+  "email_domain": "anchor-electrical-demo.example",
+  "characteristics": [
+    "Best change-order record and closeout rate of any firm in the demo set",
+    "Small specialist shop with a correspondingly small surety line",
+    "Gated on single-project bonding capacity despite the strongest history",
+    "The uncomfortable case: the firm you would most want, that the surety will not back at this size"
+  ],
+  "contacts": [
+    {
+      "name": "Wes Okafor",
+      "title": "Owner and Chief Estimator",
+      "email": "wes.okafor@anchor-electrical-demo.example"
+    }
+  ],
+  "prequalification": {
+    "last_reviewed": "2026-06-22",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.99,
+      "emr_year": 2025,
+      "trir": 2.0,
+      "osha_recordables_3yr": 2,
+      "lost_time_incidents_3yr": 0
+    },
+    "bonding": {
+      "surety": "Keystone Indemnity Company",
+      "am_best_rating": "A- (Excellent)",
+      "single_project_limit": 250000,
+      "aggregate_limit": 900000,
+      "current_backlog": 410000
+    },
+    "insurance": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-06-30"
+    },
+    "certifications": {
+      "dbe": true,
+      "mbe": false,
+      "wbe": false,
+      "sbe": true,
+      "certifying_agency": "Georgia DOT DBE Program"
+    },
+    "performance": {
+      "packages_bid": 19,
+      "packages_awarded": 7,
+      "packages_completed": 7,
+      "change_order_rate_pct": 2.2,
+      "on_time_closeout_pct": 95.0,
+      "avg_rfi_per_package": 4.9,
+      "years_working_together": 9
+    },
+    "schedule": {
+      "proposed_duration_weeks": 18,
+      "mobilization_weeks": 3,
+      "crew_size_committed": 6,
+      "concurrent_awarded_packages": 1
+    }
+  },
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

@@ -1,0 +1,51 @@
+{
+  "bid_package_number": "27-0212-BP-23",
+  "issued_by": "Leah Morgan",
+  "issued_date": "2026-06-08",
+  "bids_due": "2026-07-17",
+  "invitations": [
+    {
+      "vendor_id": "meridian-mechanical",
+      "vendor_name": "Meridian Mechanical Systems",
+      "invited_at": "2026-06-08",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "coastal-air",
+      "vendor_name": "Coastal Air Balance & Controls",
+      "invited_at": "2026-06-08",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "vantage-hvac",
+      "vendor_name": "Vantage HVAC Group",
+      "invited_at": "2026-06-08",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "palmetto-mechanical",
+      "vendor_name": "Palmetto Mechanical Contractors",
+      "invited_at": "2026-06-08",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "tidewater-mechanical",
+      "vendor_name": "Tidewater Mechanical Inc.",
+      "invited_at": "2026-06-08",
+      "status": "declined",
+      "note": "Declined; crews committed to a competing healthcare project through Q2 2027."
+    },
+    {
+      "vendor_id": "bayline-hvac",
+      "vendor_name": "Bayline HVAC Services",
+      "invited_at": "2026-06-08",
+      "status": "no_response",
+      "note": "Two follow-ups sent; no acknowledgment received."
+    }
+  ],
+  "synthetic_notice": "Fictional invitation-to-bid record created for the Bid Intelligence & Procurement Copilot demonstration."
+}
