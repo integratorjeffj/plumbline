@@ -1,6 +1,13 @@
 'use client';
 
-import type { ConfidenceTier, ReviewStatus, ScopeStatus, Severity } from '@/lib/types';
+import type {
+  ConfidenceTier,
+  CoverageHealth,
+  GateStatus,
+  ReviewStatus,
+  ScopeStatus,
+  Severity,
+} from '@/lib/types';
 import type { RagLevel } from '@/lib/portfolio';
 import { Icon, type IconName } from './Icons';
 
@@ -175,6 +182,54 @@ export function Kpi({
         {label}
       </div>
     </div>
+  );
+}
+
+const GATE_PILL: Record<GateStatus, { cls: string; label: string }> = {
+  pass: { cls: 'p-ok', label: 'Pass' },
+  warn: { cls: 'p-warn', label: 'Condition' },
+  fail: { cls: 'p-danger', label: 'Gated' },
+};
+
+/**
+ * A prequalification gate outcome.
+ *
+ * "Condition" rather than "Warning" because that is what a warn actually is to
+ * an estimator: something to clear before subcontract, not a reason to drop the
+ * bidder. "Gated" rather than "Fail" because the bidder did not fail at
+ * anything -- they are outside a policy the GC set.
+ */
+export function GatePill({ status }: { status: GateStatus }) {
+  const { cls, label } = GATE_PILL[status];
+  return <span className={`pill ${cls}`}>{label}</span>;
+}
+
+const COVERAGE_PILL: Record<CoverageHealth, { cls: string; label: string }> = {
+  healthy: { cls: 'p-ok', label: 'Healthy' },
+  thin: { cls: 'p-warn', label: 'Thin' },
+  insufficient: { cls: 'p-danger', label: 'Insufficient' },
+};
+
+export function CoveragePill({ health }: { health: CoverageHealth }) {
+  const { cls, label } = COVERAGE_PILL[health];
+  return <span className={`pill ${cls}`}>{label}</span>;
+}
+
+/**
+ * A 0-100 factor score as a labeled bar.
+ *
+ * The number is printed alongside rather than replaced by the bar: a bar is
+ * good for comparing two rows at a glance and bad for reading an exact value,
+ * and this table is asked to do both.
+ */
+export function ScoreBar({ score, muted = false }: { score: number; muted?: boolean }) {
+  return (
+    <span className="score-bar" data-muted={muted || undefined}>
+      <span className="score-bar-track">
+        <span className="score-bar-fill" style={{ width: `${Math.max(0, Math.min(100, score))}%` }} />
+      </span>
+      <span className="num small score-bar-value">{score.toFixed(0)}</span>
+    </span>
   );
 }
 

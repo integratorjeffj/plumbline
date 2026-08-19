@@ -17,5 +17,53 @@
       "email": "priya.raman@voltage-systems-demo.example"
     }
   ],
-  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration.",
+  "prequalification": {
+    "last_reviewed": "2026-04-19",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.96,
+      "emr_year": 2025,
+      "trir": 2.9,
+      "osha_recordables_3yr": 4,
+      "lost_time_incidents_3yr": 1
+    },
+    "bonding": {
+      "surety": "Harbor Line Casualty",
+      "am_best_rating": "B++ (Good)",
+      "single_project_limit": 2500000,
+      "aggregate_limit": 6000000,
+      "current_backlog": 5400000
+    },
+    "insurance": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 2000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-01-15"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": true,
+      "sbe": true,
+      "certifying_agency": "Georgia Women in Business Council"
+    },
+    "performance": {
+      "packages_bid": 6,
+      "packages_awarded": 1,
+      "packages_completed": 1,
+      "change_order_rate_pct": 9.8,
+      "on_time_closeout_pct": 71.0,
+      "avg_rfi_per_package": 12.3,
+      "years_working_together": 2
+    },
+    "schedule": {
+      "proposed_duration_weeks": 26,
+      "mobilization_weeks": 6,
+      "crew_size_committed": 5,
+      "concurrent_awarded_packages": 0
+    }
+  }
 }

@@ -16,5 +16,53 @@
       "email": "curtis.boyd@meridian-electric-demo.example"
     }
   ],
-  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration.",
+  "prequalification": {
+    "last_reviewed": "2026-05-28",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 1.12,
+      "emr_year": 2025,
+      "trir": 3.8,
+      "osha_recordables_3yr": 7,
+      "lost_time_incidents_3yr": 2
+    },
+    "bonding": {
+      "surety": "Keystone Indemnity Company",
+      "am_best_rating": "A- (Excellent)",
+      "single_project_limit": 8000000,
+      "aggregate_limit": 20000000,
+      "current_backlog": 11200000
+    },
+    "insurance": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2026-12-31"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": false,
+      "sbe": true,
+      "certifying_agency": "Georgia Small Business Program"
+    },
+    "performance": {
+      "packages_bid": 9,
+      "packages_awarded": 3,
+      "packages_completed": 3,
+      "change_order_rate_pct": 4.1,
+      "on_time_closeout_pct": 88.0,
+      "avg_rfi_per_package": 7.4,
+      "years_working_together": 4
+    },
+    "schedule": {
+      "proposed_duration_weeks": 22,
+      "mobilization_weeks": 4,
+      "crew_size_committed": 7,
+      "concurrent_awarded_packages": 1
+    }
+  }
 }

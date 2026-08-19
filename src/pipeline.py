@@ -23,15 +23,25 @@ src/normalization, src/comparison, and src/persistence.
 """
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 
 import jsonschema
 
 from src.ai.provider import AIProvider, ExtractionResult
 from src.comparison.adjustments import load_adjustments
-from src.comparison.anomalies import load_required_scope, run_all
+from src.comparison.anomalies import SEVERITY_ORDER, load_required_scope, run_all
+from src.comparison.award import AwardRecommendation, recommend_award
 from src.comparison.compare import PackageComparison, build_comparison
+from src.comparison.coverage import PackageCoverage, build_coverage, load_addenda, load_itb
+from src.comparison.coverage import run_all as run_coverage_rules
+from src.comparison.prequalification import (
+    VendorPrequalification,
+    evaluate_package,
+    load_policy,
+    load_vendor_records,
+)
 from src.comparison.revisions import apply_supersession, diff_all
 from src.extraction.excel_tables import extract_sheets
 from src.extraction.hashing import sha256_file
@@ -222,6 +232,12 @@ class PackageResult:
     comparison: PackageComparison
     results: list[PipelineResult]
     bids: list[NormalizedBid]
+    # Eligibility and award reasoning. Optional because they depend on records a
+    # package may not carry -- an invitation log, an addenda log, prequalification
+    # files -- and a package without them should still level and compare.
+    coverage: PackageCoverage | None = None
+    prequalification: dict[str, VendorPrequalification] = field(default_factory=dict)
+    award: AwardRecommendation | None = None
 
 
 def run_package(
@@ -267,6 +283,36 @@ def run_package(
     )
     comparison.revision_diffs = diff_all(bids)
 
+    package_record = next(
+        bp for bp in project["bid_packages"]
+        if bp["bid_package_number"] == bid_package_number
+    )
+    company_path = sample_data / "company" / f"{project['general_contractor_id']}.json"
+
+    coverage = _build_coverage_if_available(
+        sample_data, bid_package_number, bids, company_path,
+    )
+    if coverage is not None:
+        # Coverage findings join the same queue as every other rule, then the
+        # whole list is re-sorted: an unacknowledged addendum outranks a
+        # low-severity pricing note regardless of which module raised it.
+        comparison.anomalies = sorted(
+            comparison.anomalies + run_coverage_rules(coverage),
+            key=lambda a: (SEVERITY_ORDER[a.severity], a.code),
+        )
+
+    prequalification = _evaluate_prequalification_if_available(
+        sample_data, comparison, company_path, package_record,
+    )
+    award = None
+    if prequalification and "schedule_requirement" in package_record:
+        award = recommend_award(
+            comparison,
+            prequalification,
+            load_policy(company_path),
+            package_record["schedule_requirement"],
+        )
+
     # Persist supersession so the database reflects which bids are still in play.
     with session_scope(engine) as session:
         for bid in bids:
@@ -275,7 +321,68 @@ def run_package(
                 if row is not None:
                     row.superseded_by = bid.superseded_by
 
-    return PackageResult(comparison=comparison, results=results, bids=bids)
+    return PackageResult(
+        comparison=comparison,
+        results=results,
+        bids=bids,
+        coverage=coverage,
+        prequalification=prequalification,
+        award=award,
+    )
+
+
+def _build_coverage_if_available(
+    sample_data: Path,
+    bid_package_number: str,
+    bids: list[NormalizedBid],
+    company_path: Path,
+) -> PackageCoverage | None:
+    """Coverage needs an invitation log and an addenda log; both are optional."""
+    itb_path = sample_data / "itb" / f"{bid_package_number}.json"
+    addenda_path = sample_data / "addenda" / f"{bid_package_number}.json"
+    if not (itb_path.exists() and addenda_path.exists() and company_path.exists()):
+        return None
+
+    company = json.loads(company_path.read_text(encoding="utf-8"))
+    if "bid_coverage_policy" not in company:
+        return None
+
+    return build_coverage(
+        load_itb(itb_path),
+        load_addenda(addenda_path),
+        bids,
+        company["bid_coverage_policy"],
+    )
+
+
+def _evaluate_prequalification_if_available(
+    sample_data: Path,
+    comparison: PackageComparison,
+    company_path: Path,
+    package_record: dict,
+) -> dict[str, VendorPrequalification]:
+    """Prequalify against LEVELED totals, as of the package's stated evaluation date."""
+    if not company_path.exists():
+        return {}
+
+    company = json.loads(company_path.read_text(encoding="utf-8"))
+    if "subcontractor_prequalification_policy" not in company:
+        return {}
+
+    records = load_vendor_records(sample_data / "vendors")
+    if not records:
+        return {}
+
+    as_of = package_record.get("evaluation_date")
+    if as_of is None:
+        return {}
+
+    return evaluate_package(
+        records,
+        load_policy(company_path),
+        {v.vendor_id: v.adjusted_total for v in comparison.vendors},
+        date.fromisoformat(as_of),
+    )
 
 
 def format_summary(result: PipelineResult) -> str:

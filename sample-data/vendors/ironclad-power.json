@@ -16,5 +16,53 @@
       "email": "alicia.stern@ironclad-power-demo.example"
     }
   ],
-  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration.",
+  "prequalification": {
+    "last_reviewed": "2026-06-12",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.78,
+      "emr_year": 2025,
+      "trir": 1.4,
+      "osha_recordables_3yr": 2,
+      "lost_time_incidents_3yr": 0
+    },
+    "bonding": {
+      "surety": "Granite Mutual Surety",
+      "am_best_rating": "A (Excellent)",
+      "single_project_limit": 12000000,
+      "aggregate_limit": 35000000,
+      "current_backlog": 18400000
+    },
+    "insurance": {
+      "general_liability_occurrence": 2000000,
+      "general_liability_aggregate": 4000000,
+      "auto_liability": 2000000,
+      "umbrella": 10000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-03-31"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": false,
+      "sbe": false,
+      "certifying_agency": null
+    },
+    "performance": {
+      "packages_bid": 14,
+      "packages_awarded": 5,
+      "packages_completed": 5,
+      "change_order_rate_pct": 2.4,
+      "on_time_closeout_pct": 96.0,
+      "avg_rfi_per_package": 5.1,
+      "years_working_together": 7
+    },
+    "schedule": {
+      "proposed_duration_weeks": 21,
+      "mobilization_weeks": 3,
+      "crew_size_committed": 8,
+      "concurrent_awarded_packages": 2
+    }
+  }
 }

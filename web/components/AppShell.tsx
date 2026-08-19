@@ -14,6 +14,8 @@ const ROUTE_TABS = [
   { segment: '', label: 'Overview' },
   { segment: 'review', label: 'Review' },
   { segment: 'compare', label: 'Compare' },
+  { segment: 'vendors', label: 'Prequalification' },
+  { segment: 'award', label: 'Award' },
   { segment: 'settings', label: 'Scope & weighting' },
   { segment: 'sources', label: 'Data sources' },
   { segment: 'report', label: 'Stakeholder report' },

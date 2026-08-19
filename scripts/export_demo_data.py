@@ -147,6 +147,118 @@ def build_payload() -> dict:
             ],
         })
 
+    def gate_payload(gate):
+        return {
+            "code": gate.code,
+            "label": gate.label,
+            "status": gate.status,
+            "summary": gate.summary,
+            "detail": gate.detail,
+        }
+
+    prequalification = {
+        vendor_id: {
+            "vendor_id": result.vendor_id,
+            "vendor_name": result.vendor_name,
+            "eligible": result.eligible,
+            "status": result.status,
+            "disqualifying_reason": result.disqualifying_reason,
+            "emr": result.emr,
+            "last_reviewed": result.last_reviewed,
+            "bond_utilization_pct": result.bond_utilization_pct,
+            "participation_certifications": result.participation_certifications,
+            "gates": [gate_payload(g) for g in result.gates],
+            "safety": result.safety,
+            "bonding": result.bonding,
+            "insurance": result.insurance,
+            "certifications": result.certifications,
+            "performance": result.performance,
+            "schedule": result.schedule,
+        }
+        for vendor_id, result in package.prequalification.items()
+    }
+
+    coverage = None
+    if package.coverage is not None:
+        cov = package.coverage
+        coverage = {
+            "issued_date": cov.issued_date,
+            "bids_due": cov.bids_due,
+            "invited_count": cov.invited_count,
+            "responded_count": len(cov.responded),
+            "declined_count": len(cov.declined),
+            "no_response_count": len(cov.no_response),
+            "response_rate_pct": cov.response_rate_pct,
+            "health": cov.health,
+            "minimum_bidders": cov.minimum_bidders,
+            "target_bidders": cov.target_bidders,
+            "current_addendum": cov.current_addendum,
+            "invitations": [
+                {"vendor_id": i.vendor_id, "vendor_name": i.vendor_name,
+                 "invited_at": i.invited_at, "status": i.status, "note": i.note}
+                for i in cov.invitations
+            ],
+            "acknowledgments": [
+                {"vendor_id": a.vendor_id, "vendor_name": a.vendor_name,
+                 "drawing_revision_referenced": a.drawing_revision_referenced,
+                 "acknowledged_through": a.acknowledged_through,
+                 "missing_addenda": a.missing_addenda,
+                 "acknowledged": a.acknowledged, "unstated": a.unstated}
+                for a in cov.acknowledgments
+            ],
+            "addenda": json.loads(
+                (REPO_ROOT / "sample-data" / "addenda" / f"{BID_PACKAGE_NUMBER}.json")
+                .read_text(encoding="utf-8")
+            )["addenda"],
+        }
+
+    # The award baseline ships at the default weighting so the console can verify
+    # its own re-implementation against it, the same way leveling parity works.
+    award = None
+    if package.award is not None:
+        def score_payload(score):
+            return {
+                "vendor_id": score.vendor_id,
+                "vendor_name": score.vendor_name,
+                "adjusted_total": score.adjusted_total,
+                "submitted_total": score.submitted_total,
+                "total_score": score.total_score,
+                "eligible": score.eligible,
+                "disqualifying_reason": score.disqualifying_reason,
+                "rank": score.rank,
+                "factors": [
+                    {"factor": f.factor, "label": f.label, "score": f.score,
+                     "weight": f.weight, "weighted": f.weighted, "basis": f.basis,
+                     "detail": f.detail}
+                    for f in score.factors
+                ],
+            }
+
+        award = {
+            "weights": package.award.weights,
+            "scores": [score_payload(s) for s in package.award.scores],
+            "recommended_vendor_id": (
+                package.award.recommended.vendor_id if package.award.recommended else None
+            ),
+            "runner_up_vendor_id": (
+                package.award.runner_up.vendor_id if package.award.runner_up else None
+            ),
+            "margin": package.award.margin,
+            "agrees_with_lowest_leveled": package.award.agrees_with_lowest_leveled,
+            "narrative": package.award.narrative,
+        }
+
+    company = json.loads(
+        (REPO_ROOT / "sample-data" / "company" / "crestmark.json").read_text(encoding="utf-8")
+    )
+    project_record = json.loads(
+        (REPO_ROOT / "sample-data" / "projects" / f"{PROJECT_NUMBER}.json").read_text(encoding="utf-8")
+    )
+    package_record = next(
+        bp for bp in project_record["bid_packages"]
+        if bp["bid_package_number"] == BID_PACKAGE_NUMBER
+    )
+
     required_scope = load_required_scope(
         REPO_ROOT / "sample-data" / "specifications" / f"{PROJECT_NUMBER}-div26-required-scope.json"
     )
@@ -182,6 +294,15 @@ def build_payload() -> dict:
             for key in SCOPE_KEYS
         ],
         "required_scope": required_scope,
+        "prequalification": prequalification,
+        "coverage": coverage,
+        "award": award,
+        "policy": {
+            "prequalification": company["subcontractor_prequalification_policy"],
+            "coverage": company["bid_coverage_policy"],
+            "schedule_requirement": package_record["schedule_requirement"],
+            "evaluation_date": package_record["evaluation_date"],
+        },
         "adjustment_rules": {
             "entered_by": adjustment_file["entered_by"],
             "entered_role": adjustment_file.get("entered_role", ""),

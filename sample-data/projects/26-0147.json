@@ -13,8 +13,16 @@
       "bid_package_number": "26-0147-BP-26",
       "csi_division": "26",
       "description": "Division 26 - Electrical",
-      "budget_usd": 185000.00,
-      "primary_human_reviewer": "Daniel Cho"
+      "budget_usd": 185000.0,
+      "primary_human_reviewer": "Daniel Cho",
+      "schedule_requirement": {
+        "required_duration_weeks": 22,
+        "max_mobilization_weeks": 4,
+        "min_crew_size": 6,
+        "notice_to_proceed": "2026-10-05"
+      },
+      "bid_due_date": "2026-08-07",
+      "evaluation_date": "2026-08-14"
     }
   ],
   "synthetic_notice": "Fictional project record created for the Bid Intelligence & Procurement Copilot demonstration."

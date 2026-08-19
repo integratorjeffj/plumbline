@@ -721,3 +721,107 @@ tr:last-child td { border-bottom: 0; }
 
   @page { size: letter; margin: 0.5in; }
 }
+
+/* ---------------------------------------------------------------------------
+   Prequalification, award scoring, and bid coverage
+   ------------------------------------------------------------------------- */
+
+/* Selectable bidder card on the prequalification page. */
+.vendor-chip {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font: inherit;
+  color: inherit;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.vendor-chip:hover { background: var(--surface-2); }
+.vendor-chip[data-selected] {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+/* A 0-100 factor score. The bar is for comparing rows; the number beside it is
+   for reading an exact value. This table is asked to do both, so it does both
+   rather than picking one and hoping. */
+.score-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  min-width: 96px;
+}
+.score-bar-track {
+  flex: 1;
+  height: 6px;
+  min-width: 44px;
+  border-radius: 3px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.score-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+}
+.score-bar-value { min-width: 22px; text-align: right; }
+.score-bar[data-muted] .score-bar-fill { background: var(--ink-3); }
+.score-bar[data-muted] .score-bar-value { color: var(--ink-3); }
+
+/* The recommended row, and the rows the gates removed. A gated bidder is
+   dimmed rather than hidden: the number it would have scored is exactly what
+   the reviewer needs to weigh the gate against. */
+tr[data-recommended] { background: var(--ok-soft); }
+tr.row-excluded td { opacity: 0.72; }
+
+/* EMR against the policy band. */
+.emr-track {
+  position: relative;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, var(--ok-soft), var(--warn-soft) 55%, var(--danger-soft));
+  border: 1px solid var(--line);
+}
+.emr-band-ok {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-right: 2px dashed var(--ink-3);
+  border-radius: 5px 0 0 5px;
+}
+.emr-marker {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--surface);
+  transform: translateY(-50%);
+}
+
+/* Invitation outcomes as one proportional bar. */
+.coverage-bar {
+  display: flex;
+  height: 12px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.coverage-seg[data-kind='responded'] { background: var(--ok); }
+.coverage-seg[data-kind='declined'] { background: var(--ink-3); }
+.coverage-seg[data-kind='silent'] {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--surface-2),
+    var(--surface-2) 4px,
+    var(--line-2) 4px,
+    var(--line-2) 8px
+  );
+}
+
+.btn[data-active] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}

@@ -1,0 +1,27 @@
+{
+  "bid_package_number": "26-0147-BP-26",
+  "current_addendum": 3,
+  "issued_by": "Leah Morgan",
+  "acknowledgment_note": "Acknowledgment is inferred from the drawing revision each proposal states it was priced against. A bidder pricing an older revision has not received, or has not incorporated, every addendum issued since.",
+  "addenda": [
+    {
+      "number": 1,
+      "issued_date": "2026-07-10",
+      "drawing_revision": "Revision 1",
+      "description": "Panel schedule revisions in the east wing; added receptacle circuits at nurse stations."
+    },
+    {
+      "number": 2,
+      "issued_date": "2026-07-24",
+      "drawing_revision": "Revision 2",
+      "description": "Feeder reroute at the generator pad; clarified conduit routing above the imaging suite."
+    },
+    {
+      "number": 3,
+      "issued_date": "2026-08-03",
+      "drawing_revision": "Revision 3",
+      "description": "Added arc-flash study requirement per specification section 26 05 73; revised lighting control sequence."
+    }
+  ],
+  "synthetic_notice": "Fictional addenda log created for the Bid Intelligence & Procurement Copilot demonstration."
+}

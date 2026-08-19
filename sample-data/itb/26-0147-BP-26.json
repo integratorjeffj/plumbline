@@ -1,0 +1,58 @@
+{
+  "bid_package_number": "26-0147-BP-26",
+  "issued_by": "Leah Morgan",
+  "issued_date": "2026-07-06",
+  "bids_due": "2026-08-07",
+  "invitations": [
+    {
+      "vendor_id": "apex-electrical",
+      "vendor_name": "Apex Electrical Contractors",
+      "invited_at": "2026-07-06",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "invited_at": "2026-07-06",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "invited_at": "2026-07-06",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "invited_at": "2026-07-13",
+      "status": "responded",
+      "note": "Added to the invitation list after Addendum 1."
+    },
+    {
+      "vendor_id": "northgate-electric",
+      "vendor_name": "Northgate Electric Company",
+      "invited_at": "2026-07-06",
+      "status": "declined",
+      "note": "Capacity committed through Q1 2027."
+    },
+    {
+      "vendor_id": "summit-power-systems",
+      "vendor_name": "Summit Power Systems",
+      "invited_at": "2026-07-06",
+      "status": "declined",
+      "note": "Declined healthcare work outside their current licensing."
+    },
+    {
+      "vendor_id": "brightline-electrical",
+      "vendor_name": "Brightline Electrical Services",
+      "invited_at": "2026-07-06",
+      "status": "no_response",
+      "note": "Two follow-ups sent; no acknowledgment received."
+    }
+  ],
+  "synthetic_notice": "Fictional invitation-to-bid record created for the Bid Intelligence & Procurement Copilot demonstration."
+}
