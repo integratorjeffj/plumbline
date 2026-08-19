@@ -1,9 +1,10 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useStore } from '@/lib/store';
 import { usePrefs } from '@/lib/prefs';
 import { SectionHead } from '@/components/Bits';
+import { SegmentedBar } from '@/components/Charts';
 import { formatDate, money, shortHash } from '@/lib/format';
 
 type ConnectorState = 'simulated' | 'planned';
@@ -80,6 +81,21 @@ export default function SourcesPage() {
   const [uploads, setUploads] = useState<UploadedFile[]>([]);
   const [busy, setBusy] = useState(false);
   const [dragging, setDragging] = useState(false);
+  const [connectorFilter, setConnectorFilter] = useState<ConnectorState | 'all'>('all');
+
+  const connectorTally = useMemo(() => {
+    const out: Record<ConnectorState, number> = { simulated: 0, planned: 0 };
+    for (const c of CONNECTORS) out[c.state] += 1;
+    return out;
+  }, []);
+
+  const visibleConnectors = useMemo(
+    () =>
+      connectorFilter === 'all'
+        ? CONNECTORS
+        : CONNECTORS.filter((c) => c.state === connectorFilter),
+    [connectorFilter]
+  );
 
   const ingest = useCallback(async (files: FileList | null) => {
     if (!files?.length) return;
@@ -266,8 +282,62 @@ export default function SourcesPage() {
         Nothing below is authorized or transmitting. Each card describes what the integration would
         ingest and how far the code actually goes today.
       </p>
+
+      <div className="card card-pad" style={{ marginBottom: 16 }}>
+        <SegmentedBar
+          height={14}
+          ariaLabel="Connectors by maturity"
+          segments={[
+            {
+              key: 'simulated',
+              label: 'Simulated',
+              value: connectorTally.simulated,
+              color: 'var(--warn)',
+              detail: 'Shaped like the real thing, running on fixtures.',
+            },
+            {
+              key: 'planned',
+              label: 'Planned',
+              value: connectorTally.planned,
+              color: 'var(--ink-3)',
+              detail: 'Not built. The data model carries what it would need.',
+            },
+          ]}
+        />
+        <div className="legend" style={{ marginTop: 12 }}>
+          <button
+            type="button"
+            className="legend-item"
+            data-dim={connectorFilter !== 'all' ? '' : undefined}
+            aria-pressed={connectorFilter === 'all'}
+            onClick={() => setConnectorFilter('all')}
+          >
+            <span className="legend-swatch" style={{ background: 'var(--line-2)' }} />
+            Everything
+            <span className="num muted">{CONNECTORS.length}</span>
+          </button>
+          {(['simulated', 'planned'] as ConnectorState[]).map((state) => (
+            <button
+              key={state}
+              type="button"
+              className="legend-item"
+              data-dim={connectorFilter !== 'all' && connectorFilter !== state ? '' : undefined}
+              aria-pressed={connectorFilter === state}
+              onClick={() => setConnectorFilter(connectorFilter === state ? 'all' : state)}
+            >
+              <span
+                className="legend-swatch"
+                style={{ background: state === 'simulated' ? 'var(--warn)' : 'var(--ink-3)' }}
+              />
+              {state}
+              <span className="num muted">{connectorTally[state]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="grid grid-3">
-        {CONNECTORS.map((c) => (
+        {visibleConnectors.map((c) => (
           <div key={c.name} className="card card-pad">
             <div className="row" style={{ marginBottom: 8 }}>
               <span className={`pill ${c.state === 'simulated' ? 'p-sim' : 'p-plan'}`}>

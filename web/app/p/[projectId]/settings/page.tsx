@@ -1,12 +1,17 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import { useStore } from '@/lib/store';
 import { SectionHead } from '@/components/Bits';
+import { ColumnChart } from '@/components/Charts';
+import { TabPanel, TabStrip, type TabDef } from '@/components/Tabs';
 import { IMPORTANCE_LABEL, IMPORTANCE_WEIGHT } from '@/lib/leveling';
 import { money, percent } from '@/lib/format';
 import type { Importance } from '@/lib/types';
 
 const GRADES: Importance[] = ['critical', 'standard', 'optional', 'ignored'];
+
+type TabKey = 'weighting' | 'impact' | 'master';
 
 export default function SettingsPage() {
   const {
@@ -20,7 +25,42 @@ export default function SettingsPage() {
     isDirty,
   } = useStore();
 
+  const [tab, setTab] = useState<TabKey>('weighting');
+
   const requiredKeys = new Set(data.required_scope.map((r) => r.scope_key));
+
+  // What each scope item actually contributes once its grade multiplier is
+  // applied. Items that level to nothing are dropped rather than drawn as
+  // zero-height bars, which read as data rather than as absence.
+  const impact = useMemo(
+    () =>
+      data.scope_items
+        .filter((item) => item.in_package_scope)
+        .map((item) => {
+          const grade = settings.importance[item.key] ?? 'ignored';
+          const amount = settings.amounts[item.key] ?? 0;
+          return {
+            key: item.key,
+            label: item.label,
+            value: Math.round(amount * IMPORTANCE_WEIGHT[grade] * 100) / 100,
+            color:
+              grade === 'critical'
+                ? 'var(--danger)'
+                : grade === 'optional'
+                  ? 'var(--ink-3)'
+                  : 'var(--accent)',
+          };
+        })
+        .filter((column) => column.value > 0)
+        .sort((a, b) => b.value - a.value),
+    [data.scope_items, settings]
+  );
+
+  const tabs: TabDef<TabKey>[] = [
+    { key: 'weighting', label: 'Weighting' },
+    { key: 'impact', label: 'Impact', count: impact.length || undefined },
+    { key: 'master', label: 'Master data' },
+  ];
   const byAdjusted = [...vendors].sort((a, b) => a.adjusted_rank - b.adjusted_rank);
 
   return (
@@ -65,17 +105,25 @@ export default function SettingsPage() {
         </div>
       </div>
 
+      <TabStrip tabs={tabs} active={tab} onChange={setTab} label="Scope and weighting sections" />
+
+      {tab === 'weighting' && (
+        <TabPanel tabKey="weighting">
       {/* policy toggle */}
       <div className="card card-pad" style={{ marginBottom: 20 }}>
-        <div className="row" style={{ alignItems: 'flex-start' }}>
-          <input
-            id="price-unclear"
-            type="checkbox"
-            checked={settings.priceUnclearScope}
-            onChange={(e) => setPriceUnclearScope(e.target.checked)}
-            style={{ width: 'auto', marginTop: 4 }}
-          />
-          <label htmlFor="price-unclear" style={{ flex: 1 }}>
+        <div className="row" style={{ alignItems: 'flex-start', gap: 12 }}>
+          <label className="switch" style={{ marginTop: 2 }}>
+            <input
+              type="checkbox"
+              checked={settings.priceUnclearScope}
+              onChange={(e) => setPriceUnclearScope(e.target.checked)}
+            />
+            <span className="switch-track" aria-hidden="true">
+              <span className="switch-thumb" />
+            </span>
+            <span className="sr-only">Price ambiguous scope as a gap</span>
+          </label>
+          <div style={{ flex: 1 }}>
             <b>Price ambiguous scope as a gap</b>
             <div className="small muted" style={{ marginTop: 3 }}>
               Off by default, and that is a policy rather than an oversight. When a proposal says
@@ -83,7 +131,7 @@ export default function SettingsPage() {
               future conversation, not a commitment. The default treats that as a clarification to
               send the vendor rather than a cost to assume against them.
             </div>
-          </label>
+          </div>
         </div>
       </div>
 
@@ -189,7 +237,37 @@ export default function SettingsPage() {
         <span className="mono">src/comparison/adjustments.py</span> refuses any adjustment file not
         marked that way, so an AI-suggested number cannot enter the pricing path by accident.
       </div>
+        </TabPanel>
+      )}
 
+      {tab === 'impact' && (
+        <TabPanel tabKey="impact">
+          <div className="card card-pad">
+            <h3 style={{ marginTop: 0, marginBottom: 4 }}>What each scope item is worth</h3>
+            <p className="small muted" style={{ marginTop: 0, marginBottom: 16 }}>
+              The value a missing item adds to a bid, after its importance multiplier. Red is
+              critical scope carried at a risk premium, grey is optional scope discounted because
+              the estimator may accept it as-is. Change a grade on the Weighting tab and these move.
+            </p>
+            {impact.length === 0 ? (
+              <p className="muted">
+                Nothing is priced right now. Every in-package item is graded &ldquo;not
+                leveled&rdquo; or carries no estimator value.
+              </p>
+            ) : (
+              <ColumnChart
+                columns={impact}
+                height={190}
+                ariaLabel="Leveling value by scope item"
+                formatValue={(v) => money(v)}
+              />
+            )}
+          </div>
+        </TabPanel>
+      )}
+
+      {tab === 'master' && (
+        <TabPanel tabKey="master">
       {/* master data */}
       <h2 style={{ marginBottom: 12 }}>Project master data</h2>
       <div className="grid grid-2">
@@ -236,6 +314,8 @@ export default function SettingsPage() {
           </div>
         </div>
       </div>
+        </TabPanel>
+      )}
     </>
   );
 }
