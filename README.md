@@ -157,6 +157,19 @@ The rationale is generated deterministically rather than by a model call. A reco
 estimator signs their name to has to read the same every time it is produced and has to be
 reconstructible from the numbers alone.
 
+All three demo packages carry this, and they deliberately disagree with each other:
+
+| Package | Gates | What the model does |
+|---|---|---|
+| Falcon Medical | Two bidders gated, on safety and on insurance | Confirms the lowest leveled bid |
+| Harborview Mechanical | Nobody gated; top three within $1,800 leveled | **Overrules** the cheapest bid on non-price factors |
+| Westbrook Logistics | Strongest performer gated on bonding capacity | Confirms, on a market where only 3 of 9 invited firms bid |
+
+Westbrook is the uncomfortable one. Anchor Electrical has the best change-order record and closeout
+rate of any firm in the demo set, and its surety will not write a single project this size, so it
+never enters the ranking. The console still shows the 88.2 it would have scored, because what the
+gate cost is the thing a reviewer needs in order to weigh the gate.
+
 ### Coverage: the bids that never arrived
 
 A package can look healthy because four proposals sit side by side, when the reason the spread is
@@ -189,7 +202,7 @@ proves what the number actually covers.
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
-- **166 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
+- **204 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
 - **Live-model evaluation harness** scoring real Claude output against the same 113-check answer key, broken out by category so scope judgment is reported separately from field reads, with a model-to-model diff mode
 
 ---
@@ -312,11 +325,32 @@ their numbers are computed, not typed by hand -- see `web/data/seeds/*.seed.json
 cd web && npm install && npm run build:demo-projects
 ```
 
+Those seeds carry no prequalification, coverage, or award data, because the TypeScript builder only
+runs leveling and findings. Rather than port the gate rules to TypeScript and end up with a second
+uncheckable copy of them, one Python script scores those packages with the same engines Falcon
+uses, so all three are evaluated by one implementation:
+
+```bash
+cd .. && python scripts/enrich_demo_projects.py
+```
+
 Then build and publish:
 
 ```bash
-npm run build
+cd web && npm run build
 ```
+
+The console verifies its own arithmetic against the pipeline on every load, and shows a parity
+banner if the two disagree. To find out *which* factor drifted rather than just that something
+did:
+
+```bash
+npm run check:parity
+```
+
+That check earned its place immediately: adding the third package exposed a real drift, where the
+browser weighted a factor score before rounding it and Python rounded before weighting. One cent
+of score, enough to move a total.
 
 `npm run build` syncs every file in `demo/projects/` into the app, builds, and publishes the
 static output to `docs/console/`. Adding a new bid package to the directory is: a new file under
