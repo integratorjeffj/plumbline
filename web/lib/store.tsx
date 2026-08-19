@@ -23,8 +23,19 @@ import {
 
 import { getProject } from './projects';
 import { defaultSettings, buildComparison, verifyAgainstPipeline, type LevelingSettings } from './leveling';
+import { DEFAULT_WEIGHTS, buildAward, verifyAwardAgainstPipeline } from './award';
 import { computeFindings } from './findings';
-import type { Finding, Importance, PipelineData, ReviewStatus, ScopeStatus, VendorComparison } from './types';
+import type {
+  AwardFactor,
+  AwardRecommendation,
+  AwardWeights,
+  Finding,
+  Importance,
+  PipelineData,
+  ReviewStatus,
+  ScopeStatus,
+  VendorComparison,
+} from './types';
 
 export interface FieldDecision {
   status: ReviewStatus;
@@ -46,6 +57,11 @@ export interface BidReview {
 interface PersistedState {
   settings: LevelingSettings;
   reviews: Record<string, BidReview>;
+  /** Award-model weights. Separate from leveling settings: they answer a
+   *  different question and are reset independently. */
+  weights: AwardWeights;
+  /** Soft award, recorded in the browser only. Nothing is executed. */
+  awardedVendorId: string | null;
 }
 
 export function projectStorageKey(projectId: string): string {
@@ -87,6 +103,8 @@ function initialState(data: PipelineData): PersistedState {
     reviews: Object.fromEntries(
       data.submissions.map((s) => [s.bid_id, emptyReview(data.project.estimator)])
     ),
+    weights: { ...(data.award?.weights ?? DEFAULT_WEIGHTS) },
+    awardedVendorId: null,
   };
 }
 
@@ -95,13 +113,20 @@ interface StoreValue extends PersistedState {
   vendors: VendorComparison[];
   findings: Finding[];
   parity: ReturnType<typeof verifyAgainstPipeline>;
+  awardParity: ReturnType<typeof verifyAwardAgainstPipeline>;
+  award: AwardRecommendation | null;
   hydrated: boolean;
   isDirty: boolean;
+  weightsAreDefault: boolean;
 
   setImportance: (scopeKey: string, grade: Importance) => void;
   setAmount: (scopeKey: string, amount: number) => void;
   setPriceUnclearScope: (on: boolean) => void;
   resetSettings: () => void;
+
+  setWeight: (factor: AwardFactor, value: number) => void;
+  resetWeights: () => void;
+  setAwardedVendor: (vendorId: string | null) => void;
 
   setBidStatus: (bidId: string, status: ReviewStatus) => void;
   setBidNote: (bidId: string, note: string) => void;
@@ -138,6 +163,8 @@ export function ProjectStoreProvider({
         setState((current) => ({
           settings: { ...current.settings, ...parsed.settings },
           reviews: { ...current.reviews, ...parsed.reviews },
+          weights: { ...current.weights, ...parsed.weights },
+          awardedVendorId: parsed.awardedVendorId ?? null,
         }));
       }
     } catch {
@@ -183,11 +210,27 @@ export function ProjectStoreProvider({
     [data, vendors, state.settings]
   );
   const parity = useMemo(() => verifyAgainstPipeline(data), [data]);
+  const awardParity = useMemo(() => verifyAwardAgainstPipeline(data, vendors), [data, vendors]);
+
+  // Re-scored from the live leveled totals, so a scope correction made during
+  // review flows all the way through to the award ranking.
+  const award = useMemo(
+    () => buildAward(data, vendors, state.weights),
+    [data, vendors, state.weights]
+  );
 
   const defaults = useMemo(() => defaultSettings(data), [data]);
   const isDirty = useMemo(
     () => JSON.stringify(state.settings) !== JSON.stringify(defaults),
     [state.settings, defaults]
+  );
+  const defaultWeights = useMemo(
+    () => data.award?.weights ?? DEFAULT_WEIGHTS,
+    [data.award]
+  );
+  const weightsAreDefault = useMemo(
+    () => JSON.stringify(state.weights) === JSON.stringify(defaultWeights),
+    [state.weights, defaultWeights]
   );
 
   const patchReview = useCallback((bidId: string, patch: Partial<BidReview>) => {
@@ -206,8 +249,11 @@ export function ProjectStoreProvider({
     vendors,
     findings,
     parity,
+    awardParity,
+    award,
     hydrated,
     isDirty,
+    weightsAreDefault,
 
     setImportance: (scopeKey, grade) =>
       setState((s) => ({
@@ -222,6 +268,14 @@ export function ProjectStoreProvider({
     setPriceUnclearScope: (on) =>
       setState((s) => ({ ...s, settings: { ...s.settings, priceUnclearScope: on } })),
     resetSettings: () => setState((s) => ({ ...s, settings: defaultSettings(data) })),
+
+    setWeight: (factor, value) =>
+      setState((s) => ({
+        ...s,
+        weights: { ...s.weights, [factor]: Math.max(0, value) },
+      })),
+    resetWeights: () => setState((s) => ({ ...s, weights: { ...defaultWeights } })),
+    setAwardedVendor: (vendorId) => setState((s) => ({ ...s, awardedVendorId: vendorId })),
 
     setBidStatus: (bidId, status) =>
       patchReview(bidId, { status, decidedAt: status === 'pending' ? null : new Date().toISOString() }),

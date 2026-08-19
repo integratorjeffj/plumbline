@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useStore } from '@/lib/store';
-import { Kpi, SectionHead, SeverityPill } from '@/components/Bits';
+import { CoveragePill, Kpi, SectionHead, SeverityPill } from '@/components/Bits';
 import { money, percent } from '@/lib/format';
 
 const PIPELINE_STAGES = [
@@ -40,6 +40,9 @@ export default function OverviewPage() {
   // that at least one bidder actually included, across the package's whole
   // taxonomy -- not tied to any single item, so this reads correctly
   // regardless of which package (electrical, mechanical, ...) is open.
+  const coverage = data.coverage ?? null;
+  const unacknowledged = coverage?.acknowledgments.filter((a) => a.missing_addenda.length) ?? [];
+
   const requiredKeys = data.required_scope.map((r) => r.scope_key);
   const coveredKeys = requiredKeys.filter((key) => {
     const item = data.scope_items.find((si) => si.key === key);
@@ -96,6 +99,57 @@ export default function OverviewPage() {
               Review the extractions ({pendingCount} pending)
             </Link>
           </div>
+        </div>
+      )}
+
+
+      {coverage && (
+        <div className="card card-pad" style={{ marginBottom: 26 }}>
+          <div className="row row-wrap" style={{ marginBottom: 10 }}>
+            <h2 style={{ flex: 1, margin: 0 }}>Bid coverage</h2>
+            <CoveragePill health={coverage.health} />
+          </div>
+          <p className="muted" style={{ marginTop: 0, marginBottom: 14, maxWidth: '76ch' }}>
+            Measured from the invitation out, not from the bids in. Four proposals side by side can
+            look like a competitive package when the reason the spread is narrow is that the firms
+            who would have priced it lower never responded.
+          </p>
+
+          <div className="coverage-bar" role="img"
+               aria-label={`${coverage.responded_count} responded, ${coverage.declined_count} declined, ${coverage.no_response_count} no response`}>
+            <span className="coverage-seg" data-kind="responded"
+                  style={{ flex: coverage.responded_count || 0.001 }} />
+            <span className="coverage-seg" data-kind="declined"
+                  style={{ flex: coverage.declined_count || 0.001 }} />
+            <span className="coverage-seg" data-kind="silent"
+                  style={{ flex: coverage.no_response_count || 0.001 }} />
+          </div>
+
+          <div className="row row-wrap small" style={{ gap: 16, marginTop: 10 }}>
+            <span><b className="num">{coverage.responded_count}</b> responded</span>
+            <span className="muted"><b className="num">{coverage.declined_count}</b> declined</span>
+            <span className="muted"><b className="num">{coverage.no_response_count}</b> no response</span>
+            <span className="muted">
+              {coverage.response_rate_pct.toFixed(0)}% of {coverage.invited_count} invited ·
+              {' '}minimum {coverage.minimum_bidders}, target {coverage.target_bidders}
+            </span>
+          </div>
+
+          {unacknowledged.length > 0 && (
+            <div className="stack" style={{ gap: 6, marginTop: 16 }}>
+              {unacknowledged.map((ack) => (
+                <div key={ack.vendor_id} className="row row-wrap small"
+                     style={{ borderLeft: '3px solid var(--danger)', paddingLeft: 10 }}>
+                  <b style={{ flex: 1 }}>{ack.vendor_name}</b>
+                  <span style={{ color: 'var(--ink-2)' }}>
+                    priced {ack.drawing_revision_referenced ?? 'no stated revision'} · missing
+                    {' '}Addend{ack.missing_addenda.length > 1 ? 'a' : 'um'}{' '}
+                    {ack.missing_addenda.join(', ')} of {coverage.current_addendum}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
