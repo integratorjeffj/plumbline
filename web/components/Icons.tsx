@@ -3,7 +3,7 @@
  *
  * An icon font or an icon package would be the obvious reach here, but this
  * app ships as a static export with no runtime network requests and a
- * deliberately short dependency list. Nine 16px glyphs at a stroke weight that
+ * deliberately short dependency list. Fourteen 16px glyphs at a stroke weight that
  * matches Inter's is cheaper than either, and inlining them means an icon can
  * never render as a missing-glyph box on a locked-down browser.
  */
@@ -21,9 +21,16 @@ export type IconName =
   | 'scale'
   | 'alert'
   | 'clock'
-  | 'more';
+  | 'more'
+  | 'blueprint';
 
 const PATHS: Record<IconName, React.ReactNode> = {
+  blueprint: (
+    <>
+      <path d="M2 3h12v10H2z" />
+      <path d="M2 6.2h12M5.4 6.2V13M8.8 3v3.2" />
+    </>
+  ),
   packages: (
     <>
       <path d="M3 4.5h10M3 8h10M3 11.5h6" />

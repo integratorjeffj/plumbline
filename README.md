@@ -2,7 +2,7 @@
 
 **Reads subcontractor bids in whatever format they arrive in, levels them onto one scope vocabulary, and shows what each bid actually costs.**
 
-[**Live Demo →**](https://integratorjeffj.github.io/plumbline/) · [**Review Console →**](https://integratorjeffj.github.io/plumbline/console/) · [How the leveling works](#the-leveling-formula) · [What is real, what is stubbed](#what-is-real-and-what-is-stubbed)
+[**Live Demo →**](https://integratorjeffj.github.io/plumbline/) · [How the leveling works](#the-leveling-formula) · [What is real, what is stubbed](#what-is-real-and-what-is-stubbed)
 
 `Python` `Claude API` `pdfplumber` `openpyxl` `SQLAlchemy` `Next.js 15` `TypeScript` `pytest`
 
@@ -11,7 +11,7 @@ A general contractor's estimator gets four bids for the same electrical package 
 ## See it in 60 seconds
 
 1. **Look at the ranking table below.** The low bidder at $167,400 lands fourth at $223,700 once its missing lighting allowance and permit fees are priced in. The rank-movement column is the whole product in one number.
-2. **Open the [Review Console](https://integratorjeffj.github.io/plumbline/console/) and click any extracted figure.** It jumps to the page and section it was cited from. Approve it, correct it, or reject it, and correcting a scope status re-levels the package on the spot.
+2. **Open the [Review Console](https://integratorjeffj.github.io/plumbline/) and click any extracted figure.** It jumps to the page and section it was cited from. Approve it, correct it, or reject it, and correcting a scope status re-levels the package on the spot.
 3. **Go to Scope & weighting and change an importance grade.** The ranking recomputes in the browser. The parity badge on the overview page is checking that browser math against the Python pipeline's exported totals on every load, and turns red if they ever disagree.
 4. **Open Award and click "Track record first."** The recommendation flips from the cheapest eligible bid to the incumbent with the better change-order history, and the written rationale rewrites itself to explain the $15,200 premium. Two bidders never enter the ranking at all -- Prequalification shows which gate stopped each one.
 
@@ -38,7 +38,7 @@ It also finds what a price comparison structurally cannot: the **arc-flash study
 
 ### The review console
 
-The [console](https://integratorjeffj.github.io/plumbline/console/) is the interface an estimator
+The [console](https://integratorjeffj.github.io/plumbline/) is the interface an estimator
 actually works in. It sits in a persistent application shell: a left sidebar carrying program-level
 navigation and, when a package is open, that package's own routes nested beneath it, plus a top bar
 with the breadcrumb, a global package search, and the theme toggle. The sidebar collapses to an
@@ -308,8 +308,8 @@ Or just visit the [live demo](https://integratorjeffj.github.io/plumbline/).
 
 ### Building the console
 
-The console is a Next.js app that static-exports into `docs/console/` (GitHub Pages serves this
-repo from `/docs`). Every bid package it can open lives as one file under `demo/projects/`.
+The console is a Next.js app that static-exports into `docs/` (GitHub Pages serves this repo from
+`/docs`). It *is* the site: opening the demo URL opens the application, not a page about it. Every bid package it can open lives as one file under `demo/projects/`.
 Falcon Medical's is Python-derived; regenerate it from the pipeline:
 
 ```bash

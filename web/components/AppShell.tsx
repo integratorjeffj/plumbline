@@ -23,6 +23,7 @@ const ROUTE_TABS = [
 
 const PROGRAM_NAV: { href: string; label: string; icon: IconName }[] = [
   { href: '/', label: 'Bid packages', icon: 'packages' },
+  { href: '/how-it-works/', label: 'How it works', icon: 'blueprint' },
   { href: '/findings/', label: 'Findings', icon: 'findings' },
   { href: '/scope-matrix/', label: 'Scope matrix', icon: 'matrix' },
   { href: '/vendors/', label: 'Vendors', icon: 'vendors' },
