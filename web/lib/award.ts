@@ -13,6 +13,12 @@
  * parity failure rather than a plausible-looking number.
  *
  * Python remains the source of truth. This mirrors it; it does not replace it.
+ *
+ * One subtlety worth stating, because it drifted once already: every factor
+ * score is rounded to two decimals BEFORE it is multiplied by its weight, which
+ * is what src/comparison/award.py does (FactorScore.weighted reads the rounded
+ * `self.score`). Weighting the raw score instead differs by a cent whenever the
+ * raw value sits near a rounding boundary, and a cent is enough to move a total.
  */
 
 import type {
@@ -91,12 +97,13 @@ function scoreCost(adjustedTotal: number, bestTotal: number, weight: number): Fa
   const score = adjustedTotal ? clamp((bestTotal / adjustedTotal) * 100) : 0;
   const premium = adjustedTotal - bestTotal;
 
+  const rounded = round2(score);
   return {
     factor: 'cost',
     label: FACTOR_LABELS.cost,
-    score: round2(score),
+    score: rounded,
     weight,
-    weighted: round2((score * weight) / 100),
+    weighted: round2((rounded * weight) / 100),
     basis:
       premium > 0
         ? `${money(adjustedTotal)} leveled, ${money(premium)} above the lowest leveled bid`
@@ -115,12 +122,13 @@ function scoreSafety(
   const worst = policy.emr_disqualifying;
   const score = clamp(((worst - emr) / (worst - best)) * 100);
 
+  const rounded = round2(score);
   return {
     factor: 'safety',
     label: FACTOR_LABELS.safety,
-    score: round2(score),
+    score: rounded,
     weight,
-    weighted: round2((score * weight) / 100),
+    weighted: round2((rounded * weight) / 100),
     basis: `EMR ${emr.toFixed(2)} on a scale where ${best.toFixed(2)} scores 100 and ${worst.toFixed(2)} scores 0`,
     detail: { emr, best, worst, trir: prequal.safety.trir },
   };
@@ -139,12 +147,13 @@ function scoreExperience(prequal: VendorPrequalification, weight: number): Facto
     0
   );
 
+  const rounded = round2(score);
   return {
     factor: 'experience',
     label: FACTOR_LABELS.experience,
-    score: round2(score),
+    score: rounded,
     weight,
-    weighted: round2((score * weight) / 100),
+    weighted: round2((rounded * weight) / 100),
     basis:
       `${perf.change_order_rate_pct.toFixed(1)}% change-order rate, ` +
       `${perf.on_time_closeout_pct.toFixed(0)}% on-time closeout, ` +
@@ -177,12 +186,13 @@ function scoreSchedule(
     0
   );
 
+  const rounded = round2(score);
   return {
     factor: 'schedule',
     label: FACTOR_LABELS.schedule,
-    score: round2(score),
+    score: rounded,
     weight,
-    weighted: round2((score * weight) / 100),
+    weighted: round2((rounded * weight) / 100),
     basis: weeksOver
       ? `${sched.proposed_duration_weeks} weeks against a ${requirement.required_duration_weeks}-week requirement (${weeksOver} over), ${sched.crew_size_committed}-person crew`
       : `${sched.proposed_duration_weeks} weeks inside the ${requirement.required_duration_weeks}-week requirement, ${sched.crew_size_committed}-person crew`,

@@ -8,7 +8,8 @@
     "dev": "node scripts/sync-data.mjs && next dev -p 3210",
     "build": "node scripts/sync-data.mjs && next build && node scripts/publish.mjs",
     "build:demo-projects": "tsx scripts/build-demo-projects.ts",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:parity": "tsx scripts/check-award-parity.ts"
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.1.1",
