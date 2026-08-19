@@ -4,12 +4,27 @@
   "type": "Regional commercial general contractor and construction-management firm",
   "founded": 2004,
   "headquarters": "Atlanta, Georgia",
-  "regional_offices": ["Charlotte, North Carolina", "Nashville, Tennessee"],
+  "regional_offices": [
+    "Charlotte, North Carolina",
+    "Nashville, Tennessee"
+  ],
   "employees_approx": 240,
   "annual_construction_volume_usd_approx": 425000000,
-  "typical_project_size_usd": { "min": 5000000, "max": 80000000 },
-  "delivery_methods": ["CM at Risk", "Design-Build", "General Contracting"],
-  "core_markets": ["Healthcare", "Higher Education", "Municipal", "Commercial Interiors"],
+  "typical_project_size_usd": {
+    "min": 5000000,
+    "max": 80000000
+  },
+  "delivery_methods": [
+    "CM at Risk",
+    "Design-Build",
+    "General Contracting"
+  ],
+  "core_markets": [
+    "Healthcare",
+    "Higher Education",
+    "Municipal",
+    "Commercial Interiors"
+  ],
   "email_domain": "crestmark-demo.example",
   "roles": [
     {
@@ -51,5 +66,30 @@
   ],
   "project_numbering_convention": "YY-####",
   "bid_package_numbering_convention": "<Project Number>-BP-<CSI Division>",
-  "synthetic_notice": "This is a fictional company created for a portfolio demonstration. All names, prices, contacts, and project details are fictional."
+  "synthetic_notice": "This is a fictional company created for a portfolio demonstration. All names, prices, contacts, and project details are fictional.",
+  "subcontractor_prequalification_policy": {
+    "policy_owner": "Maya Ellison",
+    "effective_date": "2026-01-01",
+    "review_cycle_months": 12,
+    "emr_maximum": 1.0,
+    "emr_high_risk_maximum": 0.85,
+    "emr_disqualifying": 1.25,
+    "single_project_bond_headroom_pct": 10.0,
+    "aggregate_backlog_utilization_max_pct": 85.0,
+    "insurance_minimums_usd": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000
+    },
+    "certificate_expiry_warning_days": 45,
+    "policy_note": "Safety and insurance are gates, not weights. A subcontractor over the EMR maximum or under a required insurance limit is removed from award consideration before price is discussed, because carrying that risk is not something a lower number buys back."
+  },
+  "bid_coverage_policy": {
+    "minimum_bidders_per_package": 3,
+    "target_bidders_per_package": 4,
+    "minimum_response_rate_pct": 40.0,
+    "policy_note": "A package with fewer than three responsive bidders is not competitively bid, and the leveled spread stops being evidence of a market price. Coverage is tracked from the invitation out, not from the bids in, because the bids that never arrived are the ones that do not show up in any comparison."
+  }
 }
