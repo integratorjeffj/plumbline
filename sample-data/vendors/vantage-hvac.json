@@ -1,0 +1,67 @@
+{
+  "vendor_id": "vantage-hvac",
+  "name": "Vantage HVAC Group",
+  "trade": "Division 23 - Mechanical / HVAC",
+  "email_domain": "vantage-hvac-demo.example",
+  "characteristics": [
+    "Largest crew commitment of any Harborview bidder",
+    "Consistent second-tier pricing with dependable delivery",
+    "Highest submitted price, and closes much of the gap once leveled"
+  ],
+  "contacts": [
+    {
+      "name": "Karen Whitlock",
+      "title": "Senior Estimator",
+      "email": "karen.whitlock@vantage-hvac-demo.example"
+    }
+  ],
+  "prequalification": {
+    "last_reviewed": "2026-05-19",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.88,
+      "emr_year": 2025,
+      "trir": 2.4,
+      "osha_recordables_3yr": 4,
+      "lost_time_incidents_3yr": 0
+    },
+    "bonding": {
+      "surety": "Granite Mutual Surety",
+      "am_best_rating": "A (Excellent)",
+      "single_project_limit": 10000000,
+      "aggregate_limit": 25000000,
+      "current_backlog": 14800000
+    },
+    "insurance": {
+      "general_liability_occurrence": 2000000,
+      "general_liability_aggregate": 4000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-01-31"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": false,
+      "wbe": false,
+      "sbe": false,
+      "certifying_agency": null
+    },
+    "performance": {
+      "packages_bid": 16,
+      "packages_awarded": 6,
+      "packages_completed": 6,
+      "change_order_rate_pct": 2.6,
+      "on_time_closeout_pct": 93.0,
+      "avg_rfi_per_package": 6.3,
+      "years_working_together": 7
+    },
+    "schedule": {
+      "proposed_duration_weeks": 24,
+      "mobilization_weeks": 2,
+      "crew_size_committed": 12,
+      "concurrent_awarded_packages": 2
+    }
+  },
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

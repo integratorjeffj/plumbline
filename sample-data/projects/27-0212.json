@@ -1,0 +1,29 @@
+{
+  "project_number": "27-0212",
+  "project_name": "Harborview Medical Office Building",
+  "general_contractor_id": "crestmark",
+  "customer_owner": "Harborview Health Alliance",
+  "location": "Fictional Charleston metro location",
+  "project_type": "Medical office building, ground-up",
+  "delivery_method": "CM at Risk",
+  "current_drawing_revision": "Rev 2",
+  "current_specification_issue": "Issued for Bid",
+  "bid_packages": [
+    {
+      "bid_package_number": "27-0212-BP-23",
+      "csi_division": "23",
+      "description": "Division 23 - Mechanical / HVAC",
+      "budget_usd": 415000.0,
+      "primary_human_reviewer": "Renee Ostrander",
+      "bid_due_date": "2026-07-17",
+      "evaluation_date": "2026-07-24",
+      "schedule_requirement": {
+        "required_duration_weeks": 26,
+        "max_mobilization_weeks": 4,
+        "min_crew_size": 8,
+        "notice_to_proceed": "2026-09-14"
+      }
+    }
+  ],
+  "synthetic_notice": "Fictional project record created for the Bid Intelligence & Procurement Copilot demonstration."
+}

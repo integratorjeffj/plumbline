@@ -1,0 +1,72 @@
+{
+  "bid_package_number": "28-0355-BP-26",
+  "issued_by": "Leah Morgan",
+  "issued_date": "2026-07-20",
+  "bids_due": "2026-08-21",
+  "invitations": [
+    {
+      "vendor_id": "summit-electric",
+      "vendor_name": "Summit Electric Partners",
+      "invited_at": "2026-07-20",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "gridline-power",
+      "vendor_name": "Gridline Power Solutions",
+      "invited_at": "2026-07-20",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "anchor-electrical",
+      "vendor_name": "Anchor Electrical Co.",
+      "invited_at": "2026-07-20",
+      "status": "responded",
+      "note": null
+    },
+    {
+      "vendor_id": "carriage-electric",
+      "vendor_name": "Carriage Electric LLC",
+      "invited_at": "2026-07-20",
+      "status": "declined",
+      "note": "Declined; distribution and warehouse work outside their current focus."
+    },
+    {
+      "vendor_id": "redoak-power",
+      "vendor_name": "Red Oak Power Systems",
+      "invited_at": "2026-07-20",
+      "status": "declined",
+      "note": "Declined; the site is outside their service radius."
+    },
+    {
+      "vendor_id": "fairmount-electrical",
+      "vendor_name": "Fairmount Electrical Contractors",
+      "invited_at": "2026-07-20",
+      "status": "declined",
+      "note": "Declined; bonding capacity committed through year end."
+    },
+    {
+      "vendor_id": "northbend-electric",
+      "vendor_name": "Northbend Electric",
+      "invited_at": "2026-07-20",
+      "status": "no_response",
+      "note": "Three follow-ups sent; no acknowledgment received."
+    },
+    {
+      "vendor_id": "keystone-circuits",
+      "vendor_name": "Keystone Circuits Inc.",
+      "invited_at": "2026-07-20",
+      "status": "no_response",
+      "note": "Invitation opened but never answered."
+    },
+    {
+      "vendor_id": "lantern-electrical",
+      "vendor_name": "Lantern Electrical Group",
+      "invited_at": "2026-07-27",
+      "status": "no_response",
+      "note": "Added late to widen the bidder pool; no response before the due date."
+    }
+  ],
+  "synthetic_notice": "Fictional invitation-to-bid record created for the Bid Intelligence & Procurement Copilot demonstration."
+}

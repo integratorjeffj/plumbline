@@ -1,0 +1,68 @@
+{
+  "vendor_id": "coastal-air",
+  "name": "Coastal Air Balance & Controls",
+  "trade": "Division 23 - Mechanical / HVAC",
+  "email_domain": "coastal-air-demo.example",
+  "characteristics": [
+    "Newest firm in the Harborview bidder set",
+    "Best safety record on the package",
+    "Thin completed-package history with this general contractor",
+    "Submits the lowest price and lands third once leveled"
+  ],
+  "contacts": [
+    {
+      "name": "Devon Marsh",
+      "title": "Estimating Manager",
+      "email": "devon.marsh@coastal-air-demo.example"
+    }
+  ],
+  "prequalification": {
+    "last_reviewed": "2026-07-14",
+    "reviewed_by": "Leah Morgan",
+    "safety": {
+      "emr": 0.86,
+      "emr_year": 2025,
+      "trir": 1.9,
+      "osha_recordables_3yr": 2,
+      "lost_time_incidents_3yr": 0
+    },
+    "bonding": {
+      "surety": "Keystone Indemnity Company",
+      "am_best_rating": "A- (Excellent)",
+      "single_project_limit": 5000000,
+      "aggregate_limit": 12000000,
+      "current_backlog": 6100000
+    },
+    "insurance": {
+      "general_liability_occurrence": 1000000,
+      "general_liability_aggregate": 2000000,
+      "auto_liability": 1000000,
+      "umbrella": 5000000,
+      "workers_comp_employers_liability": 1000000,
+      "certificate_expires": "2027-02-28"
+    },
+    "certifications": {
+      "dbe": false,
+      "mbe": true,
+      "wbe": false,
+      "sbe": true,
+      "certifying_agency": "Georgia Minority Supplier Development Council"
+    },
+    "performance": {
+      "packages_bid": 7,
+      "packages_awarded": 3,
+      "packages_completed": 3,
+      "change_order_rate_pct": 4.2,
+      "on_time_closeout_pct": 86.0,
+      "avg_rfi_per_package": 9.1,
+      "years_working_together": 3
+    },
+    "schedule": {
+      "proposed_duration_weeks": 28,
+      "mobilization_weeks": 5,
+      "crew_size_committed": 8,
+      "concurrent_awarded_packages": 1
+    }
+  },
+  "synthetic_notice": "Fictional subcontractor created for the Bid Intelligence & Procurement Copilot demonstration."
+}

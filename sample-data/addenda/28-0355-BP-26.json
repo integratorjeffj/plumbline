@@ -1,0 +1,15 @@
+{
+  "bid_package_number": "28-0355-BP-26",
+  "current_addendum": 1,
+  "issued_by": "Leah Morgan",
+  "acknowledgment_note": "Acknowledgment is inferred from the drawing revision each proposal states it was priced against. A bidder pricing an older revision has not received, or has not incorporated, every addendum issued since.",
+  "addenda": [
+    {
+      "number": 1,
+      "issued_date": "2026-08-01",
+      "drawing_revision": "Rev 1",
+      "description": "Added exterior yard lighting and revised the service entrance location on the loading side."
+    }
+  ],
+  "synthetic_notice": "Fictional addenda log created for the Bid Intelligence & Procurement Copilot demonstration."
+}
