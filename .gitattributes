@@ -1,0 +1,24 @@
+# Normalize text line endings in the repo, but never touch binary fixtures.
+#
+# Without this, a Windows clone with core.autocrlf=true rewrites LF to CRLF
+# inside the sample PDFs. That shifts every byte offset past the first newline,
+# the xref table stops pointing at the objects it names, and pdfplumber fails
+# with "Unexpected EOF" -- taking 28 tests down with it on checkout alone.
+# The bid fixtures are the input the whole pipeline is proven against, so they
+# have to survive a clone byte-for-byte.
+
+* text=auto
+
+*.pdf   binary
+*.xlsx  binary
+*.xlsm  binary
+*.db    binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
