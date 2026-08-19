@@ -1007,3 +1007,149 @@ tr.row-excluded td { opacity: 0.72; }
 @media (max-width: 900px) {
   .data-table [data-secondary] { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   Charts
+
+   Hand-drawn SVG rather than a charting library: every chart the app needs is
+   a bar or a ring, and a library would weigh more than four shapes cost to
+   write. Hover cards are progressive enhancement -- the same numbers are in
+   each chart's aria-label and, where the chart is load-bearing, in a legend.
+   ------------------------------------------------------------------------- */
+
+.chart-wrap { position: relative; }
+
+.seg-bar {
+  position: relative;
+  width: 100%;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.seg-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: filter 120ms ease;
+}
+
+.seg-fill:hover,
+.seg-fill[data-active] { filter: brightness(1.12); }
+
+.chart-hover {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 140px;
+  max-width: 260px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 8px 10px;
+  box-shadow: var(--shadow);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.donut-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-center {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  pointer-events: none;
+  text-align: center;
+}
+
+.donut-value {
+  font-size: var(--fs-h2, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.column-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100%;
+}
+
+.column-slot {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 5px;
+}
+
+.column-fill {
+  width: 100%;
+  min-height: 2px;
+  border-radius: 4px 4px 0 0;
+  transition: filter 120ms ease;
+}
+
+.column-slot[data-active] .column-fill { filter: brightness(1.14); }
+
+.column-value {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.column-slot[data-active] .column-value { opacity: 1; }
+
+.column-label {
+  width: 100%;
+  color: var(--ink-2);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A legend entry: swatch, label, value. Colour is never the only carrier. */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: none;
+  padding: 2px 0;
+  color: inherit;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.legend-item[data-dim] { opacity: 0.45; }
+
+.legend-swatch {
+  width: 11px;
+  height: 11px;
+  flex: none;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seg-fill, .column-fill, .column-value { transition: none; }
+}
