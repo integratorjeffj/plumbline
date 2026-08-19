@@ -2,10 +2,15 @@
  * Publish the static export to the path GitHub Pages serves.
  *
  * next build writes to web/out/. Pages serves this repo from /docs, so the
- * built site is copied to docs/console and committed. Done in Node rather
- * than a shell one-liner so it behaves the same in PowerShell, Git Bash, and CI.
+ * built site is copied to docs/ and committed. Done in Node rather than a
+ * shell one-liner so it behaves the same in PowerShell, Git Bash, and CI.
+ *
+ * docs/ is entirely generated. Nothing in it is hand-edited, which is the
+ * point: the previous arrangement had a hand-written docs/index.html beside
+ * the build output, and it silently drifted out of date against its own
+ * source copy.
  */
-import { existsSync, rmSync, cpSync, readdirSync } from 'node:fs';
+import { existsSync, rmSync, cpSync, readdirSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -19,7 +24,7 @@ const repoRoot = process.env.PLUMBLINE_REPO_ROOT
   : join(webRoot, '..');
 
 const source = join(webRoot, 'out');
-const target = join(repoRoot, 'docs', 'console');
+const target = join(repoRoot, 'docs');
 
 if (!existsSync(source)) {
   console.error(`\n  No build output at ${source}. Did next build succeed?\n`);
@@ -33,9 +38,28 @@ if (existsSync(target)) {
 }
 cpSync(source, target, { recursive: true });
 
+// Pages would otherwise run the output through Jekyll, which drops _next/.
+writeFileSync(join(target, '.nojekyll'), '');
+
+// The app lived at /console for its first two releases. Anything already
+// linking there -- the README, a bookmark, a shared URL -- should land in the
+// app rather than on a 404.
+const legacy = join(target, 'console');
+mkdirSync(legacy, { recursive: true });
+writeFileSync(
+  join(legacy, 'index.html'),
+  '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
+    '<title>Plumbline</title>' +
+    '<meta http-equiv="refresh" content="0; url=/plumbline/">' +
+    '<link rel="canonical" href="/plumbline/">' +
+    '</head><body>' +
+    '<p>The console moved to <a href="/plumbline/">/plumbline/</a>.</p>' +
+    '</body></html>\n'
+);
+
 const routes = readdirSync(target, { withFileTypes: true })
   .filter((entry) => entry.isDirectory() && !entry.name.startsWith('_'))
   .map((entry) => entry.name);
 
-console.log(`  published  ->  docs/console/`);
+console.log(`  published  ->  docs/  (with .nojekyll and a /console redirect)`);
 console.log(`  routes: / , ${routes.map((r) => `/${r}`).join(' , ')}`);
