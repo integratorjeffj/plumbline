@@ -2,7 +2,17 @@
 
 **Reads subcontractor bids in whatever format they arrive in, levels them onto one scope vocabulary, and shows what each bid actually costs.**
 
-[**Live Demo →**](https://integratorjeffj.github.io/plumbline) · [**Review Console →**](https://integratorjeffj.github.io/plumbline/console/)
+[**Live Demo →**](https://integratorjeffj.github.io/plumbline/) · [**Review Console →**](https://integratorjeffj.github.io/plumbline/console/) · [How the leveling works](#the-leveling-formula) · [What is real, what is stubbed](#what-is-real-and-what-is-stubbed)
+
+`Python` `Claude API` `pdfplumber` `openpyxl` `SQLAlchemy` `Next.js 15` `TypeScript` `pytest`
+
+A general contractor's estimator gets four bids for the same electrical package in four different formats, and the cheapest one is rarely the cheapest one. Plumbline normalizes every bid onto a single scope taxonomy, prices the gaps each vendor left out, and re-ranks them on what they would actually cost.
+
+## See it in 60 seconds
+
+1. **Look at the ranking table below.** The low bidder at $167,400 lands fourth at $223,700 once its missing lighting allowance and permit fees are priced in. The rank-movement column is the whole product in one number.
+2. **Open the [Review Console](https://integratorjeffj.github.io/plumbline/console/) and click any extracted figure.** It jumps to the page and section it was cited from. Approve it, correct it, or reject it, and correcting a scope status re-levels the package on the spot.
+3. **Go to Scope & weighting and change an importance grade.** The ranking recomputes in the browser. The parity badge on the overview page is checking that browser math against the Python pipeline's exported totals on every load, and turns red if they ever disagree.
 
 ---
 
@@ -122,7 +132,7 @@ Two rules make this work:
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
-- **75 deterministic tests** including 55 golden assertions, none of which require a live API call
+- **75 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
 
 ---
 
@@ -177,7 +187,7 @@ Run live extraction against Claude (requires `ANTHROPIC_API_KEY` in a local `.en
 python scripts/run_comparison.py
 ```
 
-Or just visit the [live demo](https://integratorjeffj.github.io/plumbline).
+Or just visit the [live demo](https://integratorjeffj.github.io/plumbline/).
 
 ### Building the console
 
@@ -246,7 +256,7 @@ All demo data is synthetic. Crestmark Construction Partners, the Falcon Medical 
 ## Also built
 
 **Flowline**
-Focus command center. Ranks tasks by deadline, priority, and available time, then surfaces exactly one thing to work on next. Live at [integratorjeffj.github.io/flowline](https://integratorjeffj.github.io/flowline).
+Focus command center. Ranks tasks by deadline, priority, and available time, then surfaces exactly one thing to work on next. Live at [integratorjeffj.github.io/flowline](https://integratorjeffj.github.io/flowline/).
 
 **AI Proposal Workflow**
 Guided proposal generation for telecom and managed services deals. Produced 9 proposals and over $400K in quoted work within 5 business days of rollout.
@@ -264,6 +274,10 @@ Coaching-led adoption framework using the Harvest the Win methodology, moving te
 
 ## About
 
-Built by [Jeff Jenkins](https://github.com/integratorjeffj), AI integration, automation, and managed technology operations.
+Built by Jeff Jenkins. AI integration, automation, and managed technology operations.
 
 Currently focused on AI adoption and enablement roles: helping organizations move from AI experimentation to repeatable, governed, business-value-producing workflows.
+
+---
+
+[View my GitHub profile](https://github.com/integratorjeffj) · [LinkedIn](https://www.linkedin.com/in/integratorjeffj/)
