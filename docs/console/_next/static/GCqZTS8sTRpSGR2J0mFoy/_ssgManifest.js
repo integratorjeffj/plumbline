@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fp\u002F[projectId]","\u002Fp\u002F[projectId]\u002Fcompare","\u002Fp\u002F[projectId]\u002Freport","\u002Fp\u002F[projectId]\u002Freview","\u002Fp\u002F[projectId]\u002Fsettings","\u002Fp\u002F[projectId]\u002Fsources"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
