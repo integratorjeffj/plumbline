@@ -189,7 +189,8 @@ proves what the number actually covers.
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
-- **138 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
+- **166 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
+- **Live-model evaluation harness** scoring real Claude output against the same 113-check answer key, broken out by category so scope judgment is reported separately from field reads, with a model-to-model diff mode
 
 ---
 
@@ -243,6 +244,52 @@ Run live extraction against Claude (requires `ANTHROPIC_API_KEY` in a local `.en
 ```bash
 python scripts/run_comparison.py
 ```
+
+### Evaluating the model
+
+The test suite proves the deterministic half of the system. It runs against recorded model
+responses, so a green suite says the arithmetic is right *given a known extraction* -- it says
+nothing about whether Claude, today, on this prompt, reads a scope letter the way those recordings
+assume. That is a separate question, and it needs a separate run.
+
+[`eval/run_eval.py`](eval/run_eval.py) points the same 113-check answer key at whichever provider
+you ask for. Offline, against the recordings, needing no key and costing nothing:
+
+```bash
+python eval/run_eval.py
+```
+
+Against the real API, which needs `ANTHROPIC_API_KEY` in a local `.env`:
+
+```bash
+python eval/run_eval.py --live
+```
+
+Add `--compare` to run the recorded baseline alongside it and print the diff -- which checks the
+live model gets right that the recordings get wrong, and which it regresses. `--model` scores a
+specific model, so two models can be compared across runs. `--json` writes the result to
+`eval/reports/` for tracking accuracy over time.
+
+Results are broken out by category rather than reported as one number:
+
+```
+  By category:
+    allowances             3/3    100.0%
+    alternates             1/1    100.0%
+    citations             13/13   100.0%
+    extracted_fields      53/53   100.0%
+    package_findings      17/17   100.0%
+    package_ranking        8/8    100.0%
+    scope_assertions      18/18   100.0%
+```
+
+The split is the point. Reading a dollar figure off a page and mapping vendor prose onto a
+four-state scope vocabulary are different tasks, and averaging them into a single accuracy figure
+would flatter the hard one. `scope_assertions` is the number that actually matters, because the
+`NotFound` / `Excluded` distinction is what the arc-flash finding depends on.
+
+A live run costs five API calls. It is never part of CI: software correctness must not depend on a
+model's mood on a given day.
 
 Or just visit the [live demo](https://integratorjeffj.github.io/plumbline/).
 
