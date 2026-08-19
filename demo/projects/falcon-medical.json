@@ -115,8 +115,8 @@
           "included_in_base_bid": false
         }
       ],
-      "bid_id": "d028da30-96da-4a8c-9ac2-87a64774c087",
-      "ai_inference_id": "30b5c4b1-3be9-44f3-998d-d157f6c49c0c",
+      "bid_id": "31fea276-f041-452a-a5a4-1f3a2c5b3b2d",
+      "ai_inference_id": "d465bcb9-e934-4caa-a927-1b8157d5cb0a",
       "superseded": false
     },
     {
@@ -240,8 +240,8 @@
       },
       "allowances": [],
       "alternates": [],
-      "bid_id": "bd792f98-700a-48f1-a9ae-28d19f4db9ed",
-      "ai_inference_id": "21a5ce3b-7e80-43fa-917a-92599c7cf0e0",
+      "bid_id": "db4de438-4ef2-4e2f-8091-89fa847f7fdf",
+      "ai_inference_id": "138d7035-a028-4e22-9e20-6283378a4cc7",
       "superseded": false
     },
     {
@@ -363,8 +363,8 @@
         }
       ],
       "alternates": [],
-      "bid_id": "b1ba347f-b491-48a1-b0be-cdf5b8d9bcbc",
-      "ai_inference_id": "c13fe158-99ca-4f5b-a634-dcd47a782708",
+      "bid_id": "0ffc1313-5951-4ee1-b570-7c19d7e7cee3",
+      "ai_inference_id": "740af232-8041-4571-a444-f0291427b6a8",
       "superseded": false
     },
     {
@@ -490,8 +490,8 @@
         }
       ],
       "alternates": [],
-      "bid_id": "7ae22522-7927-4751-9579-0edc3895ed03",
-      "ai_inference_id": "c91e6d3a-e5eb-433f-9041-bbbd31c91991",
+      "bid_id": "01134257-8837-49e1-86b3-f7b0d9d863b1",
+      "ai_inference_id": "4ce3c507-2de1-4d65-91ae-08174a2e1fa7",
       "superseded": true
     },
     {
@@ -617,8 +617,8 @@
         }
       ],
       "alternates": [],
-      "bid_id": "20054450-f6a4-4aac-a366-2f6587260f51",
-      "ai_inference_id": "35f0a1d3-911b-4abf-8906-566fd76df759",
+      "bid_id": "41cb59bc-9837-4ba6-aec3-8ebd2fa5fa97",
+      "ai_inference_id": "2b4d3519-cc33-4cb5-902c-8f02f4ef19df",
       "superseded": false
     }
   ],
@@ -949,6 +949,1094 @@
       "critical": false
     }
   ],
+  "prequalification": {
+    "apex-electrical": {
+      "vendor_id": "apex-electrical",
+      "vendor_name": "Apex Electrical Contractors",
+      "eligible": true,
+      "status": "warn",
+      "disqualifying_reason": null,
+      "emr": 0.89,
+      "last_reviewed": "2026-07-02",
+      "bond_utilization_pct": 61.3,
+      "participation_certifications": [
+        "DBE",
+        "MBE"
+      ],
+      "gates": [
+        {
+          "code": "emr_above_high_risk_maximum",
+          "label": "Experience modification rate",
+          "status": "warn",
+          "summary": "EMR of 0.89 clears the 1.00 maximum for this package but exceeds the 0.85 ceiling used on high-risk work.",
+          "detail": {
+            "emr": 0.89,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 2.1,
+            "lost_time_incidents_3yr": 0
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_expiring",
+          "label": "Certificate of insurance",
+          "status": "warn",
+          "summary": "Certificate expires in 37 days (2026-09-20); a renewed certificate is required before subcontract execution.",
+          "detail": {
+            "certificate_expires": "2026-09-20",
+            "days_remaining": 37,
+            "warning_days": 45,
+            "as_of": "2026-08-14"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $201,450 sits well inside the $6,000,000 single-project limit written by Granite Mutual Surety.",
+          "detail": {
+            "bid_amount": 201450.0,
+            "single_project_limit": 6000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 5400000.0,
+            "surety": "Granite Mutual Surety",
+            "am_best_rating": "A (Excellent)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 62.7% of the $15,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 15000000,
+            "current_backlog": 9200000,
+            "projected_backlog": 9401450.0,
+            "utilization_pct": 62.7,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-07-02, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-07-02",
+            "months_since_review": 1,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.89,
+        "emr_year": 2025,
+        "trir": 2.1,
+        "osha_recordables_3yr": 3,
+        "lost_time_incidents_3yr": 0
+      },
+      "bonding": {
+        "surety": "Granite Mutual Surety",
+        "am_best_rating": "A (Excellent)",
+        "single_project_limit": 6000000,
+        "aggregate_limit": 15000000,
+        "current_backlog": 9200000
+      },
+      "insurance": {
+        "general_liability_occurrence": 2000000,
+        "general_liability_aggregate": 4000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2026-09-20"
+      },
+      "certifications": {
+        "dbe": true,
+        "mbe": true,
+        "wbe": false,
+        "sbe": false,
+        "certifying_agency": "Georgia DOT DBE Program"
+      },
+      "performance": {
+        "packages_bid": 17,
+        "packages_awarded": 6,
+        "packages_completed": 6,
+        "change_order_rate_pct": 2.1,
+        "on_time_closeout_pct": 94.0,
+        "avg_rfi_per_package": 6.0,
+        "years_working_together": 9
+      },
+      "schedule": {
+        "proposed_duration_weeks": 20,
+        "mobilization_weeks": 2,
+        "crew_size_committed": 10,
+        "concurrent_awarded_packages": 3
+      }
+    },
+    "ironclad-power": {
+      "vendor_id": "ironclad-power",
+      "vendor_name": "Ironclad Power & Electric",
+      "eligible": true,
+      "status": "pass",
+      "disqualifying_reason": null,
+      "emr": 0.78,
+      "last_reviewed": "2026-06-12",
+      "bond_utilization_pct": 52.6,
+      "participation_certifications": [],
+      "gates": [
+        {
+          "code": "emr_within_policy",
+          "label": "Experience modification rate",
+          "status": "pass",
+          "summary": "EMR of 0.78 is within the 0.85 high-risk ceiling.",
+          "detail": {
+            "emr": 0.78,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 1.4,
+            "lost_time_incidents_3yr": 0
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2027-03-31.",
+          "detail": {
+            "certificate_expires": "2027-03-31",
+            "days_remaining": 229,
+            "warning_days": 45,
+            "as_of": "2026-08-14"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $186,250 sits well inside the $12,000,000 single-project limit written by Granite Mutual Surety.",
+          "detail": {
+            "bid_amount": 186250.0,
+            "single_project_limit": 12000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 10800000.0,
+            "surety": "Granite Mutual Surety",
+            "am_best_rating": "A (Excellent)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 53.1% of the $35,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 35000000,
+            "current_backlog": 18400000,
+            "projected_backlog": 18586250.0,
+            "utilization_pct": 53.1,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-06-12, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-06-12",
+            "months_since_review": 2,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.78,
+        "emr_year": 2025,
+        "trir": 1.4,
+        "osha_recordables_3yr": 2,
+        "lost_time_incidents_3yr": 0
+      },
+      "bonding": {
+        "surety": "Granite Mutual Surety",
+        "am_best_rating": "A (Excellent)",
+        "single_project_limit": 12000000,
+        "aggregate_limit": 35000000,
+        "current_backlog": 18400000
+      },
+      "insurance": {
+        "general_liability_occurrence": 2000000,
+        "general_liability_aggregate": 4000000,
+        "auto_liability": 2000000,
+        "umbrella": 10000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2027-03-31"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": false,
+        "wbe": false,
+        "sbe": false,
+        "certifying_agency": null
+      },
+      "performance": {
+        "packages_bid": 14,
+        "packages_awarded": 5,
+        "packages_completed": 5,
+        "change_order_rate_pct": 2.4,
+        "on_time_closeout_pct": 96.0,
+        "avg_rfi_per_package": 5.1,
+        "years_working_together": 7
+      },
+      "schedule": {
+        "proposed_duration_weeks": 21,
+        "mobilization_weeks": 3,
+        "crew_size_committed": 8,
+        "concurrent_awarded_packages": 2
+      }
+    },
+    "meridian-electric": {
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "eligible": false,
+      "status": "fail",
+      "disqualifying_reason": "EMR of 1.12 (2025) exceeds the 1.00 maximum.",
+      "emr": 1.12,
+      "last_reviewed": "2026-05-28",
+      "bond_utilization_pct": 56.0,
+      "participation_certifications": [
+        "SBE"
+      ],
+      "gates": [
+        {
+          "code": "emr_above_maximum",
+          "label": "Experience modification rate",
+          "status": "fail",
+          "summary": "EMR of 1.12 (2025) exceeds the 1.00 maximum.",
+          "detail": {
+            "emr": 1.12,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 3.8,
+            "lost_time_incidents_3yr": 2
+          }
+        },
+        {
+          "code": "insurance_meets_minimum",
+          "label": "Insurance limits",
+          "status": "pass",
+          "summary": "Every required coverage is carried at or above the contract minimum.",
+          "detail": {
+            "shortfalls": []
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2026-12-31.",
+          "detail": {
+            "certificate_expires": "2026-12-31",
+            "days_remaining": 139,
+            "warning_days": 45,
+            "as_of": "2026-08-14"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $188,550 sits well inside the $8,000,000 single-project limit written by Keystone Indemnity Company.",
+          "detail": {
+            "bid_amount": 188550.0,
+            "single_project_limit": 8000000,
+            "headroom_pct": 10.0,
+            "usable_limit": 7200000.0,
+            "surety": "Keystone Indemnity Company",
+            "am_best_rating": "A- (Excellent)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_available",
+          "label": "Aggregate bonding capacity",
+          "status": "pass",
+          "summary": "Projected backlog reaches 56.9% of the $20,000,000 aggregate limit, inside the 85% ceiling.",
+          "detail": {
+            "aggregate_limit": 20000000,
+            "current_backlog": 11200000,
+            "projected_backlog": 11388550.0,
+            "utilization_pct": 56.9,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-05-28, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-05-28",
+            "months_since_review": 3,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 1.12,
+        "emr_year": 2025,
+        "trir": 3.8,
+        "osha_recordables_3yr": 7,
+        "lost_time_incidents_3yr": 2
+      },
+      "bonding": {
+        "surety": "Keystone Indemnity Company",
+        "am_best_rating": "A- (Excellent)",
+        "single_project_limit": 8000000,
+        "aggregate_limit": 20000000,
+        "current_backlog": 11200000
+      },
+      "insurance": {
+        "general_liability_occurrence": 1000000,
+        "general_liability_aggregate": 2000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2026-12-31"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": false,
+        "wbe": false,
+        "sbe": true,
+        "certifying_agency": "Georgia Small Business Program"
+      },
+      "performance": {
+        "packages_bid": 9,
+        "packages_awarded": 3,
+        "packages_completed": 3,
+        "change_order_rate_pct": 4.1,
+        "on_time_closeout_pct": 88.0,
+        "avg_rfi_per_package": 7.4,
+        "years_working_together": 4
+      },
+      "schedule": {
+        "proposed_duration_weeks": 22,
+        "mobilization_weeks": 4,
+        "crew_size_committed": 7,
+        "concurrent_awarded_packages": 1
+      }
+    },
+    "voltage-systems": {
+      "vendor_id": "voltage-systems",
+      "vendor_name": "Voltage Systems Inc.",
+      "eligible": false,
+      "status": "fail",
+      "disqualifying_reason": "Umbrella / excess liability carried at $2,000,000 against a $5,000,000 requirement.",
+      "emr": 0.96,
+      "last_reviewed": "2026-04-19",
+      "bond_utilization_pct": 90.0,
+      "participation_certifications": [
+        "WBE",
+        "SBE"
+      ],
+      "gates": [
+        {
+          "code": "emr_above_high_risk_maximum",
+          "label": "Experience modification rate",
+          "status": "warn",
+          "summary": "EMR of 0.96 clears the 1.00 maximum for this package but exceeds the 0.85 ceiling used on high-risk work.",
+          "detail": {
+            "emr": 0.96,
+            "emr_year": 2025,
+            "maximum": 1.0,
+            "high_risk_maximum": 0.85,
+            "disqualifying": 1.25,
+            "trir": 2.9,
+            "lost_time_incidents_3yr": 1
+          }
+        },
+        {
+          "code": "insurance_below_minimum",
+          "label": "Insurance limits",
+          "status": "fail",
+          "summary": "Umbrella / excess liability carried at $2,000,000 against a $5,000,000 requirement.",
+          "detail": {
+            "shortfalls": [
+              {
+                "coverage": "umbrella",
+                "label": "Umbrella / excess liability",
+                "carried": 2000000,
+                "required": 5000000,
+                "short_by": 3000000
+              }
+            ]
+          }
+        },
+        {
+          "code": "insurance_certificate_current",
+          "label": "Certificate of insurance",
+          "status": "pass",
+          "summary": "Certificate current through 2027-01-15.",
+          "detail": {
+            "certificate_expires": "2027-01-15",
+            "days_remaining": 154,
+            "warning_days": 45,
+            "as_of": "2026-08-14"
+          }
+        },
+        {
+          "code": "bond_single_project_within_limit",
+          "label": "Single-project bonding capacity",
+          "status": "pass",
+          "summary": "Bid of $223,700 sits well inside the $2,500,000 single-project limit written by Harbor Line Casualty.",
+          "detail": {
+            "bid_amount": 223700.0,
+            "single_project_limit": 2500000,
+            "headroom_pct": 10.0,
+            "usable_limit": 2250000.0,
+            "surety": "Harbor Line Casualty",
+            "am_best_rating": "B++ (Good)"
+          }
+        },
+        {
+          "code": "bond_aggregate_capacity_strained",
+          "label": "Aggregate bonding capacity",
+          "status": "warn",
+          "summary": "Backlog of $5,400,000 plus this bid reaches 93.7% of the $6,000,000 aggregate limit, above the 85% policy ceiling.",
+          "detail": {
+            "aggregate_limit": 6000000,
+            "current_backlog": 5400000,
+            "projected_backlog": 5623700.0,
+            "utilization_pct": 93.7,
+            "maximum_pct": 85.0
+          }
+        },
+        {
+          "code": "prequal_review_current",
+          "label": "Prequalification review",
+          "status": "pass",
+          "summary": "Prequalified 2026-04-19, inside the 12-month cycle.",
+          "detail": {
+            "last_reviewed": "2026-04-19",
+            "months_since_review": 4,
+            "review_cycle_months": 12
+          }
+        }
+      ],
+      "safety": {
+        "emr": 0.96,
+        "emr_year": 2025,
+        "trir": 2.9,
+        "osha_recordables_3yr": 4,
+        "lost_time_incidents_3yr": 1
+      },
+      "bonding": {
+        "surety": "Harbor Line Casualty",
+        "am_best_rating": "B++ (Good)",
+        "single_project_limit": 2500000,
+        "aggregate_limit": 6000000,
+        "current_backlog": 5400000
+      },
+      "insurance": {
+        "general_liability_occurrence": 1000000,
+        "general_liability_aggregate": 2000000,
+        "auto_liability": 1000000,
+        "umbrella": 2000000,
+        "workers_comp_employers_liability": 1000000,
+        "certificate_expires": "2027-01-15"
+      },
+      "certifications": {
+        "dbe": false,
+        "mbe": false,
+        "wbe": true,
+        "sbe": true,
+        "certifying_agency": "Georgia Women in Business Council"
+      },
+      "performance": {
+        "packages_bid": 6,
+        "packages_awarded": 1,
+        "packages_completed": 1,
+        "change_order_rate_pct": 9.8,
+        "on_time_closeout_pct": 71.0,
+        "avg_rfi_per_package": 12.3,
+        "years_working_together": 2
+      },
+      "schedule": {
+        "proposed_duration_weeks": 26,
+        "mobilization_weeks": 6,
+        "crew_size_committed": 5,
+        "concurrent_awarded_packages": 0
+      }
+    }
+  },
+  "coverage": {
+    "issued_date": "2026-07-06",
+    "bids_due": "2026-08-07",
+    "invited_count": 7,
+    "responded_count": 4,
+    "declined_count": 2,
+    "no_response_count": 1,
+    "response_rate_pct": 57.1,
+    "health": "healthy",
+    "minimum_bidders": 3,
+    "target_bidders": 4,
+    "current_addendum": 3,
+    "invitations": [
+      {
+        "vendor_id": "apex-electrical",
+        "vendor_name": "Apex Electrical Contractors",
+        "invited_at": "2026-07-06",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "ironclad-power",
+        "vendor_name": "Ironclad Power & Electric",
+        "invited_at": "2026-07-06",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "meridian-electric",
+        "vendor_name": "Meridian Electric & Controls",
+        "invited_at": "2026-07-06",
+        "status": "responded",
+        "note": null
+      },
+      {
+        "vendor_id": "voltage-systems",
+        "vendor_name": "Voltage Systems Inc.",
+        "invited_at": "2026-07-13",
+        "status": "responded",
+        "note": "Added to the invitation list after Addendum 1."
+      },
+      {
+        "vendor_id": "northgate-electric",
+        "vendor_name": "Northgate Electric Company",
+        "invited_at": "2026-07-06",
+        "status": "declined",
+        "note": "Capacity committed through Q1 2027."
+      },
+      {
+        "vendor_id": "summit-power-systems",
+        "vendor_name": "Summit Power Systems",
+        "invited_at": "2026-07-06",
+        "status": "declined",
+        "note": "Declined healthcare work outside their current licensing."
+      },
+      {
+        "vendor_id": "brightline-electrical",
+        "vendor_name": "Brightline Electrical Services",
+        "invited_at": "2026-07-06",
+        "status": "no_response",
+        "note": "Two follow-ups sent; no acknowledgment received."
+      }
+    ],
+    "acknowledgments": [
+      {
+        "vendor_id": "apex-electrical",
+        "vendor_name": "Apex Electrical Contractors",
+        "drawing_revision_referenced": "Revision 3",
+        "acknowledged_through": 3,
+        "missing_addenda": [],
+        "acknowledged": true,
+        "unstated": false
+      },
+      {
+        "vendor_id": "voltage-systems",
+        "vendor_name": "Voltage Systems Inc.",
+        "drawing_revision_referenced": "Revision 3",
+        "acknowledged_through": 3,
+        "missing_addenda": [],
+        "acknowledged": true,
+        "unstated": false
+      },
+      {
+        "vendor_id": "meridian-electric",
+        "vendor_name": "Meridian Electric & Controls",
+        "drawing_revision_referenced": "Revision 1",
+        "acknowledged_through": 1,
+        "missing_addenda": [
+          2,
+          3
+        ],
+        "acknowledged": false,
+        "unstated": false
+      },
+      {
+        "vendor_id": "ironclad-power",
+        "vendor_name": "Ironclad Power & Electric",
+        "drawing_revision_referenced": "Revision 3",
+        "acknowledged_through": 3,
+        "missing_addenda": [],
+        "acknowledged": true,
+        "unstated": false
+      }
+    ],
+    "addenda": [
+      {
+        "number": 1,
+        "issued_date": "2026-07-10",
+        "drawing_revision": "Revision 1",
+        "description": "Panel schedule revisions in the east wing; added receptacle circuits at nurse stations."
+      },
+      {
+        "number": 2,
+        "issued_date": "2026-07-24",
+        "drawing_revision": "Revision 2",
+        "description": "Feeder reroute at the generator pad; clarified conduit routing above the imaging suite."
+      },
+      {
+        "number": 3,
+        "issued_date": "2026-08-03",
+        "drawing_revision": "Revision 3",
+        "description": "Added arc-flash study requirement per specification section 26 05 73; revised lighting control sequence."
+      }
+    ]
+  },
+  "award": {
+    "weights": {
+      "cost": 40.0,
+      "experience": 30.0,
+      "safety": 20.0,
+      "schedule": 10.0
+    },
+    "scores": [
+      {
+        "vendor_id": "apex-electrical",
+        "vendor_name": "Apex Electrical Contractors",
+        "adjusted_total": 201450.0,
+        "submitted_total": 191850.0,
+        "total_score": 91.92,
+        "eligible": true,
+        "disqualifying_reason": null,
+        "rank": 2,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 92.45,
+            "weight": 40.0,
+            "weighted": 36.98,
+            "basis": "$201,450 leveled, $15,200 above the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 201450.0,
+              "best_total": 186250.0,
+              "premium_over_best": 15200.0
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 89.8,
+            "weight": 30.0,
+            "weighted": 26.94,
+            "basis": "2.1% change-order rate, 94% on-time closeout, 6 package(s) completed over 9 years",
+            "detail": {
+              "components": {
+                "change_orders": 79.0,
+                "closeout": 94.0,
+                "depth": 100.0,
+                "relationship": 100.0
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 2.1,
+              "on_time_closeout_pct": 94.0,
+              "packages_completed": 6,
+              "years_working_together": 9,
+              "avg_rfi_per_package": 6.0
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 90.0,
+            "weight": 20.0,
+            "weighted": 18.0,
+            "basis": "EMR 0.89 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.89,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 2.1,
+              "lost_time_incidents_3yr": 0
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 100.0,
+            "weight": 10.0,
+            "weighted": 10.0,
+            "basis": "20 weeks inside the 22-week requirement, 10-person crew",
+            "detail": {
+              "components": {
+                "duration": 100.0,
+                "mobilization": 100.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 20,
+              "required_duration_weeks": 22,
+              "weeks_over": 0,
+              "mobilization_weeks": 2,
+              "crew_size_committed": 10,
+              "concurrent_awarded_packages": 3
+            }
+          }
+        ]
+      },
+      {
+        "vendor_id": "voltage-systems",
+        "vendor_name": "Voltage Systems Inc.",
+        "adjusted_total": 223700.0,
+        "submitted_total": 167400.0,
+        "total_score": 61.65,
+        "eligible": false,
+        "disqualifying_reason": "Umbrella / excess liability carried at $2,000,000 against a $5,000,000 requirement.",
+        "rank": null,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 83.26,
+            "weight": 40.0,
+            "weighted": 33.3,
+            "basis": "$223,700 leveled, $37,450 above the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 223700.0,
+              "best_total": 186250.0,
+              "premium_over_best": 37450.0
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 27.93,
+            "weight": 30.0,
+            "weighted": 8.38,
+            "basis": "9.8% change-order rate, 71% on-time closeout, 1 package(s) completed over 2 years",
+            "detail": {
+              "components": {
+                "change_orders": 2.0,
+                "closeout": 71.0,
+                "depth": 16.67,
+                "relationship": 25.0
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 9.8,
+              "on_time_closeout_pct": 71.0,
+              "packages_completed": 1,
+              "years_working_together": 2,
+              "avg_rfi_per_package": 12.3
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 72.5,
+            "weight": 20.0,
+            "weighted": 14.5,
+            "basis": "EMR 0.96 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.96,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 2.9,
+              "lost_time_incidents_3yr": 1
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 54.67,
+            "weight": 10.0,
+            "weighted": 5.47,
+            "basis": "26 weeks against a 22-week requirement (4 over), 5-person crew",
+            "detail": {
+              "components": {
+                "duration": 40.0,
+                "mobilization": 60.0,
+                "crew": 83.33
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 26,
+              "required_duration_weeks": 22,
+              "weeks_over": 4,
+              "mobilization_weeks": 6,
+              "crew_size_committed": 5,
+              "concurrent_awarded_packages": 0
+            }
+          }
+        ]
+      },
+      {
+        "vendor_id": "meridian-electric",
+        "vendor_name": "Meridian Electric & Controls",
+        "adjusted_total": 188550.0,
+        "submitted_total": 178950.0,
+        "total_score": 75.51,
+        "eligible": false,
+        "disqualifying_reason": "EMR of 1.12 (2025) exceeds the 1.00 maximum.",
+        "rank": null,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 98.78,
+            "weight": 40.0,
+            "weighted": 39.51,
+            "basis": "$188,550 leveled, $2,300 above the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 188550.0,
+              "best_total": 186250.0,
+              "premium_over_best": 2300.0
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 65.0,
+            "weight": 30.0,
+            "weighted": 19.5,
+            "basis": "4.1% change-order rate, 88% on-time closeout, 3 package(s) completed over 4 years",
+            "detail": {
+              "components": {
+                "change_orders": 59.0,
+                "closeout": 88.0,
+                "depth": 50.0,
+                "relationship": 50.0
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 4.1,
+              "on_time_closeout_pct": 88.0,
+              "packages_completed": 3,
+              "years_working_together": 4,
+              "avg_rfi_per_package": 7.4
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 32.5,
+            "weight": 20.0,
+            "weighted": 6.5,
+            "basis": "EMR 1.12 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 1.12,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 3.8,
+              "lost_time_incidents_3yr": 2
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 100.0,
+            "weight": 10.0,
+            "weighted": 10.0,
+            "basis": "22 weeks inside the 22-week requirement, 7-person crew",
+            "detail": {
+              "components": {
+                "duration": 100.0,
+                "mobilization": 100.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 22,
+              "required_duration_weeks": 22,
+              "weeks_over": 0,
+              "mobilization_weeks": 4,
+              "crew_size_committed": 7,
+              "concurrent_awarded_packages": 1
+            }
+          }
+        ]
+      },
+      {
+        "vendor_id": "ironclad-power",
+        "vendor_name": "Ironclad Power & Electric",
+        "adjusted_total": 186250.0,
+        "submitted_total": 179750.0,
+        "total_score": 95.39,
+        "eligible": true,
+        "disqualifying_reason": null,
+        "rank": 1,
+        "factors": [
+          {
+            "factor": "cost",
+            "label": "Leveled cost",
+            "score": 100.0,
+            "weight": 40.0,
+            "weighted": 40.0,
+            "basis": "$186,250 leveled, the lowest leveled bid",
+            "detail": {
+              "adjusted_total": 186250.0,
+              "best_total": 186250.0,
+              "premium_over_best": 0.0
+            }
+          },
+          {
+            "factor": "experience",
+            "label": "Experience and past performance",
+            "score": 84.62,
+            "weight": 30.0,
+            "weighted": 25.39,
+            "basis": "2.4% change-order rate, 96% on-time closeout, 5 package(s) completed over 7 years",
+            "detail": {
+              "components": {
+                "change_orders": 76.0,
+                "closeout": 96.0,
+                "depth": 83.33,
+                "relationship": 87.5
+              },
+              "subweights": {
+                "change_orders": 0.4,
+                "closeout": 0.3,
+                "depth": 0.2,
+                "relationship": 0.1
+              },
+              "change_order_rate_pct": 2.4,
+              "on_time_closeout_pct": 96.0,
+              "packages_completed": 5,
+              "years_working_together": 7,
+              "avg_rfi_per_package": 5.1
+            }
+          },
+          {
+            "factor": "safety",
+            "label": "Safety record",
+            "score": 100.0,
+            "weight": 20.0,
+            "weighted": 20.0,
+            "basis": "EMR 0.78 on a scale where 0.85 scores 100 and 1.25 scores 0",
+            "detail": {
+              "emr": 0.78,
+              "best": 0.85,
+              "worst": 1.25,
+              "trir": 1.4,
+              "lost_time_incidents_3yr": 0
+            }
+          },
+          {
+            "factor": "schedule",
+            "label": "Schedule and capacity",
+            "score": 100.0,
+            "weight": 10.0,
+            "weighted": 10.0,
+            "basis": "21 weeks inside the 22-week requirement, 8-person crew",
+            "detail": {
+              "components": {
+                "duration": 100.0,
+                "mobilization": 100.0,
+                "crew": 100.0
+              },
+              "subweights": {
+                "duration": 0.5,
+                "mobilization": 0.3,
+                "crew": 0.2
+              },
+              "proposed_duration_weeks": 21,
+              "required_duration_weeks": 22,
+              "weeks_over": 0,
+              "mobilization_weeks": 3,
+              "crew_size_committed": 8,
+              "concurrent_awarded_packages": 2
+            }
+          }
+        ]
+      }
+    ],
+    "recommended_vendor_id": "ironclad-power",
+    "runner_up_vendor_id": "apex-electrical",
+    "margin": 3.47,
+    "agrees_with_lowest_leveled": true,
+    "narrative": "Recommend award to Ironclad Power & Electric at $186,250 leveled, scoring 95.4 of 100, ahead of Apex Electrical Contractors at 91.9 (3.5 points). This is also the lowest leveled bid. It is not the lowest submitted bid: Voltage Systems Inc. submitted $167,400 but rises to $223,700 once excluded scope is priced. Strongest factor is leveled cost at 100 of 100 ($186,250 leveled, the lowest leveled bid); weakest is experience and past performance at 85 (2.4% change-order rate, 96% on-time closeout, 5 package(s) completed over 7 years). 2 bidder(s) were excluded before scoring: Meridian Electric & Controls ($2,300 above the recommendation) -- EMR of 1.12 (2025) exceeds the 1.00 maximum. Voltage Systems Inc. ($37,450 above the recommendation) -- Umbrella / excess liability carried at $2,000,000 against a $5,000,000 requirement. Weights applied: leveled cost 40%, experience and past performance 30%, safety record 20%, schedule and capacity 10%."
+  },
+  "policy": {
+    "prequalification": {
+      "policy_owner": "Maya Ellison",
+      "effective_date": "2026-01-01",
+      "review_cycle_months": 12,
+      "emr_maximum": 1.0,
+      "emr_high_risk_maximum": 0.85,
+      "emr_disqualifying": 1.25,
+      "single_project_bond_headroom_pct": 10.0,
+      "aggregate_backlog_utilization_max_pct": 85.0,
+      "insurance_minimums_usd": {
+        "general_liability_occurrence": 1000000,
+        "general_liability_aggregate": 2000000,
+        "auto_liability": 1000000,
+        "umbrella": 5000000,
+        "workers_comp_employers_liability": 1000000
+      },
+      "certificate_expiry_warning_days": 45,
+      "policy_note": "Safety and insurance are gates, not weights. A subcontractor over the EMR maximum or under a required insurance limit is removed from award consideration before price is discussed, because carrying that risk is not something a lower number buys back."
+    },
+    "coverage": {
+      "minimum_bidders_per_package": 3,
+      "target_bidders_per_package": 4,
+      "minimum_response_rate_pct": 40.0,
+      "policy_note": "A package with fewer than three responsive bidders is not competitively bid, and the leveled spread stops being evidence of a market price. Coverage is tracked from the invitation out, not from the bids in, because the bids that never arrived are the ones that do not show up in any comparison."
+    },
+    "schedule_requirement": {
+      "required_duration_weeks": 22,
+      "max_mobilization_weeks": 4,
+      "min_crew_size": 6,
+      "notice_to_proceed": "2026-10-05"
+    },
+    "evaluation_date": "2026-08-14"
+  },
   "adjustment_rules": {
     "entered_by": "Daniel Cho",
     "entered_role": "Senior Estimator",
@@ -993,6 +2081,22 @@
     ]
   },
   "findings": [
+    {
+      "code": "addenda_not_acknowledged",
+      "severity": "HIGH",
+      "summary": "Meridian Electric & Controls priced against Revision 1 and has not incorporated Addenda 2, 3.",
+      "vendor_id": "meridian-electric",
+      "vendor_name": "Meridian Electric & Controls",
+      "detail": {
+        "drawing_revision_referenced": "Revision 1",
+        "acknowledged_through": 1,
+        "missing_addenda": [
+          2,
+          3
+        ],
+        "current_addendum": 3
+      }
+    },
     {
       "code": "arithmetic_discrepancy",
       "severity": "HIGH",
@@ -1125,6 +2229,22 @@
       }
     },
     {
+      "code": "invitation_no_response",
+      "severity": "INFO",
+      "summary": "1 invited bidder(s) never responded: Brightline Electrical Services.",
+      "vendor_id": null,
+      "vendor_name": null,
+      "detail": {
+        "vendors": [
+          {
+            "vendor_id": "brightline-electrical",
+            "vendor_name": "Brightline Electrical Services",
+            "note": "Two follow-ups sent; no acknowledgment received."
+          }
+        ]
+      }
+    },
+    {
       "code": "superseded_revision",
       "severity": "INFO",
       "summary": "Ironclad Power & Electric: Original superseded by Revision 1. Comparison uses the latest revision.",
@@ -1174,6 +2294,6 @@
     "lowest_adjusted_total": 186250.0,
     "active_bidders": 4,
     "documents_processed": 5,
-    "high_severity_findings": 4
+    "high_severity_findings": 5
   }
 }
