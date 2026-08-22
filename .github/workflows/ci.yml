@@ -53,6 +53,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # web/data/projects is generated from demo/projects and git-ignored,
+      # so nothing can import a project until this runs.
+      - name: Sync project data
+        run: npm run sync
+
       - name: Typecheck
         run: npx tsc --noEmit
 
