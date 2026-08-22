@@ -21,6 +21,10 @@ const basePath = '/plumbline';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  // Reproducible builds: same input, same bytes. CI rebuilds the site and
+  // fails if docs/ differs, which only works if the build is deterministic.
+  // Cache busting is unaffected -- chunk filenames are content-hashed.
+  generateBuildId: () => 'plumbline',
   basePath,
   // GitHub Pages resolves /review/ to /review/index.html but not bare /review.
   trailingSlash: true,
