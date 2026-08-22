@@ -1,0 +1,93 @@
+name: Plumbline validation
+
+# The suite was only ever run by hand, which means the README's test claim was
+# a claim rather than a check. Everything here runs offline against recorded
+# model responses -- no API key, no network calls to Anthropic -- so a pull
+# request can never fail because a live model had an off day.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: Pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the test suite
+        run: python -m pytest -q
+
+      - name: Score the golden answer key
+        run: python eval/run_eval.py
+
+  web:
+    name: Console
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Render tests
+        run: npm test
+
+      - name: Award parity against the Python pipeline
+        run: npm run check:parity
+
+  published:
+    name: Published output is current
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      # docs/ is generated and committed, because GitHub Pages serves it
+      # straight from the branch. That only stays honest if a rebuild produces
+      # what is already there, so this rebuilds and fails on any difference.
+      - name: Rebuild the site
+        run: npm ci && npm run build
+        working-directory: web
+
+      - name: Fail if docs/ is out of date
+        run: |
+          if [ -n "$(git status --porcelain docs)" ]; then
+            echo "docs/ does not match a fresh build. Run 'npm --prefix web run build' and commit the result."
+            git status --porcelain docs
+            git diff --stat docs
+            exit 1
+          fi
+          echo "docs/ matches a fresh build."
