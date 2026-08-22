@@ -202,7 +202,9 @@ proves what the number actually covers.
 - **Source citations** on every extracted figure, down to page and section, or sheet and cell range for spreadsheets
 - **SHA-256 provenance** on every ingested document
 - **AI inference lineage** stored separately from vendor-submitted fact, with provider, model, prompt version, confidence tier, and review status
-- **204 deterministic tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
+- **204 deterministic pipeline tests** across [`tests/`](tests/), none of which require a live API call, including golden-set comparisons against five recorded fixtures in [`eval/golden/`](eval/golden/) via [`tests/test_pipeline_golden.py`](tests/test_pipeline_golden.py) and [`tests/test_package_golden.py`](tests/test_package_golden.py)
+- **19 render tests** over the console in [`web/tests/`](web/tests/), which assert that every tab on every tabbed page actually renders content, that the drawer closes on Escape without losing the table beneath it, and that changing an award weight re-ranks the bidders. A typecheck cannot catch a JSX restructure that leaves a panel empty; these can, and there is a commit where they did
+- **Continuous integration** running the pipeline suite, the golden evaluation, the typecheck, the render tests, and the Python-to-browser parity check on every pull request, entirely offline
 - **Live-model evaluation harness** scoring real Claude output against the same 113-check answer key, broken out by category so scope judgment is reported separately from field reads, with a model-to-model diff mode
 
 ---
@@ -246,11 +248,21 @@ Run the four-vendor comparison offline, no API key needed:
 python scripts/run_comparison.py --fake
 ```
 
-Run the test suite:
+Run the pipeline test suite:
 
 ```bash
 python -m pytest
 ```
+
+Run the console render tests:
+
+```bash
+cd web && npm test
+```
+
+Both run offline against recorded model responses and need no API key. CI runs them on every pull
+request, along with the typecheck, the parity check, and a rebuild that fails if the published
+`docs/` no longer matches a fresh build.
 
 Run live extraction against Claude (requires `ANTHROPIC_API_KEY` in a local `.env`):
 

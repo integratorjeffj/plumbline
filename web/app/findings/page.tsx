@@ -178,6 +178,8 @@ export default function ProgramFindingsPage() {
           <button
             type="button"
             className="btn"
+            aria-label="Show findings of every severity"
+            aria-pressed={severity === null}
             data-active={severity === null || undefined}
             onClick={() => setSeverity(null)}
           >
@@ -188,6 +190,11 @@ export default function ProgramFindingsPage() {
               key={s}
               type="button"
               className="btn"
+              // The donut legend also offers a "HIGH" control. Naming these by
+              // what they do keeps the two distinguishable to a screen reader,
+              // which was the reason a test could not tell them apart either.
+              aria-label={`Show only ${s} severity findings`}
+              aria-pressed={severity === s}
               data-active={severity === s || undefined}
               onClick={() => setSeverity(severity === s ? null : s)}
             >
