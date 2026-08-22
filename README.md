@@ -261,8 +261,7 @@ cd web && npm test
 ```
 
 Both run offline against recorded model responses and need no API key. CI runs them on every pull
-request, along with the typecheck, the parity check, and a rebuild that fails if the published
-`docs/` no longer matches a fresh build.
+request, along with the typecheck and the Python-to-browser parity check.
 
 Run live extraction against Claude (requires `ANTHROPIC_API_KEY` in a local `.env`):
 
